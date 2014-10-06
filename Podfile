@@ -1,4 +1,4 @@
 target :Specs do
-	pod "Cedar", git: 'https://github.com/pivotal/cedar.git'
-	pod 'PivotalCoreKit/UIKit/SpecHelper'
+  pod 'Cedar', '0.10.0'
+  pod 'PivotalCoreKit/UIKit/SpecHelper'
 end
