@@ -30,29 +30,34 @@ describe(@"TesselBeaconManager", ^{
     });
     
     describe(@"-searchForTesselBeacons:", ^{
-        beforeEach(^{
-            [subject searchForTesselBeacon];
-        });
+        __block Class locationManagerClass;
         
-        xit(@"should check whether locaion manager is able to monitor tessel regions", ^{
-            //TODO: Stub [CLLocationManager isMonitoringAvailableForClass:]
+        beforeEach(^{
+            locationManagerClass = [CLLocationManager class];
+            spy_on(locationManagerClass);
         });
         
         describe(@"when CLLocationManager auth status is AuthorizedAlways ", ^{
             beforeEach(^{
-                //TODO: Stub [CLLocationManager authorizationStatus]
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusAuthorizedAlways);
+                [subject searchForTesselBeacon];
             });
             
-            xit(@"should request a list of regions to monitor", ^{
+            it(@"should request a list of regions to monitor", ^{
                 tesselRegionManager should have_received(@selector(knownTesselRegions));
             });
             
-            xit(@"should begin monitoring for the region", ^{
+            it(@"should begin monitoring for the region", ^{
                 fakeLocationManager should have_received(@selector(startMonitoringForRegion:)).with(region);
             });
         });
         
         describe(@"when CLLocationManager auth status is Undetermined", ^{
+            beforeEach(^{
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusNotDetermined);
+                [subject searchForTesselBeacon];
+            });
+            
             it(@"should prompt the user for permisson to monitor location", ^{
                 fakeLocationManager should have_received(@selector(requestAlwaysAuthorization));
             });
