@@ -39,10 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		182E33BF6C6E1FA11119E7C0 /* Pods-TesselBluetoothDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesselBluetoothDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesselBluetoothDemoTests/Pods-TesselBluetoothDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		182E33BF6C6E1FA11119E7C0 /* Pods-TesselBeaconDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesselBeaconDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesselBeaconDemoTests/Pods-TesselBeaconDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B28AF6A9716C0CB6DD3AC1E /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewControllerSpec.mm; sourceTree = "<group>"; };
-		5A77A4AB19DE723000187EE1 /* libPods-TesselBluetoothDemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TesselBluetoothDemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-TesselBluetoothDemoTests-Cedar.a"; sourceTree = "<group>"; };
+		5A77A4AB19DE723000187EE1 /* libPods-TesselBeaconDemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TesselBeaconDemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-TesselBeaconDemoTests-Cedar.a"; sourceTree = "<group>"; };
 		5A8144F719DD05AC006077B3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		5A96613919DFA9770039D844 /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
 		5A96613C19DFD0850039D844 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -52,14 +52,14 @@
 		5A96614419E081C20039D844 /* TesselBeaconManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselBeaconManagerSpec.mm; sourceTree = "<group>"; };
 		5A96614619E083E00039D844 /* TesselRegionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselRegionManager.h; sourceTree = "<group>"; };
 		5A96614719E083E00039D844 /* TesselRegionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselRegionManager.m; sourceTree = "<group>"; };
-		5AB8AB5119DBC0880085B4BE /* TesselBluetoothDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesselBluetoothDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB8AB5119DBC0880085B4BE /* TesselBeaconDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesselBeaconDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB8AB5419DBC0880085B4BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5AB8AB5619DBC0880085B4BE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5AB8AB5819DBC0880085B4BE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		5AB8AB5C19DBC0880085B4BE /* TesselBluetoothDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TesselBluetoothDemo-Info.plist"; sourceTree = "<group>"; };
+		5AB8AB5C19DBC0880085B4BE /* TesselBeaconDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TesselBeaconDemo-Info.plist"; sourceTree = "<group>"; };
 		5AB8AB5E19DBC0880085B4BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5AB8AB6019DBC0880085B4BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5AB8AB6219DBC0880085B4BE /* TesselBluetoothDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TesselBluetoothDemo-Prefix.pch"; sourceTree = "<group>"; };
+		5AB8AB6219DBC0880085B4BE /* TesselBeaconDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TesselBeaconDemo-Prefix.pch"; sourceTree = "<group>"; };
 		5AB8AB6319DBC0880085B4BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5AB8AB6419DBC0880085B4BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5AB8AB6C19DBC0880085B4BE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -75,8 +75,8 @@
 		5AC4B0E519DE6A7B0078A65F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5AE323E419DE4AB700A22D0C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8CCC1B9061B5793020E69317 /* Pods-Specs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.release.xcconfig"; sourceTree = "<group>"; };
-		9F645F1A1C0312795888E6B7 /* libPods-TesselBluetoothDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TesselBluetoothDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0611953E86E2F1CFDFCB616 /* Pods-TesselBluetoothDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesselBluetoothDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesselBluetoothDemoTests/Pods-TesselBluetoothDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F645F1A1C0312795888E6B7 /* libPods-TesselBeaconDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TesselBeaconDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0611953E86E2F1CFDFCB616 /* Pods-TesselBeaconDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesselBeaconDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesselBeaconDemoTests/Pods-TesselBeaconDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		C32E7607E00CC3B3F2E03078 /* libPods-Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,7 +137,7 @@
 		5AB8AB4819DBC0880085B4BE = {
 			isa = PBXGroup;
 			children = (
-				5AB8AB5A19DBC0880085B4BE /* TesselBluetoothDemo */,
+				5AB8AB5A19DBC0880085B4BE /* TesselBeaconDemo */,
 				5AC4B0D919DE6A7A0078A65F /* Specs */,
 				5AB8AB5319DBC0880085B4BE /* Frameworks */,
 				5AB8AB5219DBC0880085B4BE /* Products */,
@@ -148,7 +148,7 @@
 		5AB8AB5219DBC0880085B4BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5AB8AB5119DBC0880085B4BE /* TesselBluetoothDemo.app */,
+				5AB8AB5119DBC0880085B4BE /* TesselBeaconDemo.app */,
 				5AC4B0D519DE6A7A0078A65F /* Specs.app */,
 			);
 			name = Products;
@@ -158,20 +158,20 @@
 			isa = PBXGroup;
 			children = (
 				5A96614219E06FAC0039D844 /* CoreLocation.framework */,
-				5A77A4AB19DE723000187EE1 /* libPods-TesselBluetoothDemoTests-Cedar.a */,
+				5A77A4AB19DE723000187EE1 /* libPods-TesselBeaconDemoTests-Cedar.a */,
 				5AB8AB9419DBC3E60085B4BE /* CoreBluetooth.framework */,
 				5AB8AB5419DBC0880085B4BE /* Foundation.framework */,
 				5AB8AB5619DBC0880085B4BE /* CoreGraphics.framework */,
 				5AB8AB5819DBC0880085B4BE /* UIKit.framework */,
 				5AB8AB7319DBC0880085B4BE /* XCTest.framework */,
 				5AE323E419DE4AB700A22D0C /* SenTestingKit.framework */,
-				9F645F1A1C0312795888E6B7 /* libPods-TesselBluetoothDemoTests.a */,
+				9F645F1A1C0312795888E6B7 /* libPods-TesselBeaconDemoTests.a */,
 				C32E7607E00CC3B3F2E03078 /* libPods-Specs.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5AB8AB5A19DBC0880085B4BE /* TesselBluetoothDemo */ = {
+		5AB8AB5A19DBC0880085B4BE /* TesselBeaconDemo */ = {
 			isa = PBXGroup;
 			children = (
 				5A96613119DF38CE0039D844 /* Services */,
@@ -182,16 +182,16 @@
 				5AB8AB5B19DBC0880085B4BE /* Supporting Files */,
 				5A96613C19DFD0850039D844 /* LaunchScreen.xib */,
 			);
-			path = TesselBluetoothDemo;
+			path = TesselBeaconDemo;
 			sourceTree = "<group>";
 		};
 		5AB8AB5B19DBC0880085B4BE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5AB8AB5C19DBC0880085B4BE /* TesselBluetoothDemo-Info.plist */,
+				5AB8AB5C19DBC0880085B4BE /* TesselBeaconDemo-Info.plist */,
 				5AB8AB5D19DBC0880085B4BE /* InfoPlist.strings */,
 				5AB8AB6019DBC0880085B4BE /* main.m */,
-				5AB8AB6219DBC0880085B4BE /* TesselBluetoothDemo-Prefix.pch */,
+				5AB8AB6219DBC0880085B4BE /* TesselBeaconDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -232,8 +232,8 @@
 		D81BCAFF9D07C673ADC85078 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				182E33BF6C6E1FA11119E7C0 /* Pods-TesselBluetoothDemoTests.debug.xcconfig */,
-				B0611953E86E2F1CFDFCB616 /* Pods-TesselBluetoothDemoTests.release.xcconfig */,
+				182E33BF6C6E1FA11119E7C0 /* Pods-TesselBeaconDemoTests.debug.xcconfig */,
+				B0611953E86E2F1CFDFCB616 /* Pods-TesselBeaconDemoTests.release.xcconfig */,
 				1B28AF6A9716C0CB6DD3AC1E /* Pods-Specs.debug.xcconfig */,
 				8CCC1B9061B5793020E69317 /* Pods-Specs.release.xcconfig */,
 			);
@@ -243,9 +243,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5AB8AB5019DBC0880085B4BE /* TesselBluetoothDemo */ = {
+		5AB8AB5019DBC0880085B4BE /* TesselBeaconDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5AB8AB8319DBC0880085B4BE /* Build configuration list for PBXNativeTarget "TesselBluetoothDemo" */;
+			buildConfigurationList = 5AB8AB8319DBC0880085B4BE /* Build configuration list for PBXNativeTarget "TesselBeaconDemo" */;
 			buildPhases = (
 				5AB8AB4D19DBC0880085B4BE /* Sources */,
 				5AB8AB4E19DBC0880085B4BE /* Frameworks */,
@@ -255,9 +255,9 @@
 			);
 			dependencies = (
 			);
-			name = TesselBluetoothDemo;
-			productName = TesselBluetoothDemo;
-			productReference = 5AB8AB5119DBC0880085B4BE /* TesselBluetoothDemo.app */;
+			name = TesselBeaconDemo;
+			productName = TesselBeaconDemo;
+			productReference = 5AB8AB5119DBC0880085B4BE /* TesselBeaconDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5AC4B0D419DE6A7A0078A65F /* Specs */ = {
@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5AB8AB4C19DBC0880085B4BE /* Build configuration list for PBXProject "TesselBluetoothDemo" */;
+			buildConfigurationList = 5AB8AB4C19DBC0880085B4BE /* Build configuration list for PBXProject "TesselBeaconDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -310,7 +310,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5AB8AB5019DBC0880085B4BE /* TesselBluetoothDemo */,
+				5AB8AB5019DBC0880085B4BE /* TesselBeaconDemo */,
 				5AC4B0D419DE6A7A0078A65F /* Specs */,
 			);
 		};
@@ -455,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -487,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -501,8 +501,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TesselBluetoothDemo/TesselBluetoothDemo-Prefix.pch";
-				INFOPLIST_FILE = "TesselBluetoothDemo/TesselBluetoothDemo-Info.plist";
+				GCC_PREFIX_HEADER = "TesselBeaconDemo/TesselBeaconDemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TesselBeaconDemo/TesselBeaconDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -519,8 +519,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TesselBluetoothDemo/TesselBluetoothDemo-Prefix.pch";
-				INFOPLIST_FILE = "TesselBluetoothDemo/TesselBluetoothDemo-Info.plist";
+				GCC_PREFIX_HEADER = "TesselBeaconDemo/TesselBeaconDemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TesselBeaconDemo/TesselBeaconDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -591,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5AB8AB4C19DBC0880085B4BE /* Build configuration list for PBXProject "TesselBluetoothDemo" */ = {
+		5AB8AB4C19DBC0880085B4BE /* Build configuration list for PBXProject "TesselBeaconDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AB8AB8119DBC0880085B4BE /* Debug */,
@@ -600,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5AB8AB8319DBC0880085B4BE /* Build configuration list for PBXNativeTarget "TesselBluetoothDemo" */ = {
+		5AB8AB8319DBC0880085B4BE /* Build configuration list for PBXNativeTarget "TesselBeaconDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AB8AB8419DBC0880085B4BE /* Debug */,

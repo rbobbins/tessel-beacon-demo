@@ -1,5 +1,5 @@
 PODS:
-  - Cedar (0.9.8)
+  - Cedar (0.10.0)
   - PivotalCoreKit/UIKit/SpecHelper (0.0.3):
     - PivotalCoreKit/UIKit/SpecHelper/Extensions
     - PivotalCoreKit/UIKit/SpecHelper/Matchers
@@ -9,15 +9,11 @@ PODS:
   - PivotalCoreKit/UIKit/SpecHelper/Stubs (0.0.3)
 
 DEPENDENCIES:
-  - Cedar (from `https://github.com/pivotal/cedar.git`)
+  - Cedar (= 0.10.0)
   - PivotalCoreKit/UIKit/SpecHelper
 
-EXTERNAL SOURCES:
-  Cedar:
-    :git: https://github.com/pivotal/cedar.git
-
 SPEC CHECKSUMS:
-  Cedar: 8c4f82870dae7d2064562bf001596cf547d62662
+  Cedar: 65b780d0e75ccb626a43890347315de1b822ec8e
   PivotalCoreKit: 6bd7f9e2b128c9699f660deaee9f8e8f77a7bd7d
 
 COCOAPODS: 0.34.1
