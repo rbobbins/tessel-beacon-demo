@@ -1,5 +1,27 @@
 PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - Cedar (0.10.0)
+  - KSDeferred (0.2.0)
   - PivotalCoreKit/UIKit/SpecHelper (0.0.3):
     - PivotalCoreKit/UIKit/SpecHelper/Extensions
     - PivotalCoreKit/UIKit/SpecHelper/Matchers
@@ -9,11 +31,15 @@ PODS:
   - PivotalCoreKit/UIKit/SpecHelper/Stubs (0.0.3)
 
 DEPENDENCIES:
+  - AFNetworking
   - Cedar (= 0.10.0)
+  - KSDeferred
   - PivotalCoreKit/UIKit/SpecHelper
 
 SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Cedar: 65b780d0e75ccb626a43890347315de1b822ec8e
+  KSDeferred: 33361e3e63ebe90210ea94d7f6469c1c2b874763
   PivotalCoreKit: 6bd7f9e2b128c9699f660deaee9f8e8f77a7bd7d
 
 COCOAPODS: 0.34.1

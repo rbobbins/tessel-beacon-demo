@@ -1,6 +1,8 @@
 #import <Cedar/Cedar.h>
 #import "WelcomeViewController.h"
 #import "LocationPermissionViewController.h"
+#import "TesselRegistrationRepository.h"
+#import "KSDeferred.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -10,12 +12,13 @@ SPEC_BEGIN(WelcomeViewControllerSpec)
 describe(@"WelcomeViewController", ^{
     __block WelcomeViewController *subject;
     __block UINavigationController *navController;
+    __block TesselRegistrationRepository *registrationRepository;
 
     beforeEach(^{
-        subject = [[WelcomeViewController alloc] init];
+        registrationRepository = nice_fake_for([TesselRegistrationRepository class]);
+        subject = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
         navController = [[UINavigationController alloc] initWithRootViewController:subject];
         subject.view should_not be_nil;
-        
     });
     
     it(@"should ask the user whether they'd like to register a Tessel", ^{
@@ -28,14 +31,45 @@ describe(@"WelcomeViewController", ^{
     });
     
     describe(@"when the user clicks Yes", ^{
+        __block KSDeferred *deferred;
+        
         beforeEach(^{
+            deferred = [KSDeferred defer];
+            registrationRepository stub_method(@selector(registerNewTessel)).and_return(deferred.promise);
             [subject.yesButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         });
         
-        it(@"should present an alert view re: this feature isn't enabled", ^{
-            UIAlertController *alertController = (id)subject.presentedViewController;
-            alertController should be_instance_of([UIAlertController class]);
-            alertController.message should equal(@"Sorry, not implemented yet");
+        it(@"should send a request to register a Tessel", ^{
+            registrationRepository should have_received(@selector(registerNewTessel));
+        });
+
+        it(@"should display a spinner", ^{
+            subject.yesButton.subviews.lastObject should be_instance_of([UIActivityIndicatorView class]);
+        });
+        
+        it(@"should disable all interaction", ^{
+            subject.view.userInteractionEnabled should_not be_truthy;
+        });
+        
+        describe(@"after the request resolves", ^{
+            __block NSString *tesselId;
+            
+            beforeEach(^{
+                tesselId = @"unique-identifier";
+                [deferred resolveWithValue:tesselId];
+            });
+            
+            it(@"should tell the user their device ID", ^{
+                subject.explanatoryLabel.text should contain(tesselId);
+            });
+            
+            it(@"should tell the user to hit Next to continue", ^{
+                subject.noButton.titleLabel.text should equal(@"Next Step");
+            });
+            
+            it(@"should hide the Yes button", ^{
+                subject.yesButton.hidden should be_truthy;
+            });
         });
     });
     

@@ -17,8 +17,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to register your own Tessel?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZG-Nc-PR1">
-                    <rect key="frame" x="135" y="290" width="331" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to register your own Tessel?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZG-Nc-PR1">
+                    <rect key="frame" x="8" y="290" width="584" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -50,13 +50,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="RZG-Nc-PR1" secondAttribute="trailing" constant="8" id="4Mb-QY-PsS"/>
                 <constraint firstAttribute="centerY" secondItem="RZG-Nc-PR1" secondAttribute="centerY" id="DOJ-e4-aZ6"/>
                 <constraint firstAttribute="centerX" secondItem="NL2-7u-JOI" secondAttribute="centerX" id="FDn-JI-iI2"/>
                 <constraint firstItem="NL2-7u-JOI" firstAttribute="top" secondItem="ckK-Pa-Xi1" secondAttribute="bottom" constant="20" id="Lq4-le-52d"/>
+                <constraint firstItem="RZG-Nc-PR1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Lyl-Pb-YLV"/>
                 <constraint firstAttribute="centerX" secondItem="ckK-Pa-Xi1" secondAttribute="centerX" id="R5b-Ko-p9O"/>
                 <constraint firstAttribute="centerX" secondItem="RZG-Nc-PR1" secondAttribute="centerX" id="VC7-p5-9q7"/>
                 <constraint firstItem="ckK-Pa-Xi1" firstAttribute="top" secondItem="RZG-Nc-PR1" secondAttribute="bottom" constant="45" id="zF9-7R-gMP"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="VC7-p5-9q7"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

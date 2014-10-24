@@ -10,8 +10,10 @@
 #import "TesselBeaconManager.h"
 #import "TesselRegionManager.h"
 #import "WelcomeViewController.h"
+#import "TesselRegistrationRepository.h"
 #import "NSUserDefaults+Keys.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface AppDelegate ()
 @property (nonatomic) TesselBeaconManager *tesselBeaconManager;
@@ -36,7 +38,10 @@
     if ([userDefaults boolForKey:kUserDidCompleteOnboarding]) {
         initialViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
     } else {
-       initialViewController = [[WelcomeViewController alloc] init];
+        NSURL *baseURL = [NSURL URLWithString:@"http://localhost:3000"];
+        AFHTTPRequestOperationManager *requestManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+        TesselRegistrationRepository *registrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestManager];
+       initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
     }
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:initialViewController];
