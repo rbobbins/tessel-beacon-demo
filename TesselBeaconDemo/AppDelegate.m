@@ -1,15 +1,16 @@
 //
 //  AppDelegate.m
-//  TesselBeaconDemo
+//  TesselBluetoothDemo
 //
 //  Created by Rachel Bobbins on 9/30/14.
 //  Copyright (c) 2014 Rachel Bobbins. All rights reserved.
 //
-
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
 #import "TesselRegionManager.h"
+#import "WelcomeViewController.h"
+#import "NSUserDefaults+Keys.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate ()
@@ -28,19 +29,34 @@
     TesselRegionManager *tesselRegionManager = [[TesselRegionManager alloc] init];
     self.tesselBeaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
                                                                 tesselRegionManager:tesselRegionManager];
-   
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
-        [application registerUserNotificationSettings:settings];
+
+    
+    UIViewController *initialViewController;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults boolForKey:kUserDidCompleteOnboarding]) {
+        initialViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
+    } else {
+       initialViewController = [[WelcomeViewController alloc] init];
     }
     
-    MainViewController *viewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
-    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:initialViewController];
+    navController.navigationBarHidden = YES;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = viewController;
+    self.window.rootViewController = navController;
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    if (notificationSettings.types & UIUserNotificationTypeAlert) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserNotificationSettingsAllowsAlert];
+    }
+        MainViewController *viewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navController.navigationBarHidden = YES;
+    self.window.rootViewController = navController;
+    
 }
 
 

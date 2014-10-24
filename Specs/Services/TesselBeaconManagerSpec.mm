@@ -31,7 +31,7 @@ describe(@"TesselBeaconManager", ^{
     
     describe(@"-searchForTesselBeacons:", ^{
         __block Class locationManagerClass;
-        
+
         beforeEach(^{
             locationManagerClass = [CLLocationManager class];
             spy_on(locationManagerClass);
@@ -57,7 +57,7 @@ describe(@"TesselBeaconManager", ^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusNotDetermined);
                 [subject searchForTesselBeacon];
             });
-            
+
             it(@"should prompt the user for permisson to monitor location", ^{
                 fakeLocationManager should have_received(@selector(requestAlwaysAuthorization));
             });
