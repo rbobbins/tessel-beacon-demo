@@ -11,4 +11,5 @@
 @interface TesselRegionManager : NSObject
 
 - (NSArray *)knownTesselRegions;
+
 @end

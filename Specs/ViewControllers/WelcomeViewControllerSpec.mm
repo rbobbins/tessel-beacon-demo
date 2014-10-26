@@ -51,7 +51,7 @@ describe(@"WelcomeViewController", ^{
             subject.view.userInteractionEnabled should_not be_truthy;
         });
         
-        describe(@"after the request resolves", ^{
+        describe(@"after the request succeeds", ^{
             __block NSString *tesselId;
             
             beforeEach(^{
@@ -69,6 +69,21 @@ describe(@"WelcomeViewController", ^{
             
             it(@"should hide the Yes button", ^{
                 subject.yesButton.hidden should be_truthy;
+            });
+        });
+        
+        describe(@"after the request fails", ^{
+            beforeEach(^{
+                [deferred rejectWithError:nil];
+            });
+            
+            it(@"should tell the user that an error has occurred", ^{
+                subject.explanatoryLabel.text should equal(@"An error has occurred. Would you like to try again?");
+            });
+            
+            it(@"should allow the user to try again", ^{
+                subject.yesButton.userInteractionEnabled should be_truthy;
+                subject.yesButton.titleLabel.text should equal(@"Yes!");
             });
         });
     });

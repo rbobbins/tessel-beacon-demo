@@ -47,7 +47,7 @@
         self.view.userInteractionEnabled = YES;
         return newTesselId;
     } error:^id(NSError *error) {
-        NSLog(@"================> %@", error);
+        self.explanatoryLabel.text = @"An error has occurred. Would you like to try again?";
         return nil;
     }];
 }
