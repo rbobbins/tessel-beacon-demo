@@ -10,6 +10,7 @@
 #import "LocationPermissionViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "KSPromise.h"
+#import "UIView+Constraints.h"
 
 @interface WelcomeViewController ()
 - (IBAction)didTapYes:(id)sender;
@@ -30,14 +31,25 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.yesButton.translatesAutoresizingMaskIntoConstraints = NO;
+}
+
 #pragma mark - Actions
 
 - (IBAction)didTapYes:(id)sender {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.translatesAutoresizingMaskIntoConstraints = NO;
     [spinner startAnimating];
-    [self.yesButton addSubview:spinner];
-    self.view.userInteractionEnabled = NO;
     
+    [self.yesButton addSubview:spinner];
+    [self.yesButton setTitle:nil forState:UIControlStateNormal];
+    [spinner addCenterXConstraintToSuperview];
+    [spinner addCenterYConstraintToSuperview];
+    
+
+    self.view.userInteractionEnabled = NO;
     KSPromise *promise = [self.tesselRegistrationRepository registerNewTessel];
     [promise then:^id(NSString *newTesselId) {
         [spinner removeFromSuperview];
@@ -47,7 +59,10 @@
         self.view.userInteractionEnabled = YES;
         return newTesselId;
     } error:^id(NSError *error) {
+        self.view.userInteractionEnabled = YES;
         self.explanatoryLabel.text = @"An error has occurred. Would you like to try again?";
+        [self.yesButton setTitle:@"Yes!" forState:UIControlStateNormal];
+        [spinner removeFromSuperview];
         return nil;
     }];
 }
