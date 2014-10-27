@@ -10,6 +10,7 @@
 
 extern NSString * const kUserDidCompleteOnboarding;
 extern NSString * const kUserNotificationSettingsAllowsAlert;
+extern NSString * const kRegisteredTesselId;
 
 @interface NSUserDefaults (Keys)
 

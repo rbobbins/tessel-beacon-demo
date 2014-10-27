@@ -7,28 +7,32 @@
 //
 
 #import "TesselBeaconManager.h"
-#import "TesselRegionManager.h"
+#import "TesselCheckinRepository.h"
+#import "TesselRegistrationRepository.h"
 #import <CoreLocation/CoreLocation.h>
 
 
 @interface TesselBeaconManager () <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationManager *locationManager;
-@property (nonatomic) TesselRegionManager *regionManager;
+@property (nonatomic) TesselCheckinRepository *tesselCheckinRepository;
 @property (nonatomic) NSMutableArray *delegates;
 
+@property (nonatomic, strong) TesselRegistrationRepository *tesselRegistrationRepository;
 @end
 
 
 @implementation TesselBeaconManager
 
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager
-                    tesselRegionManager:(TesselRegionManager *)tesselRegionManager {
-    
+                tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository
+           tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository {
+
     self = [super init];
     if (self) {
         self.locationManager = locationManager;
-        self.regionManager = tesselRegionManager;
+        self.tesselCheckinRepository = tesselCheckinRepository;
+        self.tesselRegistrationRepository = tesselRegistrationRepository;
         self.delegates = [NSMutableArray array];
         self.locationManager.delegate = self;
     }
@@ -38,7 +42,7 @@
 
 
 - (void)searchForTesselBeacon {
-    
+
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusAuthorizedWhenInUse:
         case kCLAuthorizationStatusDenied:
@@ -64,7 +68,7 @@
 #pragma mark - <CLLocationManagerDelegate> (Global State)
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    
+
     switch (status) {
         case kCLAuthorizationStatusAuthorizedAlways:
             [self.locationManager startMonitoringForRegion:self.region];
@@ -79,15 +83,7 @@
 
     if (state == CLRegionStateInside)
     {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = @"Welcome to the Tessel region!";
-        notification.alertAction = @"More Details";
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
-        [manager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
-        for (id<TesselBeaconDelegate>delegate in self.delegates) {
-            [delegate didEnterTesselRange];
-        }
+
     }
 }
 
@@ -104,7 +100,20 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    NSLog(@"================> %@ : %@", @"entered region", region);
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"Welcome to the Tessel region!";
+    notification.alertAction = @"More Details";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+
+    [manager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    for (id<TesselBeaconDelegate>delegate in self.delegates) {
+        [delegate didEnterTesselRange];
+    }
+
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
@@ -128,8 +137,8 @@
 #pragma mark - Private
 
 - (CLBeaconRegion *)region {
-    NSArray *allRegions = [self.regionManager knownTesselRegions];
-    return [allRegions firstObject];
+    NSArray *allRegisteredRegions = [self.tesselRegistrationRepository registeredTesselRegions];
+    return [allRegisteredRegions firstObject];
 }
 
 

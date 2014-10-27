@@ -10,7 +10,7 @@
 
 NSString * const kUserDidCompleteOnboarding = @"kUserDidCompleteOnboarding";
 NSString * const kUserNotificationSettingsAllowsAlert = @"kUserNotificationSettingsAllowsAlert";
-
+NSString * const kRegisteredTesselId = @"kRegisteredTesselId";
 
 @implementation NSUserDefaults (Keys)
 

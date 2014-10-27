@@ -1,22 +1,20 @@
 //
-//  TesselRegistrationRepository.h
+//  TesselCheckinRepository.h
 //  TesselBeaconDemo
 //
-//  Created by Rachel Bobbins on 10/23/14.
+//  Created by Rachel Bobbins on 10/26/14.
 //  Copyright (c) 2014 Rachel Bobbins. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class KSPromise;
 @class AFHTTPRequestOperationManager;
 
-@interface TesselRegistrationRepository : NSObject
+@interface TesselCheckinRepository : NSObject
 
 - (instancetype)init __attribute((unavailable("use designated initalizer instead")));
 - (instancetype)initWithRequestOperationManager:(AFHTTPRequestOperationManager *)requestOperationManager;
 
-- (KSPromise *)registerNewTessel;
+- (void)checkinAtTessel:(NSUUID *)uuid;
 
-- (NSArray *)registeredTesselRegions;
 @end

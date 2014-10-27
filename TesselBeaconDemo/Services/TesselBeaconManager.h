@@ -10,8 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 
 @class CLLocationManager;
-
-@class TesselRegionManager;
+@class TesselCheckinRepository;
+@class TesselRegistrationRepository;
 
 
 @protocol TesselBeaconDelegate <NSObject>
@@ -27,9 +27,8 @@
 
 @property (nonatomic, readonly) CLLocationManager *locationManager;
 
-- (id)init __attribute((unavailable("use with initWithLocationManager:tesselRegionManager: instead")));
-- (instancetype)initWithLocationManager:(CLLocationManager *)locationManager
-                    tesselRegionManager:(TesselRegionManager *)tesselRegionManager;
+- (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
+- (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
 
 - (void)searchForTesselBeacon;
 - (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate;

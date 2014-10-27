@@ -9,9 +9,11 @@
 #import "AlertPermissionViewController.h"
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
-#import "TesselRegionManager.h"
 #import "NSUserDefaults+Keys.h"
+#import "TesselCheckinRepository.h"
+#import "TesselRegistrationRepository.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
 @interface AlertPermissionViewController ()
 - (IBAction)didTapYes:(id)sender;
@@ -33,8 +35,12 @@
 - (IBAction)didTapNo:(id)sender {
     [self markOnboardingFlowAsComplete];
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    TesselRegionManager *regionManager = [[TesselRegionManager alloc] init];
-    TesselBeaconManager *beaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager tesselRegionManager:regionManager];
+    AFHTTPRequestOperationManager *requestOperationManager = [AFHTTPRequestOperationManager manager];
+    TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc] initWithRequestOperationManager:requestOperationManager];
+    TesselRegistrationRepository *tesselRegistrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestOperationManager];
+    TesselBeaconManager *beaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
+                                                                      tesselCheckinRepository:tesselCheckinRepository
+                                                                 tesselRegistrationRepository:tesselRegistrationRepository];
     MainViewController *mainViewController = [[MainViewController alloc] initWithBeaconManager:beaconManager];
     [self.navigationController setViewControllers:@[mainViewController] animated:NO];
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		27FD0D01ECDA9C5062E7A859 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD87F69CB493B7458AE0C45 /* libPods.a */; };
+		4565B2B2D9AB246FC8C3CD1C /* TesselCheckinRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */; };
+		4565BC2A08DEBB431AF51F60 /* TesselCheckinRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */; };
 		5A4C800D19F4D14D00E10062 /* WelcomeViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */; };
 		5A4C800E19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */; };
 		5A4C800F19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */; };
@@ -34,6 +36,8 @@
 		5A8144F819DD05AC006077B3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A8144F719DD05AC006077B3 /* MainViewController.xib */; };
 		5A94792519FDA934007F840E /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792419FDA934007F840E /* UIView+Constraints.m */; };
 		5A94792619FDA934007F840E /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792419FDA934007F840E /* UIView+Constraints.m */; };
+		5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792819FDAE29007F840E /* TesselCheckinRepository.m */; };
+		5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792819FDAE29007F840E /* TesselCheckinRepository.m */; };
 		5A96613A19DFA9770039D844 /* AppDelegateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A96613919DFA9770039D844 /* AppDelegateSpec.mm */; };
 		5A96613B19DFAA600039D844 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8AB6419DBC0880085B4BE /* AppDelegate.m */; };
 		5A96613D19DFD0850039D844 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A96613C19DFD0850039D844 /* LaunchScreen.xib */; };
@@ -41,8 +45,6 @@
 		5A96614119E066910039D844 /* TesselBeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96613F19E066910039D844 /* TesselBeaconManager.m */; };
 		5A96614319E06FAC0039D844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A96614219E06FAC0039D844 /* CoreLocation.framework */; };
 		5A96614519E081C20039D844 /* TesselBeaconManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A96614419E081C20039D844 /* TesselBeaconManagerSpec.mm */; };
-		5A96614819E083E00039D844 /* TesselRegionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96614719E083E00039D844 /* TesselRegionManager.m */; };
-		5A96614919E083E00039D844 /* TesselRegionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A96614719E083E00039D844 /* TesselRegionManager.m */; };
 		5AB3798719FA163400775FEB /* TesselRegistrationRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3798619FA163400775FEB /* TesselRegistrationRepositorySpec.mm */; };
 		5AB3798C19FA176100775FEB /* TesselRegistrationRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3798B19FA176100775FEB /* TesselRegistrationRepository.m */; };
 		5AB3798D19FA176100775FEB /* TesselRegistrationRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3798B19FA176100775FEB /* TesselRegistrationRepository.m */; };
@@ -67,6 +69,7 @@
 		182E33BF6C6E1FA11119E7C0 /* Pods-TesselBeaconDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesselBeaconDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesselBeaconDemoTests/Pods-TesselBeaconDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B28AF6A9716C0CB6DD3AC1E /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		3BC7760E9E127E4BB7E335DD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselCheckinRepositorySpec.mm; sourceTree = "<group>"; };
 		5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WelcomeViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocationPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
@@ -88,14 +91,14 @@
 		5A8144F719DD05AC006077B3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		5A94792319FDA934007F840E /* UIView+Constraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Constraints.h"; sourceTree = "<group>"; };
 		5A94792419FDA934007F840E /* UIView+Constraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Constraints.m"; sourceTree = "<group>"; };
+		5A94792719FDAE29007F840E /* TesselCheckinRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselCheckinRepository.h; sourceTree = "<group>"; };
+		5A94792819FDAE29007F840E /* TesselCheckinRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselCheckinRepository.m; sourceTree = "<group>"; };
 		5A96613919DFA9770039D844 /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
 		5A96613C19DFD0850039D844 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5A96613E19E066910039D844 /* TesselBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselBeaconManager.h; sourceTree = "<group>"; };
 		5A96613F19E066910039D844 /* TesselBeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselBeaconManager.m; sourceTree = "<group>"; };
 		5A96614219E06FAC0039D844 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5A96614419E081C20039D844 /* TesselBeaconManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselBeaconManagerSpec.mm; sourceTree = "<group>"; };
-		5A96614619E083E00039D844 /* TesselRegionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselRegionManager.h; sourceTree = "<group>"; };
-		5A96614719E083E00039D844 /* TesselRegionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselRegionManager.m; sourceTree = "<group>"; };
 		5AB3798619FA163400775FEB /* TesselRegistrationRepositorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselRegistrationRepositorySpec.mm; sourceTree = "<group>"; };
 		5AB3798A19FA176100775FEB /* TesselRegistrationRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselRegistrationRepository.h; sourceTree = "<group>"; };
 		5AB3798B19FA176100775FEB /* TesselRegistrationRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselRegistrationRepository.m; sourceTree = "<group>"; };
@@ -186,8 +189,6 @@
 			children = (
 				5A96613E19E066910039D844 /* TesselBeaconManager.h */,
 				5A96613F19E066910039D844 /* TesselBeaconManager.m */,
-				5A96614619E083E00039D844 /* TesselRegionManager.h */,
-				5A96614719E083E00039D844 /* TesselRegionManager.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -204,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				5AB3798619FA163400775FEB /* TesselRegistrationRepositorySpec.mm */,
+				4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -213,6 +215,8 @@
 			children = (
 				5AB3798A19FA176100775FEB /* TesselRegistrationRepository.h */,
 				5AB3798B19FA176100775FEB /* TesselRegistrationRepository.m */,
+				5A94792719FDAE29007F840E /* TesselCheckinRepository.h */,
+				5A94792819FDAE29007F840E /* TesselCheckinRepository.m */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -518,14 +522,15 @@
 				5A4C802D19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
 				5AB8AB6519DBC0880085B4BE /* AppDelegate.m in Sources */,
 				5A94792519FDA934007F840E /* UIView+Constraints.m in Sources */,
+				5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
-				5A96614819E083E00039D844 /* TesselRegionManager.m in Sources */,
 				5A4C802319F4D16E00E10062 /* AlertPermissionViewController.m in Sources */,
 				5AB8AB6119DBC0880085B4BE /* main.m in Sources */,
 				5A96614019E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */,
 				5A4C801B19F4D16E00E10062 /* WelcomeViewController.m in Sources */,
 				5A4C801F19F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
+				4565B2B2D9AB246FC8C3CD1C /* TesselCheckinRepositorySpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A4C802E19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
+				5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A4C802019F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
 				5A4C800D19F4D14D00E10062 /* WelcomeViewControllerSpec.mm in Sources */,
 				5A4C802419F4D16E00E10062 /* AlertPermissionViewController.m in Sources */,
@@ -548,10 +554,10 @@
 				5A96614119E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5AC4B0E019DE6A7A0078A65F /* main.m in Sources */,
 				5A77A4A919DE6ECF00187EE1 /* MainViewController.m in Sources */,
-				5A96614919E083E00039D844 /* TesselRegionManager.m in Sources */,
 				5A94792619FDA934007F840E /* UIView+Constraints.m in Sources */,
 				5A96614519E081C20039D844 /* TesselBeaconManagerSpec.mm in Sources */,
 				5A96613B19DFAA600039D844 /* AppDelegate.m in Sources */,
+				4565BC2A08DEBB431AF51F60 /* TesselCheckinRepositorySpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

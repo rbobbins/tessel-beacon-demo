@@ -8,7 +8,9 @@
 
 #import "TesselRegistrationRepository.h"
 #import "KSDeferred.h"
+#import "NSUserDefaults+Keys.h"
 #import <AFNetworking/AFHTTPRequestOperationManager.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface TesselRegistrationRepository ()
 @property (nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
@@ -28,15 +30,31 @@
 - (KSPromise *)registerNewTessel {
     KSDeferred *deferred = [KSDeferred defer];
 
-    
+
     [self.requestOperationManager POST:@"api/tessels"
                             parameters:nil
                                success:^(AFHTTPRequestOperation *operation, NSDictionary *responseDictionary) {
-        [deferred resolveWithValue:responseDictionary[@"uuid"]];
+        NSString *uuidString = responseDictionary[@"uuid"];
+                                   [[NSUserDefaults standardUserDefaults] setValue:uuidString
+                                                                            forKey:kRegisteredTesselId];
+        [deferred resolveWithValue:uuidString];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [deferred rejectWithError:error];
     }];
 
     return deferred.promise;
+}
+
+- (NSArray *)registeredTesselRegions {
+    NSString *uuidString = [[NSUserDefaults standardUserDefaults] stringForKey:kRegisteredTesselId];
+    if (uuidString) {
+        NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
+        CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                                      identifier:@""];
+        return @[beaconRegion];
+    }
+    return @[];
+
+
 }
 @end

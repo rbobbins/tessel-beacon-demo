@@ -8,10 +8,10 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
-#import "TesselRegionManager.h"
 #import "WelcomeViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "NSUserDefaults+Keys.h"
+#import "TesselCheckinRepository.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFNetworking.h>
 
@@ -26,13 +26,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    TesselRegionManager *tesselRegionManager = [[TesselRegionManager alloc] init];
-    self.tesselBeaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
-                                                                tesselRegionManager:tesselRegionManager];
 
-    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+
+    AFHTTPRequestOperationManager *requestOperationManager = [AFHTTPRequestOperationManager manager];
+    TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc]
+        initWithRequestOperationManager:requestOperationManager];
+    TesselRegistrationRepository *tesselRegistrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestOperationManager];
+    self.tesselBeaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
+                                                            tesselCheckinRepository:tesselCheckinRepository
+                                                       tesselRegistrationRepository:tesselRegistrationRepository];
+
+
     UIViewController *initialViewController;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults boolForKey:kUserDidCompleteOnboarding]) {
@@ -43,7 +48,7 @@
         TesselRegistrationRepository *registrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestManager];
        initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
     }
-    
+
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:initialViewController];
     navController.navigationBarHidden = YES;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -61,7 +66,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navController.navigationBarHidden = YES;
     self.window.rootViewController = navController;
-    
+
 }
 
 
