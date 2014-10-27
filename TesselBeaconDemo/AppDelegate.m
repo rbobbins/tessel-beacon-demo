@@ -28,7 +28,7 @@
 {
 
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    NSURL *baseURL = [NSURL URLWithString:@"https://[YOUR REMOTE SERVER]/"];
+    NSURL *baseURL = nil;
     AFHTTPRequestOperationManager *requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
     
     TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc]
