@@ -28,8 +28,9 @@
 {
 
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-
-    AFHTTPRequestOperationManager *requestOperationManager = [AFHTTPRequestOperationManager manager];
+    NSURL *baseURL = [NSURL URLWithString:@"https://[YOUR REMOTE SERVER]/"];
+    AFHTTPRequestOperationManager *requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    
     TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc]
         initWithRequestOperationManager:requestOperationManager];
     TesselRegistrationRepository *tesselRegistrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestOperationManager];
@@ -40,13 +41,11 @@
 
     UIViewController *initialViewController;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     if ([userDefaults boolForKey:kUserDidCompleteOnboarding]) {
         initialViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
     } else {
-        NSURL *baseURL = [NSURL URLWithString:@"http://localhost:3000"];
-        AFHTTPRequestOperationManager *requestManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-        TesselRegistrationRepository *registrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestManager];
-       initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
+       initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
     }
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:initialViewController];

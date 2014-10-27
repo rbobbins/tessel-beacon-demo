@@ -112,7 +112,8 @@ describe(@"TesselBeaconManager", ^{
                 spy_on(application);
                 application stub_method(@selector(presentLocalNotificationNow:));
                 [fakeLocationManager.delegate locationManager:fakeLocationManager
-                                               didEnterRegion:region];
+                                            didDetermineState:CLRegionStateInside
+                                                    forRegion:region];
             });
 
             it(@"should start ranging the beacon, in order to stay informed of beacon ", ^{

@@ -83,7 +83,17 @@
 
     if (state == CLRegionStateInside)
     {
-
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.alertBody = @"Welcome to the Tessel region!";
+        notification.alertAction = @"More Details";
+        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        [manager startRangingBeaconsInRegion:beaconRegion];
+        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
+        for (id<TesselBeaconDelegate>delegate in self.delegates) {
+            [delegate didEnterTesselRange];
+        }
     }
 }
 
@@ -100,16 +110,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertBody = @"Welcome to the Tessel region!";
-    notification.alertAction = @"More Details";
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-
-    [manager startRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didEnterTesselRange];
-    }
-
+    NSLog(@"================> %@", @"did enter region");
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
         [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
