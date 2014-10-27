@@ -24,9 +24,13 @@
 }
 
 - (void)checkinAtTessel:(NSUUID *)uuid {
-    NSString *urlString = [NSString stringWithFormat:@"api/tessels/%@/checkin", uuid.UUIDString];
+    NSString *urlString = [NSString stringWithFormat:@"api/tessels/%@/checkins", uuid.UUIDString];
     NSDictionary *parameters = @{@"checkin": @{@"device_id": [[[UIDevice currentDevice] identifierForVendor] UUIDString]}};
-    [self.requestOperationmanager POST:urlString parameters:parameters success:nil failure:nil];
+    [self.requestOperationmanager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"================> Posted checkin to Tessel!");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"================> Error posting checkin to Tessel: %@", error.localizedDescription);
+    }];
 }
 
 

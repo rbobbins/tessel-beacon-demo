@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		27FD0D01ECDA9C5062E7A859 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD87F69CB493B7458AE0C45 /* libPods.a */; };
-		4565B2B2D9AB246FC8C3CD1C /* TesselCheckinRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */; };
 		4565BC2A08DEBB431AF51F60 /* TesselCheckinRepositorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4565B92D5B6A15435E92E1BB /* TesselCheckinRepositorySpec.mm */; };
 		5A4C800D19F4D14D00E10062 /* WelcomeViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */; };
 		5A4C800E19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */; };
@@ -530,7 +529,6 @@
 				5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */,
 				5A4C801B19F4D16E00E10062 /* WelcomeViewController.m in Sources */,
 				5A4C801F19F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
-				4565B2B2D9AB246FC8C3CD1C /* TesselCheckinRepositorySpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

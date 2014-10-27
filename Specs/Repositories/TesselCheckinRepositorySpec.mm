@@ -33,10 +33,10 @@ describe(@"TesselCheckinRepository", ^{
 
         it(@"should post to the correct url", ^{
             NSDictionary *expectedParameters = @{@"checkin": @{@"device_id": deviceUUID.UUIDString}};
-            NSString *expectedURLString = [NSString stringWithFormat:@"api/tessels/%@/checkin", tesselUUID.UUIDString];
+            NSString *expectedURLString = [NSString stringWithFormat:@"api/tessels/%@/checkins", tesselUUID.UUIDString];
 
             requestOperationManager should have_received(@selector(POST:parameters:success:failure:))
-                .with(expectedURLString, expectedParameters, nil, nil);
+                .with(expectedURLString, expectedParameters, Arguments::anything, Arguments::anything);
         });
     });
 });
