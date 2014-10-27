@@ -7,7 +7,7 @@ Requirements
 ============
 
   - You must be a registered Apple Developer. You can install the app on an iOS simulator without being one, but you can't run bluetooth in the iOS simulator.
-  - Your Tessel must have the BLE module, and be running the code available here: https://github.com/rbobbins/ble-ble113a
+  - Your Tessel must have the BLE module, and be running the code available here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js
   
 Features
 ========
