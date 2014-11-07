@@ -3,6 +3,7 @@
 #import "LocationPermissionViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "KSDeferred.h"
+#import "TesselInformationViewController.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -62,16 +63,13 @@ describe(@"WelcomeViewController", ^{
                 [deferred resolveWithValue:tesselId];
             });
             
-            it(@"should tell the user their device ID", ^{
-                subject.explanatoryLabel.text should contain(tesselId);
+            it(@"should present a TesselInformationViewController", ^{
+                subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
             });
             
-            it(@"should tell the user to hit Next to continue", ^{
-                subject.noButton.titleLabel.text should equal(@"Next Step");
-            });
-            
-            it(@"should hide the Yes button", ^{
-                subject.yesButton.hidden should be_truthy;
+            it(@"should jump to the next step of the process when the TesselInformationViewController is dismissed ", ^{
+                [subject dismissViewControllerAnimated:NO completion:nil];
+                navController.topViewController should be_instance_of([LocationPermissionViewController class]);
             });
         });
         

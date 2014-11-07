@@ -11,12 +11,14 @@
 #import "TesselRegistrationRepository.h"
 #import "KSPromise.h"
 #import "UIView+Constraints.h"
+#import "TesselInformationViewController.h"
 
 @interface WelcomeViewController ()
 - (IBAction)didTapYes:(id)sender;
-- (IBAction)didTapNo:(id)sender;
+- (IBAction)didTapToContinue:(id)sender;
 
 @property (nonatomic) TesselRegistrationRepository *tesselRegistrationRepository;
+
 @end
 
 
@@ -53,11 +55,12 @@
     KSPromise *promise = [self.tesselRegistrationRepository registerNewTessel];
     [promise then:^id(NSString *newTesselId) {
         [spinner removeFromSuperview];
-        self.explanatoryLabel.text = [NSString stringWithFormat:@"Good to go! Your Tessel's unique iBeacon id is: %@", newTesselId];
-        self.yesButton.hidden = YES;
-        [self.noButton setTitle:@"Next Step" forState:UIControlStateNormal];
-        self.view.userInteractionEnabled = YES;
-        return newTesselId;
+        
+        TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
+        [self presentViewController:tesselInformationViewController animated:YES completion:^{
+            [self didTapToContinue:nil];
+        }];
+        return nil;
     } error:^id(NSError *error) {
         self.view.userInteractionEnabled = YES;
         self.explanatoryLabel.text = @"An error has occurred. Would you like to try again?";
@@ -67,10 +70,11 @@
     }];
 }
 
-- (IBAction)didTapNo:(id)sender {
+- (IBAction)didTapToContinue:(id)sender {
     LocationPermissionViewController *viewController = [[LocationPermissionViewController alloc] init];
     [self.navigationController pushViewController:viewController
                                          animated:NO];
 }
+
 
 @end

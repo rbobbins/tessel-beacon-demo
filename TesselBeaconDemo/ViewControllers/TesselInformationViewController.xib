@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TesselInformationViewController">
+            <connections>
+                <outlet property="codeSnippetLabel" destination="Lge-nu-xAA" id="xAF-mx-20g"/>
+                <outlet property="dismissButton" destination="o9R-q9-WLD" id="UUa-zG-YJM"/>
+                <outlet property="tesselIdLabel" destination="hSG-J2-RMc" id="x9t-Hx-MhX"/>
+                <outlet property="view" destination="iN0-l3-epB" id="jke-8F-vBD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaa-bbbb-ccc etc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hSG-J2-RMc">
+                    <rect key="frame" x="20" y="62" width="560" height="18"/>
+                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foo bar baz wtc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lge-nu-xAA">
+                    <rect key="frame" x="20" y="129" width="560" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your registered Tessel ID is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8X-CE-ot2">
+                    <rect key="frame" x="20" y="33" width="560" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9R-q9-WLD">
+                    <rect key="frame" x="260" y="100" width="70" height="30"/>
+                    <state key="normal" title="OK, got it!">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapDismissButton:" destination="-1" eventType="touchUpInside" id="87p-Uy-IH7"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hSG-J2-RMc" firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" id="4zK-6d-dep"/>
+                <constraint firstItem="o9R-q9-WLD" firstAttribute="centerX" secondItem="hSG-J2-RMc" secondAttribute="centerX" constant="-5" id="6Us-OO-R93"/>
+                <constraint firstItem="Lge-nu-xAA" firstAttribute="leading" secondItem="N8X-CE-ot2" secondAttribute="leading" id="9IM-YA-cGW"/>
+                <constraint firstItem="Lge-nu-xAA" firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" id="A7Y-Kj-cQJ"/>
+                <constraint firstItem="N8X-CE-ot2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="C0b-Op-XeV"/>
+                <constraint firstItem="N8X-CE-ot2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="DMd-mU-55j"/>
+                <constraint firstItem="hSG-J2-RMc" firstAttribute="leading" secondItem="N8X-CE-ot2" secondAttribute="leading" id="YMr-Dt-9Aw"/>
+                <constraint firstItem="Lge-nu-xAA" firstAttribute="top" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="-1" id="Yds-PG-kio"/>
+                <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="hSG-J2-RMc" secondAttribute="bottom" constant="20" id="dmT-7f-Dp1"/>
+                <constraint firstItem="hSG-J2-RMc" firstAttribute="top" secondItem="N8X-CE-ot2" secondAttribute="bottom" constant="8" id="lxL-iI-a3r"/>
+                <constraint firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" constant="20" symbolic="YES" id="ukb-Ci-LdF"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
