@@ -26,8 +26,8 @@ Installation (without Rails server)
 Installation (with Rails server)
 ============
 1. Follow steps 1 & 2 from above.
-2. Deploy the Rails server, following the instructions here: [Here's](https://github.com/rbobbins/tessel-rails-server)
-3. After deploying, find the line in `AppDelegate.m` that says `NSURL *baseURL = nil;` to `NSURL *baseURL = [NSURL urlWithString:@"<your heroku server url>"]`;
+2. Deploy the Rails server, following the instructions here: [Here's](https://github.com/rbobbins/tessel-rails-server). You *must* have a remote server; `http://localhost:3000` doesn't mean much to your iOS device.
+3. After deploying, find the line in `AppDelegate.m` that says `NSURL *baseURL = nil;` to `NSURL *baseURL = [NSURL URLWithString:@"<your heroku server url>"]`;
 4. Follow step 3 from above
 
 
