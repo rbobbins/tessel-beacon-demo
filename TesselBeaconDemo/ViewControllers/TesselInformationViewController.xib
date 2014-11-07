@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TesselInformationViewController">
             <connections>
-                <outlet property="codeSnippetLabel" destination="Lge-nu-xAA" id="xAF-mx-20g"/>
                 <outlet property="dismissButton" destination="o9R-q9-WLD" id="UUa-zG-YJM"/>
+                <outlet property="explanatoryText" destination="YL6-Et-ptc" id="uGU-9I-a91"/>
                 <outlet property="tesselIdLabel" destination="hSG-J2-RMc" id="x9t-Hx-MhX"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jke-8F-vBD"/>
             </connections>
@@ -17,15 +17,16 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This is where explanatory text will go." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YL6-Et-ptc">
+                    <rect key="frame" x="20" y="88" width="560" height="444"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aaaa-bbbb-ccc etc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hSG-J2-RMc">
                     <rect key="frame" x="20" y="62" width="560" height="18"/>
                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foo bar baz wtc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lge-nu-xAA">
-                    <rect key="frame" x="20" y="129" width="560" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -36,7 +37,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9R-q9-WLD">
-                    <rect key="frame" x="260" y="100" width="70" height="30"/>
+                    <rect key="frame" x="195" y="540" width="200" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.75808804699999999" blue="0.65203544270000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="yG6-Eb-nYu"/>
+                    </constraints>
                     <state key="normal" title="OK, got it!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -49,16 +54,25 @@
             <constraints>
                 <constraint firstItem="hSG-J2-RMc" firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" id="4zK-6d-dep"/>
                 <constraint firstItem="o9R-q9-WLD" firstAttribute="centerX" secondItem="hSG-J2-RMc" secondAttribute="centerX" constant="-5" id="6Us-OO-R93"/>
-                <constraint firstItem="Lge-nu-xAA" firstAttribute="leading" secondItem="N8X-CE-ot2" secondAttribute="leading" id="9IM-YA-cGW"/>
-                <constraint firstItem="Lge-nu-xAA" firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" id="A7Y-Kj-cQJ"/>
-                <constraint firstItem="N8X-CE-ot2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="C0b-Op-XeV"/>
+                <constraint firstAttribute="trailing" secondItem="YL6-Et-ptc" secondAttribute="trailing" constant="20" symbolic="YES" id="9PF-ks-fMe"/>
                 <constraint firstItem="N8X-CE-ot2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="DMd-mU-55j"/>
+                <constraint firstItem="YL6-Et-ptc" firstAttribute="top" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="8" id="ET4-HR-m3T"/>
+                <constraint firstItem="N8X-CE-ot2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="OIv-41-kZP"/>
                 <constraint firstItem="hSG-J2-RMc" firstAttribute="leading" secondItem="N8X-CE-ot2" secondAttribute="leading" id="YMr-Dt-9Aw"/>
-                <constraint firstItem="Lge-nu-xAA" firstAttribute="top" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="-1" id="Yds-PG-kio"/>
+                <constraint firstItem="YL6-Et-ptc" firstAttribute="top" secondItem="hSG-J2-RMc" secondAttribute="bottom" constant="8" id="d5T-fw-fU6"/>
                 <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="hSG-J2-RMc" secondAttribute="bottom" constant="20" id="dmT-7f-Dp1"/>
+                <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="YL6-Et-ptc" secondAttribute="bottom" constant="8" symbolic="YES" id="j6x-HH-eJN"/>
                 <constraint firstItem="hSG-J2-RMc" firstAttribute="top" secondItem="N8X-CE-ot2" secondAttribute="bottom" constant="8" id="lxL-iI-a3r"/>
+                <constraint firstAttribute="bottom" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="30" id="m6t-j5-fim"/>
+                <constraint firstItem="YL6-Et-ptc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="qDe-yL-iCr"/>
                 <constraint firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" constant="20" symbolic="YES" id="ukb-Ci-LdF"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ET4-HR-m3T"/>
+                    <exclude reference="dmT-7f-Dp1"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
