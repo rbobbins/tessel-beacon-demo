@@ -27,6 +27,10 @@
 - (void)viewDidLoad {
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    NSString *baseString = @"iBeacons are part of Apple's CoreLocation framework. In order to detect nearby Tessels, this application needs permisson to monitor your location. Note that NO geographical location is tracked - only a relative location to Tessel devices.\n\n Would you like to enable location monitoring? (Keep in mind that by declining, you'll be unable to use your Tessel as an iBeacon)";
+    NSMutableAttributedString *explanatoryText = [[NSMutableAttributedString alloc] initWithString:baseString];
+    [explanatoryText addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Helvetica-Bold" size:17] range:[baseString rangeOfString:@"NO geographical location is tracked"]];
+    self.explanatoryLabel.attributedText = explanatoryText;
 }
 
 

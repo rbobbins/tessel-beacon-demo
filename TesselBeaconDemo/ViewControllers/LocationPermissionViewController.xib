@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -42,12 +42,11 @@
                         <action selector="didTapYes:" destination="-1" eventType="touchUpInside" id="ljy-hy-6Qf"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2W-3A-bhq">
-                    <rect key="frame" x="150" y="117" width="300" height="183"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Lots of explanatory text goes here" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2W-3A-bhq">
+                    <rect key="frame" x="150" y="279" width="300" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="wH0-UJ-9lX"/>
                     </constraints>
-                    <string key="text">This application monitors your proximity to Tessels that have been registered as iBeacons. To get the most value out of this app,  we'll occasionally monior your location in the background - only relative to Tessels, never a geopgraphical location. Would you like to give the application permission to do this?</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -56,10 +55,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="cEI-R3-qyb" secondAttribute="centerX" id="4uH-rJ-LEX"/>
-                <constraint firstAttribute="centerY" secondItem="w2W-3A-bhq" secondAttribute="bottom" id="6im-Mp-oRX"/>
+                <constraint firstAttribute="centerY" secondItem="w2W-3A-bhq" secondAttribute="bottom" priority="750" id="6im-Mp-oRX"/>
+                <constraint firstItem="w2W-3A-bhq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" symbolic="YES" id="Jt3-26-7JK"/>
                 <constraint firstItem="cEI-R3-qyb" firstAttribute="top" secondItem="w2W-3A-bhq" secondAttribute="bottom" constant="45" id="YFE-Yp-tm3"/>
                 <constraint firstAttribute="centerX" secondItem="w2W-3A-bhq" secondAttribute="centerX" id="dH8-IO-zC0"/>
                 <constraint firstAttribute="centerX" secondItem="Zya-0N-Lyx" secondAttribute="centerX" id="dae-DM-sqe"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zya-0N-Lyx" secondAttribute="bottom" constant="8" id="dtJ-5m-QX9"/>
                 <constraint firstItem="Zya-0N-Lyx" firstAttribute="top" secondItem="cEI-R3-qyb" secondAttribute="bottom" constant="20" id="tFR-c4-Yrv"/>
             </constraints>
         </view>

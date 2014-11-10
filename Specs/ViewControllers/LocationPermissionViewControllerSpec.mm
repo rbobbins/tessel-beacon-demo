@@ -20,7 +20,7 @@ describe(@"LocationPermissionViewController", ^{
     });
     
     it(@"should explain what location will be used for", ^{
-        subject.explanatoryLabel.text should contain(@"proximity to Tessels");
+        subject.explanatoryLabel.text should contain(@"relative location to Tessel devices");
     });
     
     it(@"should allow the user to decide whether to give permission", ^{
