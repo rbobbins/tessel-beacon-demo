@@ -66,6 +66,8 @@
 		5AC4B0DE19DE6A7A0078A65F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5AC4B0DC19DE6A7A0078A65F /* InfoPlist.strings */; };
 		5AC4B0E019DE6A7A0078A65F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC4B0DF19DE6A7A0078A65F /* main.m */; };
 		5AC4B0E619DE6A7B0078A65F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AC4B0E519DE6A7B0078A65F /* Default-568h@2x.png */; };
+		5AFC6BBE1A108E150025690A /* NSUUID+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */; };
+		5AFC6BBF1A108E150025690A /* NSUUID+Formatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */; };
 		729A23E94DCF20BD349CF3DE /* libPods-Specs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C32E7607E00CC3B3F2E03078 /* libPods-Specs.a */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +134,8 @@
 		5AC4B0E119DE6A7A0078A65F /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
 		5AC4B0E519DE6A7B0078A65F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5AE323E419DE4AB700A22D0C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		5AFC6BBC1A108E150025690A /* NSUUID+Formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUUID+Formatting.h"; sourceTree = "<group>"; };
+		5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUUID+Formatting.m"; sourceTree = "<group>"; };
 		7CD87F69CB493B7458AE0C45 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		85ACA4F965D26458B2B2D912 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8CCC1B9061B5793020E69317 /* Pods-Specs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Specs/Pods-Specs.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				5A4C802A19F4D19800E10062 /* UIAlertController+Temporary.m */,
 				5A94792319FDA934007F840E /* UIView+Constraints.h */,
 				5A94792419FDA934007F840E /* UIView+Constraints.m */,
+				5AFC6BBC1A108E150025690A /* NSUUID+Formatting.h */,
+				5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */,
 			);
 			path = "UIKit+Categories";
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
 				5A4C802319F4D16E00E10062 /* AlertPermissionViewController.m in Sources */,
 				5AB8AB6119DBC0880085B4BE /* main.m in Sources */,
+				5AFC6BBE1A108E150025690A /* NSUUID+Formatting.m in Sources */,
 				5A08DA4D1A0C83830099991B /* TesselInformationViewController.m in Sources */,
 				5A96614019E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */,
@@ -552,6 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AFC6BBF1A108E150025690A /* NSUUID+Formatting.m in Sources */,
 				5A4C802E19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
 				5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A4C802019F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,

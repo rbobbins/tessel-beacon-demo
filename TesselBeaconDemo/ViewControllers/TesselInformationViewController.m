@@ -9,12 +9,15 @@
 #import "TesselInformationViewController.h"
 #import "TesselRegistrationRepository.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import "NSUUID+Formatting.h"
 
 @interface TesselInformationViewController ()
 
 @property (nonatomic) TesselRegistrationRepository *tesselRegistrationRepository;
 @property (weak, nonatomic) IBOutlet UILabel *tesselIdLabel;
 @property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+@property (weak, nonatomic) IBOutlet UIButton *clipboardButton;
 @property (weak, nonatomic) IBOutlet UITextView *explanatoryText;
 
 @end
@@ -45,7 +48,7 @@
         [stepByStepText appendAttributedString:codeSnippet];
         [stepByStepText appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\nReplace the byte array with your Tessel id, formatted as below: \n\n"]];
         
-        NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [self hexadecimalStringFromUUID:registeredRegion.proximityUUID]];
+        NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
         NSAttributedString *newCodeSnippet = [[NSAttributedString alloc] initWithString:byteArrayString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]}];
         [stepByStepText appendAttributedString:newCodeSnippet];
         self.explanatoryText.attributedText = stepByStepText;
@@ -58,18 +61,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Private
-
-- (NSString *)hexadecimalStringFromUUID:(NSUUID *)uuid {
-    // Via: http://stackoverflow.com/questions/1305225/best-way-to-serialize-a-nsdata-into-an-hexadeximal-string
-    
-    uuid_t uuidBytes;
-    [uuid getUUIDBytes:uuidBytes];
-    
-    NSMutableString *hexString  = [NSMutableString string];
-    for (int i = 0; i < 16; ++i)
-        [hexString appendString:[NSString stringWithFormat:@"0x%02lx, ", (unsigned long)uuidBytes[i]]];
-    
-    return [hexString substringToIndex:(hexString.length - 2)];
+- (IBAction)didTapToCopyToClipboard:(id)sender {
+    CLBeaconRegion *registeredRegion = [[self.tesselRegistrationRepository registeredTesselRegions] firstObject];
+    NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
+    [[UIPasteboard generalPasteboard] setValue:byteArrayString forPasteboardType:(NSString *)kUTTypePlainText];
 }
+
+
 @end

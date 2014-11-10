@@ -2,6 +2,8 @@
 #import "TesselInformationViewController.h"
 #import "TesselRegistrationRepository.h"
 #import <CoreLocation/CoreLocation.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import "NSUUID+Formatting.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -18,10 +20,11 @@ describe(@"TesselInformationViewController", ^{
     });
     
     context(@"when the user has registered a Tessel", ^{
+        __block NSUUID *uuid;
         __block NSString *tesselId;
         
         beforeEach(^{
-            NSUUID *uuid = [NSUUID UUID];
+            uuid = [NSUUID UUID];
             tesselId = [uuid UUIDString];
             CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@""];
             tesselRegistrationRepository stub_method(@selector(registeredTesselRegions)).and_return(@[region]);
@@ -31,6 +34,24 @@ describe(@"TesselInformationViewController", ^{
         
         it(@"should tell the user their device ID", ^{
             subject.tesselIdLabel.text should contain(tesselId);
+        });
+        
+        describe(@"tapping the 'Copy to Clipboard' button", ^{
+            __block UIPasteboard *fakePasteboard;
+            
+            beforeEach(^{
+                Class pasteboardClass = [UIPasteboard class];
+                fakePasteboard = nice_fake_for([UIPasteboard class]);
+                spy_on(pasteboardClass);
+                pasteboardClass stub_method(@selector(generalPasteboard)).and_return(fakePasteboard);
+                [subject.clipboardButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            });
+            
+            it(@"should copy the UUID to the clipboard in a format that's easy to copy/paste", ^{
+                NSString *expectedPasteBuffer = [NSString stringWithFormat:@"[%@]", [uuid byteArrayString]];
+                fakePasteboard should have_received(@selector(setValue:forPasteboardType:))
+                    .with(expectedPasteBuffer, (NSString *)kUTTypePlainText);
+            });
         });
         
         describe(@"tapping the okay button", ^{
