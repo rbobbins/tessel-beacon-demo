@@ -3,6 +3,7 @@
 #import "MainViewController.h"
 #import "NSUserDefaults+Keys.h"
 #import "RegistrationViewController.h"
+#import "WelcomeViewController.h"
 
 
 using namespace Cedar::Matchers;
@@ -26,9 +27,6 @@ describe(@"AppDelegate", ^{
     });
     
     describe(@"-application:didFinishLaunchingWithOptions:", ^{
-        beforeEach(^{
-        });
-        
         context(@"when the user is a new user", ^{
             beforeEach(^{
                 [subject application:fakeApplication didFinishLaunchingWithOptions:nil];
@@ -52,7 +50,7 @@ describe(@"AppDelegate", ^{
                 });
                 
                 it(@"should present the first step of the onboarding flow", ^{
-                    navController.topViewController should be_instance_of([RegistrationViewController class]);
+                    navController.topViewController should be_instance_of([WelcomeViewController class]);
                 });
                 
                 it(@"should set the MainViewController as the root of the nav hierarhy (even though it'll be hidden)", ^{

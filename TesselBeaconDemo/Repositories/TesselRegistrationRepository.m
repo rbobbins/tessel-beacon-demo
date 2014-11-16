@@ -27,6 +27,7 @@
     }
     return self;
 }
+
 - (KSPromise *)registerNewTessel {
     KSDeferred *deferred = [KSDeferred defer];
 

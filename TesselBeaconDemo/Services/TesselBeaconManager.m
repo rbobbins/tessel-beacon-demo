@@ -83,7 +83,8 @@
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+-(void)locationManager:(CLLocationManager *)manager
+     didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
 
     if (state == CLRegionStateInside)
