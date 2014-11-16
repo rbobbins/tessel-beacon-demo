@@ -14,13 +14,13 @@
 		5A08DA501A0C83AF0099991B /* TesselInformationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */; };
 		5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */; };
 		5A08DA531A0C86B20099991B /* TesselInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */; };
-		5A4C800D19F4D14D00E10062 /* WelcomeViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */; };
+		5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */; };
 		5A4C800E19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */; };
 		5A4C800F19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */; };
-		5A4C801919F4D16E00E10062 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* WelcomeViewController.xib */; };
-		5A4C801A19F4D16E00E10062 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* WelcomeViewController.xib */; };
-		5A4C801B19F4D16E00E10062 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801119F4D16E00E10062 /* WelcomeViewController.m */; };
-		5A4C801C19F4D16E00E10062 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801119F4D16E00E10062 /* WelcomeViewController.m */; };
+		5A4C801919F4D16E00E10062 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */; };
+		5A4C801A19F4D16E00E10062 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */; };
+		5A4C801B19F4D16E00E10062 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801119F4D16E00E10062 /* RegistrationViewController.m */; };
+		5A4C801C19F4D16E00E10062 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801119F4D16E00E10062 /* RegistrationViewController.m */; };
 		5A4C801D19F4D16E00E10062 /* LocationPermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801319F4D16E00E10062 /* LocationPermissionViewController.xib */; };
 		5A4C801E19F4D16E00E10062 /* LocationPermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801319F4D16E00E10062 /* LocationPermissionViewController.xib */; };
 		5A4C801F19F4D16E00E10062 /* LocationPermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801419F4D16E00E10062 /* LocationPermissionViewController.m */; };
@@ -80,12 +80,12 @@
 		5A08DA4C1A0C83830099991B /* TesselInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselInformationViewController.m; sourceTree = "<group>"; };
 		5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselInformationViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TesselInformationViewController.xib; sourceTree = "<group>"; };
-		5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WelcomeViewControllerSpec.mm; sourceTree = "<group>"; };
+		5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RegistrationViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocationPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
-		5A4C801019F4D16E00E10062 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
-		5A4C801119F4D16E00E10062 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		5A4C801219F4D16E00E10062 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
+		5A4C801119F4D16E00E10062 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		5A4C801219F4D16E00E10062 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		5A4C801319F4D16E00E10062 /* LocationPermissionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationPermissionViewController.xib; sourceTree = "<group>"; };
 		5A4C801419F4D16E00E10062 /* LocationPermissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPermissionViewController.m; sourceTree = "<group>"; };
 		5A4C801519F4D16E00E10062 /* LocationPermissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPermissionViewController.h; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */,
 				5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */,
 				5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */,
-				5A4C800A19F4D14D00E10062 /* WelcomeViewControllerSpec.mm */,
+				5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -315,9 +315,9 @@
 				5A8144F719DD05AC006077B3 /* MainViewController.xib */,
 				5A08DA4B1A0C83830099991B /* TesselInformationViewController.h */,
 				5A08DA4C1A0C83830099991B /* TesselInformationViewController.m */,
-				5A4C801219F4D16E00E10062 /* WelcomeViewController.h */,
-				5A4C801119F4D16E00E10062 /* WelcomeViewController.m */,
-				5A4C801019F4D16E00E10062 /* WelcomeViewController.xib */,
+				5A4C801219F4D16E00E10062 /* RegistrationViewController.h */,
+				5A4C801119F4D16E00E10062 /* RegistrationViewController.m */,
+				5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */,
 				5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */,
 			);
 			path = ViewControllers;
@@ -443,7 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A4C801919F4D16E00E10062 /* WelcomeViewController.xib in Resources */,
+				5A4C801919F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
 				5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
 				5A96613D19DFD0850039D844 /* LaunchScreen.xib in Resources */,
 				5A4C801D19F4D16E00E10062 /* LocationPermissionViewController.xib in Resources */,
@@ -460,7 +460,7 @@
 			files = (
 				5A08DA531A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
 				5AC4B0DE19DE6A7A0078A65F /* InfoPlist.strings in Resources */,
-				5A4C801A19F4D16E00E10062 /* WelcomeViewController.xib in Resources */,
+				5A4C801A19F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
 				5A4C801E19F4D16E00E10062 /* LocationPermissionViewController.xib in Resources */,
 				5A77A4AA19DE6ED400187EE1 /* MainViewController.xib in Resources */,
 				5A4C802219F4D16E00E10062 /* AlertPermissionViewController.xib in Resources */,
@@ -550,7 +550,7 @@
 				5A08DA4D1A0C83830099991B /* TesselInformationViewController.m in Sources */,
 				5A96614019E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */,
-				5A4C801B19F4D16E00E10062 /* WelcomeViewController.m in Sources */,
+				5A4C801B19F4D16E00E10062 /* RegistrationViewController.m in Sources */,
 				5A4C801F19F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,7 +563,7 @@
 				5A4C802E19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
 				5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A4C802019F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
-				5A4C800D19F4D14D00E10062 /* WelcomeViewControllerSpec.mm in Sources */,
+				5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */,
 				5A4C802419F4D16E00E10062 /* AlertPermissionViewController.m in Sources */,
 				5A77A4A719DE6BFC00187EE1 /* MainViewControllerSpec.mm in Sources */,
 				5A4C800F19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm in Sources */,
@@ -571,7 +571,7 @@
 				5A96613A19DFA9770039D844 /* AppDelegateSpec.mm in Sources */,
 				5A4C800E19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm in Sources */,
 				5A4C802C19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
-				5A4C801C19F4D16E00E10062 /* WelcomeViewController.m in Sources */,
+				5A4C801C19F4D16E00E10062 /* RegistrationViewController.m in Sources */,
 				5AB3798719FA163400775FEB /* TesselRegistrationRepositorySpec.mm in Sources */,
 				5A96614119E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5A08DA4E1A0C83830099991B /* TesselInformationViewController.m in Sources */,

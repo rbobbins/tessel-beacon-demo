@@ -1,19 +1,11 @@
-//
-//  WelcomeViewController.m
-//  TesselBluetoothDemo
-//
-//  Created by Rachel Bobbins on 10/5/14.
-//  Copyright (c) 2014 Rachel Bobbins. All rights reserved.
-//
-
-#import "WelcomeViewController.h"
+#import "RegistrationViewController.h"
 #import "LocationPermissionViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "KSPromise.h"
 #import "UIView+Constraints.h"
 #import "TesselInformationViewController.h"
 
-@interface WelcomeViewController ()
+@interface RegistrationViewController ()
 - (IBAction)didTapYes:(id)sender;
 - (IBAction)didTapToContinue:(id)sender;
 
@@ -22,7 +14,7 @@
 @end
 
 
-@implementation WelcomeViewController
+@implementation RegistrationViewController
 
 - (instancetype)initWithTesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
 {

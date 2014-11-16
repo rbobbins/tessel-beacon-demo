@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationViewController">
             <connections>
                 <outlet property="explanatoryLabel" destination="RZG-Nc-PR1" id="a7Q-6e-94S"/>
                 <outlet property="noButton" destination="NL2-7u-JOI" id="W6T-Zb-S9Q"/>

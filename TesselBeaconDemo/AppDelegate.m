@@ -46,7 +46,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
     if (![userDefaults boolForKey:kUserDidCompleteOnboarding]) {
-        initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+        initialViewController = [[RegistrationViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
         [navController pushViewController:initialViewController animated:NO];
     }
 

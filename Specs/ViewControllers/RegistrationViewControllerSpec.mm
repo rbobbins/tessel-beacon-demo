@@ -1,23 +1,23 @@
 #import <Cedar/Cedar.h>
-#import "WelcomeViewController.h"
-#import "LocationPermissionViewController.h"
+#import "RegistrationViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "KSDeferred.h"
 #import "TesselInformationViewController.h"
+#import "LocationPermissionViewController.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
 
-SPEC_BEGIN(WelcomeViewControllerSpec)
+SPEC_BEGIN(RegistrationViewControllerSpec)
 
-describe(@"WelcomeViewController", ^{
-    __block WelcomeViewController *subject;
+describe(@"RegistrationViewController", ^{
+    __block RegistrationViewController *subject;
     __block UINavigationController *navController;
     __block TesselRegistrationRepository *registrationRepository;
 
     beforeEach(^{
         registrationRepository = nice_fake_for([TesselRegistrationRepository class]);
-        subject = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
+        subject = [[RegistrationViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
         navController = [[UINavigationController alloc] initWithRootViewController:subject];
         subject.view should_not be_nil;
     });
