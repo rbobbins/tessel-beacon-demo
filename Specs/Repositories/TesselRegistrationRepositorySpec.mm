@@ -78,19 +78,16 @@ describe(@"TesselRegistrationRepository", ^{
                 uuid = [NSUUID UUID];
                 userDefaults stub_method(@selector(stringForKey:)).with(kRegisteredTesselId).and_return(uuid.UUIDString);
             });
-            it(@"should return a list containing 1 region - with the UUID registered by this phone", ^{
-                [subject registeredTesselRegions].count should equal(1);
-
-                CLBeaconRegion *beaconRegion = [[subject registeredTesselRegions] firstObject];
-                beaconRegion should be_instance_of([CLBeaconRegion class]);
+            it(@"should return a region with the UUID registered by this phone", ^{
+                CLBeaconRegion *beaconRegion = [subject registeredTesselRegion];
                 beaconRegion.proximityUUID should equal(uuid);
                 beaconRegion.identifier should equal(@"");
             });
         });
 
         context(@"when the user of this phone/ipad has not registered a Tessel", ^{
-            it(@"should return an empty list", ^{
-               [subject registeredTesselRegions] should equal(@[]);
+            it(@"should return nil", ^{
+                [subject registeredTesselRegion] should be_nil;
             });
         });
 

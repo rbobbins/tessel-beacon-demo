@@ -39,21 +39,23 @@
                                                                             forKey:kRegisteredTesselId];
         [deferred resolveWithValue:uuidString];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"================> %@", error);
         [deferred rejectWithError:error];
     }];
 
     return deferred.promise;
 }
 
-- (NSArray *)registeredTesselRegions {
+- (CLBeaconRegion *)registeredTesselRegion {
     NSString *uuidString = [[NSUserDefaults standardUserDefaults] stringForKey:kRegisteredTesselId];
+
     if (uuidString) {
         NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
         CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
                                                       identifier:@""];
-        return @[beaconRegion];
+        return beaconRegion;
     }
-    return @[];
+    return nil;
 
 
 }

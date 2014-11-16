@@ -25,7 +25,7 @@ describe(@"TesselBeaconManager", ^{
         fakeLocationManager = nice_fake_for([CLLocationManager class]);
         tesselCheckinRepository = nice_fake_for([TesselCheckinRepository class]);
         tesselRegistrationRepository = nice_fake_for([TesselRegistrationRepository class]);
-        tesselRegistrationRepository stub_method(@selector(registeredTesselRegions)).and_return(@[region]);
+        tesselRegistrationRepository stub_method(@selector(registeredTesselRegion)).and_return(region);
 
         subject = [[TesselBeaconManager alloc] initWithLocationManager:fakeLocationManager
                                                tesselCheckinRepository:tesselCheckinRepository
@@ -52,7 +52,7 @@ describe(@"TesselBeaconManager", ^{
             });
 
             it(@"should request a list of regions to monitor", ^{
-                tesselRegistrationRepository should have_received(@selector(registeredTesselRegions));
+                tesselRegistrationRepository should have_received(@selector(registeredTesselRegion));
             });
 
             it(@"should begin monitoring for the region", ^{

@@ -27,7 +27,7 @@ describe(@"TesselInformationViewController", ^{
             uuid = [NSUUID UUID];
             tesselId = [uuid UUIDString];
             CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@""];
-            tesselRegistrationRepository stub_method(@selector(registeredTesselRegions)).and_return(@[region]);
+            tesselRegistrationRepository stub_method(@selector(registeredTesselRegion)).and_return(region);
             
             subject.view should_not be_nil;
         });

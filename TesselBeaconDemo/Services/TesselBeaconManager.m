@@ -51,8 +51,10 @@
         case kCLAuthorizationStatusNotDetermined:
             [self.locationManager requestAlwaysAuthorization];
             return;
-        case kCLAuthorizationStatusAuthorizedAlways:
-            [self.locationManager startMonitoringForRegion:self.region];
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
+            [self.locationManager startMonitoringForRegion:region];
+        }
         default:
             break;
     }
@@ -71,8 +73,11 @@
 
     switch (status) {
         case kCLAuthorizationStatusAuthorizedAlways:
-            [self.locationManager startMonitoringForRegion:self.region];
-            return;
+        {
+            CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
+            [self.locationManager startMonitoringForRegion:region];
+            return;            
+        }
         default:
             break;
     }
@@ -135,12 +140,6 @@
     NSLog(@"================> %@", @"monitoring failed");
 }
 
-#pragma mark - Private
-
-- (CLBeaconRegion *)region {
-    NSArray *allRegisteredRegions = [self.tesselRegistrationRepository registeredTesselRegions];
-    return [allRegisteredRegions firstObject];
-}
 
 
 @end

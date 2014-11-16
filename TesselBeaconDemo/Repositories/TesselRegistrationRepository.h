@@ -10,6 +10,7 @@
 
 @class KSPromise;
 @class AFHTTPRequestOperationManager;
+@class CLBeaconRegion;
 
 @interface TesselRegistrationRepository : NSObject
 
@@ -18,5 +19,5 @@
 
 - (KSPromise *)registerNewTessel;
 
-- (NSArray *)registeredTesselRegions;
+- (CLBeaconRegion *)registeredTesselRegion;
 @end

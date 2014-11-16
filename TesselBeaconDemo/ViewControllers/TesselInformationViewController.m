@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CLBeaconRegion *registeredRegion = [[self.tesselRegistrationRepository registeredTesselRegions] firstObject];
+    CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion] ;
     
     if (registeredRegion) {
         self.tesselIdLabel.text = registeredRegion.proximityUUID.UUIDString;
@@ -63,7 +63,7 @@
 }
 
 - (IBAction)didTapToCopyToClipboard:(id)sender {
-    CLBeaconRegion *registeredRegion = [[self.tesselRegistrationRepository registeredTesselRegions] firstObject];
+    CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion];
     NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
     [[UIPasteboard generalPasteboard] setValue:byteArrayString forPasteboardType:(NSString *)kUTTypePlainText];
 }
