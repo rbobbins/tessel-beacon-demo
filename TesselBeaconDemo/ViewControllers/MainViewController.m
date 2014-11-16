@@ -44,6 +44,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
     self.timestampFormatter = [[NSDateFormatter alloc] init];
     self.timestampFormatter.dateFormat = @"HH:mm:ss.SSS";
+    self.navigationController.navigationBarHidden = YES;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.messages = [NSMutableArray array];
