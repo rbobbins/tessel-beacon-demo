@@ -30,6 +30,13 @@
     self.yesButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.title = @"Step 1: Register Tessel";
     self.navigationItem.hidesBackButton = YES;
+    
+    if ([self.tesselRegistrationRepository registeredTesselRegion]) {
+        TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
+        [self presentViewController:tesselInformationViewController animated:YES completion:^{
+            [self didTapToContinue:nil];
+        }];
+    }
 }
 
 #pragma mark - Actions
