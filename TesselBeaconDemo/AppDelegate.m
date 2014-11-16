@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
-#import "WelcomeViewController.h"
+#import "RegistrationViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "NSUserDefaults+Keys.h"
 #import "TesselCheckinRepository.h"

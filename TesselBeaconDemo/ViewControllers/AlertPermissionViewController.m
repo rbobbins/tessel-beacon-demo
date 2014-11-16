@@ -29,6 +29,7 @@
     
     self.title = @"Step 3: Notification Permission";
     self.navigationItem.hidesBackButton = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 #pragma mark - Actions
