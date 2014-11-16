@@ -14,6 +14,7 @@
 #import "TesselCheckinRepository.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFNetworking.h>
+#import "WelcomeViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic) TesselBeaconManager *tesselBeaconManager;

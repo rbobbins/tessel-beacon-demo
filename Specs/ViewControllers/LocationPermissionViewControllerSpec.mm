@@ -57,8 +57,26 @@ describe(@"LocationPermissionViewController", ^{
                 [subject.locationManager.delegate locationManager:subject.locationManager didChangeAuthorizationStatus:kCLAuthorizationStatusAuthorizedAlways];
             });
             
-            it(@"should present the next step of the onboarding flow", ^{
-                navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+            it(@"should tell the user that they've given permission", ^{
+                subject.explanatoryLabel.text should contain(@"already given location permission");
+            });
+            
+            it(@"should update the 'Yes' button to say 'Next'", ^{
+                subject.yesButton.titleLabel.text should equal(@"Next");
+            });
+            
+            it(@"should hide the 'No' button", ^{
+                subject.noButton.hidden should be_truthy;
+            });
+
+            describe(@"tapping the 'Next' button", ^{
+                beforeEach(^{
+                    [subject.yesButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                });
+                
+                it(@"should present the next step of the onboarding flow", ^{
+                    navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+                });
             });
         });
         
@@ -71,20 +89,25 @@ describe(@"LocationPermissionViewController", ^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusDenied);
             });
             
-            it(@"should change the 'Yes' button text", ^{
-                subject.yesButton.titleLabel.text should equal(@"Yes, via device settings");
+            
+            it(@"should warn them that the app won't be useful", ^{
+                subject.explanatoryLabel.text should contain(@"go to Settings");
+                subject.explanatoryLabel.text should contain(@"will not function properly");
             });
             
-            describe(@"subsquently tapping the 'Yes' button", ^{
+            it(@"should update the Yes button to a 'Next' button", ^{
+                subject.yesButton.titleLabel.text should equal(@"Next");
+            });
+            
+            describe(@"tapping the next button", ^{
                 beforeEach(^{
                     [subject.yesButton sendActionsForControlEvents:UIControlEventTouchUpInside];
                 });
                 
-                it(@"should present a 'Not implemented' alert view", ^{
-                    UIAlertController *alertController = (id)subject.presentedViewController;
-                    alertController should be_instance_of([UIAlertController class]);
-                    alertController.message should equal(@"Not implemented yet");
+                it(@"should present the next step of the onboarding flow", ^{
+                    navController.topViewController should be_instance_of([AlertPermissionViewController class]);
                 });
+                
             });
         });
     });
@@ -94,8 +117,41 @@ describe(@"LocationPermissionViewController", ^{
             [subject.noButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         });
         
-        it(@"should present the next step of the onboarding flow", ^{
-            navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+        it(@"should warn them that the app won't be useful", ^{
+            subject.explanatoryLabel.text should contain(@"go to Settings");
+            subject.explanatoryLabel.text should contain(@"will not function properly");
+        });
+        
+        it(@"should update the Yes button to a 'Next' button", ^{
+            subject.yesButton.titleLabel.text should equal(@"Next");
+        });
+        
+        describe(@"tapping the next button", ^{
+            beforeEach(^{
+                [subject.yesButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            });
+            
+            it(@"should present the next step of the onboarding flow", ^{
+                navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+            });
+
+        });
+    });
+    
+    context(@"when the user has already given location permisson", ^{
+        beforeEach(^{
+            [subject.locationManager.delegate locationManager:subject.locationManager didChangeAuthorizationStatus:kCLAuthorizationStatusAuthorizedAlways];
+        });
+        it(@"should tell the user that they've given permission", ^{
+            subject.explanatoryLabel.text should contain(@"already given location permission");
+        });
+        
+        it(@"should update the 'Yes' button to say 'Next'", ^{
+            subject.yesButton.titleLabel.text should equal(@"Next");
+        });
+        
+        it(@"should hide the 'No' button", ^{
+            subject.noButton.hidden should be_truthy;
         });
     });
 });

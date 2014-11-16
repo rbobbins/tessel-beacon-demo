@@ -43,16 +43,21 @@
 - (IBAction)didTapYes:(id)sender {
     CLAuthorizationStatus authorizationStatus = [CLLocationManager authorizationStatus];
     if ( authorizationStatus == kCLAuthorizationStatusNotDetermined) {
+        /*Apple docs on -requestAlwaysAuthorization:
+         
+         When the current authorization status is kCLAuthorizationStatusNotDetermined, this method runs asynchronously and prompts the user to grant permission to the app to use location services.
+         
+         The user prompt contains the text from the NSLocationAlwaysUsageDescription key in your app’s Info.plist file, and the presence of that key is required when calling this method. After the status is determined, the location manager delivers the results to the delegate’s locationManager:didChangeAuthorizationStatus: method.
+         
+         If the current authorization status is anything other than kCLAuthorizationStatusNotDetermined, this method does nothing and does not call the locationManager:didChangeAuthorizationStatus: method.
+         */
         [self.locationManager requestAlwaysAuthorization];
-    }
-    else {
-        UIAlertController *alertController = [UIAlertController notImplementedAlert];
-        [self presentViewController:alertController animated:NO completion:nil];
     }
 }
 
 - (IBAction)didTapNo:(id)sender {
-    [self transitionToNextStep];
+    [self configureWarningLabel];
+    [self configureYesButtonAsNextButton];
 }
 
 #pragma mark - <CLLocationManagerDelegate>
@@ -61,21 +66,40 @@
     switch (status) {
         case kCLAuthorizationStatusRestricted:
         case kCLAuthorizationStatusDenied:
-            [self.yesButton setTitle:@"Yes, via device settings" forState:UIControlStateNormal];
+        {
+            [self configureWarningLabel];
+            [self configureYesButtonAsNextButton];
+            
             break;
+        }
         case kCLAuthorizationStatusAuthorizedAlways:
-            [self transitionToNextStep];
+        {
+            self.explanatoryLabel.text = @"You've already given location permission. Please tap 'Next' to continue";
+            [self configureYesButtonAsNextButton];
             break;
+        }
         default:
             break;
     }
 }
 
 #pragma mark - Private
+
 - (void)transitionToNextStep {
     AlertPermissionViewController *viewController = [[AlertPermissionViewController alloc] init];
     [self.navigationController pushViewController:viewController
                                          animated:NO];
+}
+
+- (void)configureYesButtonAsNextButton {
+    self.noButton.hidden = YES;
+    [self.yesButton setTitle:@"Next" forState:UIControlStateNormal];
+    [self.yesButton removeTarget:nil action:nil forControlEvents:UIControlEventAllEvents];
+    [self.yesButton addTarget:self action:@selector(transitionToNextStep) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)configureWarningLabel {
+    self.explanatoryLabel.text = @"WARNING\n\nYou have not given this application permission to use your device's location services.\n\nPlease go to Settings > Privacy > Location > TesselBeaconDemo and choose the 'Allow Location Access: Always' option.\n\n If you do not do this, the application will not function properly";
 }
 
 @end
