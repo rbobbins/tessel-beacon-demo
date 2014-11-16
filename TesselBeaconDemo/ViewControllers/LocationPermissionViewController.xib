@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -56,13 +56,13 @@
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="cEI-R3-qyb" secondAttribute="centerX" id="4uH-rJ-LEX"/>
                 <constraint firstAttribute="centerY" secondItem="w2W-3A-bhq" secondAttribute="bottom" priority="750" id="6im-Mp-oRX"/>
-                <constraint firstItem="w2W-3A-bhq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" symbolic="YES" id="Jt3-26-7JK"/>
                 <constraint firstItem="cEI-R3-qyb" firstAttribute="top" secondItem="w2W-3A-bhq" secondAttribute="bottom" constant="45" id="YFE-Yp-tm3"/>
                 <constraint firstAttribute="centerX" secondItem="w2W-3A-bhq" secondAttribute="centerX" id="dH8-IO-zC0"/>
                 <constraint firstAttribute="centerX" secondItem="Zya-0N-Lyx" secondAttribute="centerX" id="dae-DM-sqe"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zya-0N-Lyx" secondAttribute="bottom" constant="8" id="dtJ-5m-QX9"/>
                 <constraint firstItem="Zya-0N-Lyx" firstAttribute="top" secondItem="cEI-R3-qyb" secondAttribute="bottom" constant="20" id="tFR-c4-Yrv"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
     </objects>
 </document>

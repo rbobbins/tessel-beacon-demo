@@ -30,25 +30,34 @@ describe(@"AppDelegate", ^{
         });
         
         context(@"when the user is a new user", ^{
-            __block UINavigationController *navController;
-            
             beforeEach(^{
                 [subject application:fakeApplication didFinishLaunchingWithOptions:nil];
-                navController = (id)subject.window.rootViewController;
             });
             
             it(@"should initalize a TesselBeaconManager", ^{
                 subject.tesselBeaconManager should be_instance_of([TesselBeaconManager class]);
                 subject.tesselBeaconManager.locationManager should be_instance_of([CLLocationManager class]);
+
             });
             
-            it(@"should present the first step of the onboarding flow", ^{
-                navController should be_instance_of([UINavigationController class]);
-                navController.topViewController should be_instance_of([WelcomeViewController class]);
-            });
-            
-            it(@"should not show a nav bar", ^{
-                navController.navigationBarHidden should be_truthy;
+            describe(@"intializing the view hierarchy", ^{
+                __block UINavigationController *navController;
+
+                beforeEach(^{
+                    navController = (id)subject.window.rootViewController;
+                });
+                
+                it(@"should set a navigation controller as the root view of the window", ^{
+                    navController should be_instance_of([UINavigationController class]);
+                });
+                
+                it(@"should present the first step of the onboarding flow", ^{
+                    navController.topViewController should be_instance_of([WelcomeViewController class]);
+                });
+                
+                it(@"should set the MainViewController as the root of the nav hierarhy (even though it'll be hidden)", ^{
+                    [navController.viewControllers firstObject] should be_instance_of([MainViewController class]); 
+                });
             });
         });
         
@@ -65,7 +74,6 @@ describe(@"AppDelegate", ^{
                 UINavigationController *navController = (id)subject.window.rootViewController;
                 navController should be_instance_of([UINavigationController class]);
                 navController.topViewController should be_instance_of([MainViewController class]);
-                navController.navigationBarHidden should be_truthy;
             });
         });
     });

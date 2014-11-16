@@ -19,6 +19,14 @@ describe(@"LocationPermissionViewController", ^{
         subject.view should_not be_nil;
     });
     
+    it(@"should title itself as Step 1", ^{
+        subject.title should equal(@"Step 2: Location Permission");
+    });
+    
+    it(@"should hide the back button", ^{
+        subject.navigationItem.hidesBackButton should be_truthy;
+    });
+    
     it(@"should explain what location will be used for", ^{
         subject.explanatoryLabel.text should contain(@"relative location to Tessel devices");
     });

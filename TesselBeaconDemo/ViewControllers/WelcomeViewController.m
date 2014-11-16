@@ -36,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.yesButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.title = @"Step 1: Register Tessel";
+    self.navigationItem.hidesBackButton = YES;
 }
 
 #pragma mark - Actions

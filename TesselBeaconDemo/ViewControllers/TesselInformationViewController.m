@@ -57,6 +57,7 @@
 }
 
 #pragma mark - Actions
+
 - (IBAction)didTapDismissButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

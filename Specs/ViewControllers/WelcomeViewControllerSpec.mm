@@ -22,6 +22,14 @@ describe(@"WelcomeViewController", ^{
         subject.view should_not be_nil;
     });
     
+    it(@"should title itself as Step 1", ^{
+        subject.title should equal(@"Step 1: Register Tessel");
+    });
+    
+    it(@"should hide the back button", ^{
+        subject.navigationItem.hidesBackButton should be_truthy;
+    });
+    
     it(@"should ask the user whether they'd like to register a Tessel", ^{
         subject.explanatoryLabel.text should equal(@"Would you like to register your own Tessel?");
     });

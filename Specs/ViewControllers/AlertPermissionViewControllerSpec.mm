@@ -24,6 +24,14 @@ describe(@"AlertPermissionViewController", ^{
         subject.view should_not be_nil;
     });
     
+    it(@"should title itself as Step 3", ^{
+        subject.title should equal(@"Step 3: Notification Permission");
+    });
+    
+    it(@"should hide the back button", ^{
+        subject.navigationItem.hidesBackButton should be_truthy;
+    });
+    
     it(@"should explain the value of notifications", ^{
         subject.explanatoryLabel.text should contain(@"notified when you're near a Tessel?");
     });
@@ -54,12 +62,12 @@ describe(@"AlertPermissionViewController", ^{
     
     describe(@"when the user taps No", ^{
         beforeEach(^{
+            spy_on(navController);
             [subject.noButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         });
         
-        it(@"should reset the nav controller to only contain the MainViewController", ^{
-            navController.topViewController should be_instance_of([MainViewController class]);
-            navController.viewControllers.count should equal(1);
+        it(@"should pop back to the root view of the nav controller", ^{
+            navController should have_received(@selector(popToRootViewControllerAnimated:));
         });
         
         it(@"should mark them as having completed the onboarding flow", ^{

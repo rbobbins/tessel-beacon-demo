@@ -42,14 +42,16 @@
     UIViewController *initialViewController;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([userDefaults boolForKey:kUserDidCompleteOnboarding]) {
-        initialViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
-    } else {
-       initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+    MainViewController *mainViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+
+    if (![userDefaults boolForKey:kUserDidCompleteOnboarding]) {
+        initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+        [navController pushViewController:initialViewController animated:NO];
     }
 
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:initialViewController];
-    navController.navigationBarHidden = YES;
+
+    navController.navigationBarHidden = NO;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navController;
 

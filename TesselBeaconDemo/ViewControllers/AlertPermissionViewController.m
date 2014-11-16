@@ -24,6 +24,13 @@
 @implementation AlertPermissionViewController
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = @"Step 3: Notification Permission";
+    self.navigationItem.hidesBackButton = YES;
+}
+
 #pragma mark - Actions
 
 - (IBAction)didTapYes:(id)sender {
@@ -34,15 +41,7 @@
 
 - (IBAction)didTapNo:(id)sender {
     [self markOnboardingFlowAsComplete];
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    AFHTTPRequestOperationManager *requestOperationManager = [AFHTTPRequestOperationManager manager];
-    TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc] initWithRequestOperationManager:requestOperationManager];
-    TesselRegistrationRepository *tesselRegistrationRepository = [[TesselRegistrationRepository alloc] initWithRequestOperationManager:requestOperationManager];
-    TesselBeaconManager *beaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
-                                                                      tesselCheckinRepository:tesselCheckinRepository
-                                                                 tesselRegistrationRepository:tesselRegistrationRepository];
-    MainViewController *mainViewController = [[MainViewController alloc] initWithBeaconManager:beaconManager];
-    [self.navigationController setViewControllers:@[mainViewController] animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Private

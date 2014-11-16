@@ -25,6 +25,10 @@
 
 #pragma mark - UIViewController
 - (void)viewDidLoad {
+    self.title = @"Step 2: Location Permission";
+    self.navigationItem.hidesBackButton = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     NSString *baseString = @"iBeacons are part of Apple's CoreLocation framework. In order to detect nearby Tessels, this application needs permisson to monitor your location. Note that NO geographical location is tracked - only a relative location to Tessel devices.\n\n Would you like to enable location monitoring? (Keep in mind that by declining, you'll be unable to use your Tessel as an iBeacon)";
