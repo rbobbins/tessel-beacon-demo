@@ -25,12 +25,12 @@ describe(@"MainViewController", ^{
             [subject.scanButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         });
         
-        it(@"should tell the tesselManger to search for a Tessel", ^{
-            beaconManager should have_received(@selector(searchForTesselBeacon));
+        it(@"should tell the tesselManger to monitorProximityToBeacon", ^{
+            beaconManager should have_received(@selector(monitorProximityToTesselBeacon));
         });
     });
     
-    describe(@"responding to Tessel Beacon events", ^{
+    describe(@"responding to TesselBeaconManager events", ^{
         describe(@"entering the range of a Tessel", ^{
             beforeEach(^{
                 [subject didEnterTesselRange];
@@ -77,6 +77,17 @@ describe(@"MainViewController", ^{
                 [subject didUpdateProximityToTessel:CLProximityFar];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"proximity to tessel: FAR");
+            });
+        });
+    
+        describe(@"when failing to monitor the proximity to a Tessel", ^{
+            it(@"should log the error and its explanation", ^{
+                NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
+                [subject didFailToMonitorProximitityForTesselRegion:nil withErrorMessage:error];
+                
+                UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
+                cell.textLabel.text should contain(@"kCLErrorRangingUnavailable");
+                cell.textLabel.text should contain(@"Ranging is disabled.");
             });
         });
     });

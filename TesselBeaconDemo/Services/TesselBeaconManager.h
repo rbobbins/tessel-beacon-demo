@@ -20,6 +20,9 @@
 - (void)didExitTesselRange;
 - (void)didUpdateProximityToTessel:(CLProximity)proximity;
 
+#pragma TODO: Rename; make more generic
+- (void)didFailToMonitorProximitityForTesselRegion:(CLRegion *)region
+                                  withErrorMessage:(NSError *)error;
 @end
 
 
@@ -29,8 +32,13 @@
 
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
-
+#pragma TODO: Rename to monitorTesselBeacon
 - (void)searchForTesselBeacon;
+
+#pragma TODO: Rename to rangeProximityForTesselBeacon
+- (void)monitorProximityToTesselBeacon;
+
+#pragma TODO: Singularize
 - (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate;
 
 @end

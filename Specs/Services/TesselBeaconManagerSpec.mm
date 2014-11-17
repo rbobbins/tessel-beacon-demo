@@ -14,7 +14,7 @@ describe(@"TesselBeaconManager", ^{
     __block CLBeaconRegion *region;
     __block TesselCheckinRepository *tesselCheckinRepository;
     __block TesselRegistrationRepository *tesselRegistrationRepository;
-
+    __block id<TesselBeaconDelegate> fakeBeaconDelegate;
 
     beforeEach(^{
         NSUUID *uuid = [NSUUID UUID];
@@ -31,6 +31,8 @@ describe(@"TesselBeaconManager", ^{
                                                tesselCheckinRepository:tesselCheckinRepository
                                           tesselRegistrationRepository:tesselRegistrationRepository];
         fakeLocationManager stub_method(@selector(delegate)).and_return(subject);
+        fakeBeaconDelegate = nice_fake_for(@protocol(TesselBeaconDelegate));
+        [subject registerDelegate:fakeBeaconDelegate];
     });
 
     it(@"should register itself as the location manager's delegate", ^{
@@ -72,14 +74,43 @@ describe(@"TesselBeaconManager", ^{
         });
     });
 
-    describe(@"responding to location events", ^{
-        __block id<TesselBeaconDelegate> fakeBeaconDelegate;
-
+    
+    describe(@"-monitorProximityToTesselBeacon:", ^{
         beforeEach(^{
-            fakeBeaconDelegate = nice_fake_for(@protocol(TesselBeaconDelegate));
-            [subject registerDelegate:fakeBeaconDelegate];
+            [subject monitorProximityToTesselBeacon];
         });
-
+        
+        it(@"should begin ranging for beacon", ^{
+            fakeLocationManager should have_received(@selector(startRangingBeaconsInRegion:)).with(region);
+        });
+        
+        describe(@"when ranging is succesful", ^{
+            beforeEach(^{
+                CLBeacon *beacon = nice_fake_for([CLBeacon class]);
+                beacon stub_method(@selector(proximity)).and_return(CLProximityImmediate);
+                [fakeLocationManager.delegate locationManager:fakeLocationManager
+                                              didRangeBeacons:@[beacon]
+                                                     inRegion:region];
+            });
+            
+            it(@"should inform any registered delegates", ^{
+                fakeBeaconDelegate should have_received(@selector(didUpdateProximityToTessel:)).with(CLProximityImmediate);
+            });
+        });
+        
+        describe(@"when ranging fails", ^{
+            __block NSError *error;
+            beforeEach(^{
+                error = nice_fake_for([NSError class]);
+                [fakeLocationManager.delegate locationManager:fakeLocationManager rangingBeaconsDidFailForRegion:region withError:error];
+            });
+            
+            it(@"should inform its delegate", ^{
+                fakeBeaconDelegate should have_received(@selector(didFailToMonitorProximitityForTesselRegion:withErrorMessage:)).with(region, error);
+            });
+        });
+    });
+    describe(@"responding to location events", ^{
         describe(@"when location manager authorization status changes", ^{
             context(@"when it is kCLAuthorizationStatusAuthorizedAlways", ^{
                 beforeEach(^{
@@ -116,9 +147,6 @@ describe(@"TesselBeaconManager", ^{
                                                     forRegion:region];
             });
 
-            it(@"should start ranging the beacon, in order to stay informed of beacon ", ^{
-                fakeLocationManager should have_received(@selector(startRangingBeaconsInRegion:)).with(region);
-            });
 
             it(@"should inform any registered delegates", ^{
                 fakeBeaconDelegate should have_received(@selector(didEnterTesselRange));
@@ -148,20 +176,6 @@ describe(@"TesselBeaconManager", ^{
             });
         });
 
-        describe(@"whenever the proximity to the tessel changes", ^{
-            beforeEach(^{
-
-                CLBeacon *beacon = nice_fake_for([CLBeacon class]);
-                beacon stub_method(@selector(proximity)).and_return(CLProximityImmediate);
-                [fakeLocationManager.delegate locationManager:fakeLocationManager
-                                              didRangeBeacons:@[beacon]
-                                                     inRegion:region];
-            });
-
-            it(@"should inform any registered delegates", ^{
-                fakeBeaconDelegate should have_received(@selector(didUpdateProximityToTessel:)).with(CLProximityImmediate);
-            });
-        });
     });
 
 
