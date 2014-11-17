@@ -72,8 +72,7 @@
     }
 }
 
-#pragma mark - <CLLocationManagerDelegate> (Global State)
-
+#pragma mark - <CLLocationManagerDelegate> - Responding to Authorization Changes
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 
     switch (status) {
@@ -85,6 +84,21 @@
         }
         default:
             break;
+    }
+}
+
+#pragma mark - <CLLocationManagerDelegate> - Responding to Region Events
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    [manager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
+    for (id<TesselBeaconDelegate>delegate in self.delegates) {
+        [delegate didExitTesselRange];
     }
 }
 
@@ -107,11 +121,9 @@
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-    [manager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didExitTesselRange];
-    }
+
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
+    NSLog(@"================> %@", @"monitoring failed");
 }
 
 - (void) locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
@@ -119,12 +131,7 @@
     NSLog(@"================> %@ : %@", @"did start monitoring for region", region);
 }
 
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
-    }
-}
+#pragma mark - <CLLocationManagerDelegate> - Responding to Ranging Events
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
     CLBeacon *beacon = (id)[beacons firstObject];
@@ -142,9 +149,6 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
-    NSLog(@"================> %@", @"monitoring failed");
-}
 
 
 
