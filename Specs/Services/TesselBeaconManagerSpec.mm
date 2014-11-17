@@ -119,9 +119,9 @@ describe(@"TesselBeaconManager", ^{
                 fakeLocationManager stub_method(@selector(rangedRegions)).and_return([NSSet setWithObject:region]);
             });
             
-            it(@"should tell the location manager to stop monitoring", ^{
+            it(@"should tell the location manager to stop ranging", ^{
                 [subject stopMonitoringProximityToTessel];
-                fakeLocationManager should have_received(@selector(stopMonitoringForRegion:)).with(region);
+                fakeLocationManager should have_received(@selector(stopRangingBeaconsInRegion:)).with(region);
             });
         });
         

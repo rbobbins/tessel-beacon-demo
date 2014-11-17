@@ -73,8 +73,8 @@
 
 - (void)stopMonitoringProximityToTessel {
     //This array should never have more than 1 object
-    for (CLRegion *region in self.locationManager.rangedRegions) {
-        [self.locationManager stopMonitoringForRegion:region];
+    for (CLBeaconRegion *region in self.locationManager.rangedRegions) {
+        [self.locationManager stopRangingBeaconsInRegion:region];
         
     }
 }
