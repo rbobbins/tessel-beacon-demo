@@ -67,7 +67,7 @@ describe(@"MainViewController", ^{
             });
             
             it(@"should log the event", ^{
-                UITableViewCell *cell = [subject.tableView.visibleCells lastObject];
+                UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"Will stop monitoring and logging proximity");
             });
 

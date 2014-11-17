@@ -14,7 +14,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 @interface MainViewController () <UITableViewDataSource>
 
-- (IBAction)didTapClear:(id)sender;
 - (IBAction)didToggleTesselMonitoring:(id)sender;
 - (IBAction)didToggleProximityMonitoring:(id)sender;
 
@@ -67,7 +66,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    cell.textLabel.text = self.messages[indexPath.row];
+    cell.textLabel.text = self.messages[(self.messages.count - 1) - indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     
     return cell;
@@ -112,11 +111,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 #pragma mark - Actions
-
-- (IBAction)didTapClear:(id)sender {
-    [self.messages removeAllObjects];
-    [self.tableView reloadData];
-}
 
 - (IBAction)didToggleTesselMonitoring:(id)sender {
 
