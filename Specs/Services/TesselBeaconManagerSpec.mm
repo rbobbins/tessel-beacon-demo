@@ -110,6 +110,7 @@ describe(@"TesselBeaconManager", ^{
             });
         });
     });
+    
     describe(@"responding to location events", ^{
         describe(@"when location manager authorization status changes", ^{
             context(@"when it is kCLAuthorizationStatusAuthorizedAlways", ^{
@@ -143,8 +144,7 @@ describe(@"TesselBeaconManager", ^{
                 spy_on(application);
                 application stub_method(@selector(presentLocalNotificationNow:));
                 [fakeLocationManager.delegate locationManager:fakeLocationManager
-                                            didDetermineState:CLRegionStateInside
-                                                    forRegion:region];
+                                               didEnterRegion:region];
             });
 
 

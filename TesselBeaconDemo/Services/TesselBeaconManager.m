@@ -88,10 +88,18 @@
 }
 
 #pragma mark - <CLLocationManagerDelegate> - Responding to Region Events
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
+    CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"Welcome to the Tessel region!";
+    notification.alertAction = @"More Details";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    
+    [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
+    for (id<TesselBeaconDelegate>delegate in self.delegates) {
+        [delegate didEnterTesselRange];
     }
 }
 
@@ -105,20 +113,19 @@
 -(void)locationManager:(CLLocationManager *)manager
      didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
+    /*
+     This function intentionally left blank.
+     
+     Apple says this method is required. However, we don't really need it, because
+     we implement locationManager:didEnterRegion: and locationManager:didExitRegion:
+     (What would we do here that we can't do in either of those more specific implementations?)
+     
+     Apple Docs:
 
-    if (state == CLRegionStateInside)
-    {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = @"Welcome to the Tessel region!";
-        notification.alertAction = @"More Details";
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-        
-        CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
-        [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
-        for (id<TesselBeaconDelegate>delegate in self.delegates) {
-            [delegate didEnterTesselRange];
-        }
-    }
+     The location manager calls this method whenever there is a boundary 
+     transition for a region. It calls this method in addition to calling 
+     the locationManager:didEnterRegion: and locationManager:didExitRegion: methods.
+     */
 }
 
 
