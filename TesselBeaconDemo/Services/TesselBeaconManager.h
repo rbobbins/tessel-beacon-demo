@@ -32,11 +32,12 @@
 
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
-#pragma TODO: Rename to monitorTesselBeacon
-- (void)searchForTesselBeacon;
 
-#pragma TODO: Rename to rangeProximityForTesselBeacon
+- (void)enableTesselBeaconMonitoring;
+
+- (BOOL)isMonitoringProximityToTesselBeacon;
 - (void)monitorProximityToTesselBeacon;
+- (void)stopMonitoringProximityToTessel;
 
 #pragma TODO: Singularize
 - (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate;

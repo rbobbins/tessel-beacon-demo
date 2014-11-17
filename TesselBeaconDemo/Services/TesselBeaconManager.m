@@ -41,7 +41,7 @@
 }
 
 
-- (void)searchForTesselBeacon {
+- (void)enableTesselBeaconMonitoring {
 
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusAuthorizedWhenInUse:
@@ -60,10 +60,23 @@
     }
 }
 
+#pragma warning - Untested
+- (BOOL)isMonitoringProximityToTesselBeacon {
+    CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
+    return [self.locationManager.rangedRegions containsObject:region];
+}
 
 - (void)monitorProximityToTesselBeacon {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     [self.locationManager startRangingBeaconsInRegion:region];
+}
+
+- (void)stopMonitoringProximityToTessel {
+    //This array should never have more than 1 object
+    for (CLRegion *region in self.locationManager.rangedRegions) {
+        [self.locationManager stopMonitoringForRegion:region];
+        
+    }
 }
 
 - (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate {

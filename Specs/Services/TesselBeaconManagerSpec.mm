@@ -39,7 +39,7 @@ describe(@"TesselBeaconManager", ^{
         fakeLocationManager should have_received(@selector(setDelegate:)).with(subject);
     });
 
-    describe(@"-searchForTesselBeacons:", ^{
+    describe(@"-beginMonitoringTesselRegion:", ^{
         __block Class locationManagerClass;
 
         beforeEach(^{
@@ -50,7 +50,7 @@ describe(@"TesselBeaconManager", ^{
         describe(@"when CLLocationManager auth status is AuthorizedAlways ", ^{
             beforeEach(^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusAuthorizedAlways);
-                [subject searchForTesselBeacon];
+                [subject enableTesselBeaconMonitoring];
             });
 
             it(@"should request a list of regions to monitor", ^{
@@ -65,7 +65,7 @@ describe(@"TesselBeaconManager", ^{
         describe(@"when CLLocationManager auth status is Undetermined", ^{
             beforeEach(^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusNotDetermined);
-                [subject searchForTesselBeacon];
+                [subject enableTesselBeaconMonitoring];
             });
 
             it(@"should prompt the user for permisson to monitor location", ^{
@@ -75,7 +75,7 @@ describe(@"TesselBeaconManager", ^{
     });
 
     
-    describe(@"-monitorProximityToTesselBeacon:", ^{
+    describe(@"-monitorProximityToTesselBeacon", ^{
         beforeEach(^{
             [subject monitorProximityToTesselBeacon];
         });
@@ -109,6 +109,22 @@ describe(@"TesselBeaconManager", ^{
                 fakeBeaconDelegate should have_received(@selector(didFailToMonitorProximitityForTesselRegion:withErrorMessage:)).with(region, error);
             });
         });
+    });
+    
+    describe(@"-stopMonitoringProximityToTessel", ^{
+        
+        context(@"when the Tessel's proximity is being monitored", ^{
+            
+            beforeEach(^{
+                fakeLocationManager stub_method(@selector(rangedRegions)).and_return([NSSet setWithObject:region]);
+            });
+            
+            it(@"should tell the location manager to stop monitoring", ^{
+                [subject stopMonitoringProximityToTessel];
+                fakeLocationManager should have_received(@selector(stopMonitoringForRegion:)).with(region);
+            });
+        });
+        
     });
     
     describe(@"responding to location events", ^{

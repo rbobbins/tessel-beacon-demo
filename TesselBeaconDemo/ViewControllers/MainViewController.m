@@ -15,7 +15,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
 @interface MainViewController () <UITableViewDataSource>
 
 - (IBAction)didTapClear:(id)sender;
-- (IBAction)didTapScanForBeacon:(id)sender;
+- (IBAction)didToggleTesselMonitoring:(id)sender;
+- (IBAction)didToggleProximityMonitoring:(id)sender;
+
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -48,6 +50,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.messages = [NSMutableArray array];
+    [self.proximitySwitch setOn:[self.beaconManager isMonitoringProximityToTesselBeacon]];
 
 }
 
@@ -115,9 +118,19 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self.tableView reloadData];
 }
 
-- (IBAction)didTapScanForBeacon:(id)sender {
-    [self.beaconManager monitorProximityToTesselBeacon];
-    [self updateTableWithMessage:@"User tapped scan for beacon. Will attempt to monitor proximity to tessel beacon"];
+- (IBAction)didToggleTesselMonitoring:(id)sender {
+
+}
+
+- (IBAction)didToggleProximityMonitoring:(id)sender {
+    if (self.proximitySwitch.on) {
+        [self.beaconManager monitorProximityToTesselBeacon];
+        [self updateTableWithMessage:@"User toggled proximity monitoring. Will attempt to monitor proximity to tessel beacon"];
+    } else {
+        [self.beaconManager stopMonitoringProximityToTessel];
+        [self updateTableWithMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon"];
+    }
+
 }
 
 

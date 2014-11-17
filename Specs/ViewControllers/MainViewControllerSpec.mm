@@ -13,24 +13,72 @@ describe(@"MainViewController", ^{
     beforeEach(^{
         beaconManager = nice_fake_for([TesselBeaconManager class]);
         subject = [[MainViewController alloc] initWithBeaconManager:beaconManager];
-        subject.view should_not be_nil;
     });
     
     it(@"should assign itself as the tessel manager's delegate and the beacon manager's delegate", ^{
+        subject.view should_not be_nil;
+
         beaconManager should have_received(@selector(registerDelegate:)).with(subject);
     });
     
-    describe(@"tapping the scan button", ^{
+    describe(@"configuring the switches correctly", ^{
+        it(@"should toggle the proximity switch to ON when a region is being monitored", ^{
+            beaconManager stub_method(@selector(isMonitoringProximityToTesselBeacon)).and_return(YES);
+            subject.view should_not be_nil;
+            
+            subject.proximitySwitch.on should be_truthy;
+        });
+        
+        it(@"should toggle the proximity switch to OFF when no region is being monitored", ^{
+            beaconManager stub_method(@selector(isMonitoringProximityToTesselBeacon)).and_return(NO);
+            subject.view should_not be_nil;
+            
+            subject.proximitySwitch.on should be_falsy;
+        });
+    });
+    
+    
+    describe(@"toggling the proximity switch to ON", ^{
         beforeEach(^{
-            [subject.scanButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+            subject.view should_not be_nil;
+
+            [subject.proximitySwitch setOn:YES];
+
+            [subject.proximitySwitch sendActionsForControlEvents:UIControlEventValueChanged];
         });
         
         it(@"should tell the tesselManger to monitorProximityToBeacon", ^{
             beaconManager should have_received(@selector(monitorProximityToTesselBeacon));
         });
+        
+        it(@"should log the event", ^{
+            UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
+            cell.textLabel.text should contain(@"Will attempt to monitor proximity");
+        });
+        
+        describe(@"toggling it back off", ^{
+            beforeEach(^{
+                [subject.proximitySwitch setOn:NO];
+                [subject.proximitySwitch sendActionsForControlEvents:UIControlEventValueChanged];
+            });
+            
+            it(@"should tell the tesselManager to stop monitoring the beacon's proximity", ^{
+                beaconManager should have_received(@selector(stopMonitoringProximityToTessel));
+            });
+            
+            it(@"should log the event", ^{
+                UITableViewCell *cell = [subject.tableView.visibleCells lastObject];
+                cell.textLabel.text should contain(@"Will stop monitoring and logging proximity");
+            });
+
+        });
     });
     
     describe(@"responding to TesselBeaconManager events", ^{
+        beforeEach(^{
+            subject.view should_not be_nil;
+        });
+        
         describe(@"entering the range of a Tessel", ^{
             beforeEach(^{
                 [subject didEnterTesselRange];
