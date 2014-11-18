@@ -40,6 +40,18 @@ static NSString *cellIdentifier = @"cellIdentifier";
 {
     [super viewDidLoad];
 
+#if TARGET_IPHONE_SIMULATOR
+#ifndef SPECS
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning"
+                                                                             message:@"You appear to be using a simulator, not a real device. Because the simulator does not have bluetooth, iBeacons will not work properly" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil];
+    [alertController addAction:dismiss];
+    [self presentViewController:alertController animated:NO completion:nil];
+#endif
+#endif
+    
     self.timestampFormatter = [[NSDateFormatter alloc] init];
     self.timestampFormatter.timeStyle = NSDateFormatterMediumStyle;
     self.navigationController.navigationBarHidden = YES;

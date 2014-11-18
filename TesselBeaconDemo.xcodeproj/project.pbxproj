@@ -749,6 +749,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"SPECS=1",
 				);
 				INFOPLIST_FILE = "Specs/Specs-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
