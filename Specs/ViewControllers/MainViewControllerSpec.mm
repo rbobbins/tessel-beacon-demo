@@ -1,5 +1,6 @@
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
+#import "TesselInformationViewController.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -127,6 +128,17 @@ describe(@"MainViewController", ^{
             alertController should be_instance_of([UIAlertController class]);
             alertController.title should equal(@"");
             alertController.message should contain(@"exited range of tessel");
+        });
+    });
+    
+    describe(@"tapping the My Tessel button", ^{
+        beforeEach(^{
+            subject.view should_not be_nil;
+            [subject.myTesselButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        });
+        
+        it(@"should present a TesselInformationViewController", ^{
+            subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
         });
     });
     

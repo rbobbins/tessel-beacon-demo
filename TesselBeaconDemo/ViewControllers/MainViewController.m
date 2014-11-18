@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "TesselBeaconManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "TesselInformationViewController.h"
 
 static NSString *cellIdentifier = @"cellIdentifier";
 
@@ -159,6 +160,14 @@ static NSString *cellIdentifier = @"cellIdentifier";
         [self updateTableWithBriefMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon" completeMessage:nil];
     }
 
+}
+
+
+- (IBAction)didTapMyTesselButton:(id)sender {
+    TesselInformationViewController *viewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.beaconManager.tesselRegistrationRepository];
+    [self presentViewController:viewController
+                       animated:NO
+                     completion:nil];
 }
 
 

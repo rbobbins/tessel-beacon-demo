@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="monitoringSwitch" destination="XI7-4k-JlC" id="5io-Va-6cl"/>
+                <outlet property="myTesselButton" destination="TtF-Kd-5FH" id="I2s-MP-JFW"/>
                 <outlet property="proximitySwitch" destination="zta-9e-386" id="mBs-95-C42"/>
                 <outlet property="tableView" destination="h0u-Fu-5zT" id="Rw4-jT-RwQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UHi-Hc-hnF"/>
@@ -19,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YgJ-jU-yGy">
-                    <rect key="frame" x="8" y="30" width="584" height="120"/>
+                    <rect key="frame" x="8" y="30" width="584" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Tessel Monitoring" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="At6-st-WQM">
                             <rect key="frame" x="20" y="20" width="192" height="21"/>
@@ -45,23 +46,54 @@
                                 <action selector="didToggleTesselMonitoring:" destination="-1" eventType="valueChanged" id="C1z-mc-BHI"/>
                             </connections>
                         </switch>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtF-Kd-5FH">
+                            <rect key="frame" x="230" y="103" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="tgS-wZ-3Bq"/>
+                                <constraint firstAttribute="height" constant="44" id="xmC-hp-UJu"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapMyTesselButton:" destination="-1" eventType="touchUpInside" id="3kO-qm-FkA"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tessel iBeacon details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRS-Sg-t0a">
+                            <rect key="frame" x="20" y="114" width="170" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="TtF-Kd-5FH" firstAttribute="leading" secondItem="WFI-cN-WPM" secondAttribute="leading" id="2fc-9N-90b"/>
                         <constraint firstItem="WFI-cN-WPM" firstAttribute="top" secondItem="At6-st-WQM" secondAttribute="bottom" constant="26" id="9we-Rb-dXy"/>
                         <constraint firstItem="At6-st-WQM" firstAttribute="leading" secondItem="YgJ-jU-yGy" secondAttribute="leading" constant="20" symbolic="YES" id="CLs-8o-UhB"/>
                         <constraint firstItem="XI7-4k-JlC" firstAttribute="leading" secondItem="At6-st-WQM" secondAttribute="trailing" constant="18" id="IiF-YI-1Xq"/>
+                        <constraint firstItem="TtF-Kd-5FH" firstAttribute="centerY" secondItem="SRS-Sg-t0a" secondAttribute="centerY" id="L7p-yK-NMn"/>
                         <constraint firstItem="At6-st-WQM" firstAttribute="top" secondItem="YgJ-jU-yGy" secondAttribute="top" constant="20" symbolic="YES" id="Nf8-cE-mFk"/>
+                        <constraint firstItem="SRS-Sg-t0a" firstAttribute="top" secondItem="WFI-cN-WPM" secondAttribute="bottom" constant="26" id="S5q-Ge-DC8"/>
                         <constraint firstItem="WFI-cN-WPM" firstAttribute="leading" secondItem="At6-st-WQM" secondAttribute="leading" id="X4v-U2-Yv6"/>
+                        <constraint firstItem="SRS-Sg-t0a" firstAttribute="leading" secondItem="WFI-cN-WPM" secondAttribute="leading" id="YHs-KS-Fcs"/>
                         <constraint firstItem="zta-9e-386" firstAttribute="centerY" secondItem="WFI-cN-WPM" secondAttribute="centerY" id="bLh-2B-CUF"/>
+                        <constraint firstItem="TtF-Kd-5FH" firstAttribute="leading" secondItem="zta-9e-386" secondAttribute="leading" id="bd9-CQ-D9i"/>
                         <constraint firstItem="WFI-cN-WPM" firstAttribute="width" secondItem="At6-st-WQM" secondAttribute="width" id="dmD-mg-xU5"/>
                         <constraint firstItem="XI7-4k-JlC" firstAttribute="centerY" secondItem="At6-st-WQM" secondAttribute="centerY" id="qiW-uZ-Em8"/>
-                        <constraint firstAttribute="height" constant="120" id="sSw-co-ApS"/>
+                        <constraint firstAttribute="height" constant="150" id="sSw-co-ApS"/>
                         <constraint firstItem="zta-9e-386" firstAttribute="leading" secondItem="XI7-4k-JlC" secondAttribute="leading" id="zB1-Kp-uWU"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2fc-9N-90b"/>
+                        </mask>
+                    </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h0u-Fu-5zT">
-                    <rect key="frame" x="0.0" y="150" width="600" height="450"/>
+                    <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="wsC-Ip-rTj"/>

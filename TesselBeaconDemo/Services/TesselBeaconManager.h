@@ -30,6 +30,7 @@
 
 @property (nonatomic, weak) id<TesselBeaconDelegate> delegate;
 @property (nonatomic, readonly) CLLocationManager *locationManager;
+@property (nonatomic, readonly) TesselRegistrationRepository *tesselRegistrationRepository;
 
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;

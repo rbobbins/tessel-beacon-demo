@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *proximitySwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *monitoringSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *myTesselButton;
 @property (weak, readonly) UITableView *tableView;
 
 
