@@ -16,7 +16,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) TesselBeaconManager *beaconManager;
-@property (nonatomic) NSMutableArray *messages;
+@property (nonatomic) NSMutableArray *briefMessages;
+@property (nonatomic) NSMutableArray *completeMessages;
 @property (nonatomic) NSDateFormatter *timestampFormatter;
 
 @end
@@ -44,7 +45,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
     self.navigationController.navigationBarHidden = YES;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-    self.messages = [NSMutableArray array];
+    self.briefMessages = [NSMutableArray array];
+    self.completeMessages = [NSMutableArray array];
     self.proximitySwitch.on = [self.beaconManager isRangingTesselRegion];
     self.monitoringSwitch.on = [self.beaconManager isMonitoringTesselRegion];
 
@@ -57,13 +59,13 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.messages.count;
+    return self.briefMessages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    cell.textLabel.text = self.messages[(self.messages.count - 1) - indexPath.row];
+    cell.textLabel.text = [self briefMessageAtRow:indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     
     return cell;
@@ -71,16 +73,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 #pragma mark - <UITableViewDelegate>
 
-
-#warning - Selecting a tableview cell has no tests
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString *fullText = cell.textLabel.text;
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Full Text"
-                                                                            message:fullText
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
+                                                                             message:[self completeMessageAtRow:indexPath.row]
                                                                      preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
                                                       style:UIAlertActionStyleCancel
@@ -100,11 +97,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
                                                     handler:nil];
     [alertController addAction:dismiss];
     [self presentViewController:alertController animated:NO completion:nil];
-    [self updateTableWithMessage:@"entered range of tessel beacon"];
+    [self updateTableWithBriefMessage:@"entered range of tessel beacon" completeMessage:nil];
 }
 
 - (void)didExitTesselRange {
-    [self updateTableWithMessage:@"exited range of tessel beacon"];
+    [self updateTableWithBriefMessage:@"exited range of tessel beacon" completeMessage:nil];
 }
 
 - (void)rangingSucceededWithProximity:(CLProximity)proximity {
@@ -116,7 +113,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         case CLProximityUnknown:    distance = @"unknown"; break;
     }
     NSString *message = [NSString stringWithFormat:@"proximity to tessel: %@", distance];
-    [self updateTableWithMessage:message];
+    [self updateTableWithBriefMessage:message completeMessage:nil];
 }
 
 - (void)rangingFailedWithError:(NSError *)error {
@@ -134,20 +131,20 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (IBAction)didToggleTesselMonitoring:(id)sender {
     if (self.monitoringSwitch.on) {
         [self.beaconManager startMonitoringTesselRegion];
-        [self updateTableWithMessage:@"User toggled boundary monitoring ON"];
+        [self updateTableWithBriefMessage:@"User toggled boundary monitoring ON" completeMessage:nil];
     } else {
         [self.beaconManager stopMonitoringTesselRegion];
-        [self updateTableWithMessage:@"User toggled boundary monitoring OFF"];
+        [self updateTableWithBriefMessage:@"User toggled boundary monitoring OFF" completeMessage:nil];
     }
 }
 
 - (IBAction)didToggleProximityMonitoring:(id)sender {
     if (self.proximitySwitch.on) {
         [self.beaconManager startRangingTesselRegion];
-        [self updateTableWithMessage:@"User toggled proximity monitoring. Will attempt to monitor proximity to tessel beacon"];
+        [self updateTableWithBriefMessage:@"User toggled proximity monitoring. Will attempt to monitor proximity to tessel beacon" completeMessage:nil];
     } else {
         [self.beaconManager stopRangingTesselRegion];
-        [self updateTableWithMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon"];
+        [self updateTableWithBriefMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon" completeMessage:nil];
     }
 
 }
@@ -155,17 +152,27 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 #pragma mark - Private
 
-- (void)updateTableWithMessage:(NSString *)message {
+- (NSString *)briefMessageAtRow:(NSInteger)row {
+    return self.briefMessages[(self.briefMessages.count - 1) - row];
+}
+
+- (NSString *)completeMessageAtRow:(NSInteger)row {
+    return self.completeMessages[(self.completeMessages.count - 1) - row];
+
+}
+
+- (void)updateTableWithBriefMessage:(NSString *)briefMessage completeMessage:(NSString *)completeMessage {
     NSString *timestamp = [self.timestampFormatter stringFromDate:[NSDate date]];
-    NSString *completeMessage = [NSString stringWithFormat:@"%@ : %@", timestamp, message];
-    [self.messages addObject:completeMessage];
+    
+    [self.completeMessages addObject:[NSString stringWithFormat:@"%@: %@", timestamp, completeMessage?:briefMessage]];
+    [self.briefMessages addObject:[NSString stringWithFormat:@"%@: %@", timestamp, briefMessage]];
+
     [self.tableView reloadData];
 }
 
 - (void)updateTableWithError:(NSError *)error {
     NSString *errorTitle;
     NSString *errorExplanation;
-    NSString *message;
     
     if ([error.domain isEqualToString:kCLErrorDomain]) {
         CLError errorCode = error.code;
@@ -245,11 +252,14 @@ static NSString *cellIdentifier = @"cellIdentifier";
                 break;
         }
         
-        message = [NSString stringWithFormat:@"ERROR: %@ (Details, via Apple docs: %@)", errorTitle, errorExplanation];
+
+        [self updateTableWithBriefMessage:[NSString stringWithFormat:@"ERROR: %@ (tap for more details)", errorTitle]
+                          completeMessage:[NSString stringWithFormat:@"ERROR: %@\n\nApple says:\n%@", errorTitle, errorExplanation]];
     } else {
-        message = [NSString stringWithFormat:@"ERROR: %@ (%d)", error.domain, error.code];
+        [self updateTableWithBriefMessage:[NSString stringWithFormat:@"ERROR: %@ (%d)", error.domain, error.code]
+                          completeMessage:nil];
+
     }
     
-    [self updateTableWithMessage:message];
 }
 @end

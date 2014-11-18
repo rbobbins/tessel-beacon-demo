@@ -38,7 +38,6 @@
     return self;
 }
 
-#warning - isMonitoringTesselRegion has no unit tests
 - (BOOL)isMonitoringTesselRegion {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     return [self.locationManager.monitoredRegions containsObject:region];
@@ -68,7 +67,6 @@
     [self.locationManager stopMonitoringForRegion:region];
 }
 
-#warning - isRangingTesselRegion has no unit tests
 - (BOOL)isRangingTesselRegion {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     return [self.locationManager.rangedRegions containsObject:region];

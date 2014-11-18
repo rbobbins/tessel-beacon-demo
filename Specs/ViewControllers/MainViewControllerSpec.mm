@@ -111,6 +111,25 @@ describe(@"MainViewController", ^{
         });
     });
     
+    describe(@"tapping a cell", ^{
+        beforeEach(^{
+            subject.view should_not be_nil;
+            
+            //Trigger an event that logs something
+            [subject didExitTesselRange];
+            
+            [subject.tableView.delegate tableView:subject.tableView
+                          didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        });
+        
+        it(@"should present an alert with the cell's full text, or a more verbose description", ^{
+            UIAlertController *alertController = (id)subject.presentedViewController;
+            alertController should be_instance_of([UIAlertController class]);
+            alertController.title should equal(@"");
+            alertController.message should contain(@"exited range of tessel");
+        });
+    });
+    
     describe(@"responding to TesselBeaconManager events", ^{
         beforeEach(^{
             subject.view should_not be_nil;
@@ -177,7 +196,7 @@ describe(@"MainViewController", ^{
             it(@"should log the error and its explanation", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"kCLErrorRangingUnavailable");
-                cell.textLabel.text should contain(@"Ranging is disabled.");
+                cell.textLabel.text should contain(@"tap for more details");
             });
             
             it(@"should turn the ranging switch off", ^{
