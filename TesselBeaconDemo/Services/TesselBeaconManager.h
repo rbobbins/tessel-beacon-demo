@@ -18,11 +18,8 @@
 @required
 - (void)didEnterTesselRange;
 - (void)didExitTesselRange;
-- (void)didUpdateProximityToTessel:(CLProximity)proximity;
-
-#pragma TODO: Rename; make more generic
-- (void)didFailToMonitorProximitityForTesselRegion:(CLRegion *)region
-                                  withErrorMessage:(NSError *)error;
+- (void)rangingSucceededWithProximity:(CLProximity)proximity;
+- (void)rangingFailedWithError:(NSError *)error;
 @end
 
 

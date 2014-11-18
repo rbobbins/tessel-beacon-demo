@@ -87,7 +87,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self updateTableWithMessage:@"exited range of tessel beacon"];
 }
 
-- (void)didUpdateProximityToTessel:(CLProximity)proximity {
+- (void)rangingSucceededWithProximity:(CLProximity)proximity {
     NSString *distance;
     switch (proximity) {
         case CLProximityFar:        distance = @"FAR"; break;
@@ -99,11 +99,10 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self updateTableWithMessage:message];
 }
 
-- (void)didFailToMonitorProximitityForTesselRegion:(CLRegion *)region
-                                  withErrorMessage:(NSError *)error {
+- (void)rangingFailedWithError:(NSError *)error {
     if ([error.domain isEqualToString:kCLErrorDomain]) {
         [self updateTableWithCLError:(CLError)error.code];
-    }
+    } 
 }
 
 #pragma mark - Actions

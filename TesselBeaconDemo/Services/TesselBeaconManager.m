@@ -170,7 +170,7 @@
     
     CLBeacon *beacon = (id)[beacons firstObject];
     for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didUpdateProximityToTessel:beacon.proximity];
+        [delegate rangingSucceededWithProximity:beacon.proximity];
     }
 }
 
@@ -178,7 +178,7 @@
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
               withError:(NSError *)error {
     for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didFailToMonitorProximitityForTesselRegion:region withErrorMessage:error];
+        [delegate rangingFailedWithError:error];
     }
 }
 

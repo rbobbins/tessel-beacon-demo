@@ -100,7 +100,7 @@ describe(@"TesselBeaconManager", ^{
             });
             
             it(@"should inform any registered delegates", ^{
-                fakeBeaconDelegate should have_received(@selector(didUpdateProximityToTessel:)).with(CLProximityImmediate);
+                fakeBeaconDelegate should have_received(@selector(rangingSucceededWithProximity:)).with(CLProximityImmediate);
             });
         });
         
@@ -112,7 +112,7 @@ describe(@"TesselBeaconManager", ^{
             });
             
             it(@"should inform its delegate", ^{
-                fakeBeaconDelegate should have_received(@selector(didFailToMonitorProximitityForTesselRegion:withErrorMessage:)).with(region, error);
+                fakeBeaconDelegate should have_received(@selector(rangingFailedWithError:)).with(error);
             });
         });
     });

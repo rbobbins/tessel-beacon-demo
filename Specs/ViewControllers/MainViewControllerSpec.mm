@@ -154,19 +154,19 @@ describe(@"MainViewController", ^{
         
         describe(@"when proximity to tessel gets updated", ^{
             it(@"should log when the Tessel is nearby", ^{
-                [subject didUpdateProximityToTessel:CLProximityNear];
+                [subject rangingSucceededWithProximity:CLProximityNear];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"proximity to tessel: NEAR");
             });
 
             it(@"should log when the Tessel is immediate", ^{
-                [subject didUpdateProximityToTessel:CLProximityImmediate];
+                [subject rangingSucceededWithProximity:CLProximityImmediate];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"proximity to tessel: IMMEDIATE");
             });
             
             it(@"should log when the Tessel is far", ^{
-                [subject didUpdateProximityToTessel:CLProximityFar];
+                [subject rangingSucceededWithProximity:CLProximityFar];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"proximity to tessel: FAR");
             });
@@ -175,7 +175,7 @@ describe(@"MainViewController", ^{
         describe(@"when failing to monitor the proximity to a Tessel", ^{
             it(@"should log the error and its explanation", ^{
                 NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
-                [subject didFailToMonitorProximitityForTesselRegion:nil withErrorMessage:error];
+                [subject rangingFailedWithError:error];
                 
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"kCLErrorRangingUnavailable");
