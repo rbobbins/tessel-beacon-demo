@@ -15,11 +15,14 @@
 
 
 @protocol TesselBeaconDelegate <NSObject>
+
 @required
 - (void)didEnterTesselRange;
 - (void)didExitTesselRange;
+- (void)monitoringFailedWithError:(NSError *)error;
 - (void)rangingSucceededWithProximity:(CLProximity)proximity;
 - (void)rangingFailedWithError:(NSError *)error;
+
 @end
 
 

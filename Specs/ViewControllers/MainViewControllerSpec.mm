@@ -134,7 +134,7 @@ describe(@"MainViewController", ^{
             });
         });
         
-        describe(@"exiing the range of a Tessel", ^{
+        describe(@"exiting the range of a Tessel", ^{
             beforeEach(^{
                 [subject didExitTesselRange];
             });
@@ -165,7 +165,7 @@ describe(@"MainViewController", ^{
             });
         });
     
-        describe(@"when failing to monitor the proximity to a Tessel", ^{
+        describe(@"when failing to range a Tessel", ^{
             it(@"should log the error and its explanation", ^{
                 NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
                 [subject rangingFailedWithError:error];
@@ -173,6 +173,19 @@ describe(@"MainViewController", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"kCLErrorRangingUnavailable");
                 cell.textLabel.text should contain(@"Ranging is disabled.");
+            });
+        });
+    
+        describe(@"when failing to monitor a Tessel", ^{
+            beforeEach(^{
+                NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain
+                                                            code:kCLErrorRegionMonitoringFailure userInfo:nil];
+                [subject monitoringFailedWithError:error];
+            });
+            
+            it(@"should log the error", ^{
+                UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
+                cell.textLabel.text should contain(@"kCLErrorRegionMonitoringFailure");
             });
         });
     });

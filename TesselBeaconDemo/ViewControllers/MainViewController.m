@@ -101,9 +101,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rangingFailedWithError:(NSError *)error {
-    if ([error.domain isEqualToString:kCLErrorDomain]) {
-        [self updateTableWithCLError:(CLError)error.code];
-    } 
+    [self updateTableWithError:error];
+}
+
+- (void)monitoringFailedWithError:(NSError *)error {
+    [self updateTableWithError:error];
 }
 
 #pragma mark - Actions
@@ -139,86 +141,94 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self.tableView reloadData];
 }
 
-- (void)updateTableWithCLError:(CLError)errorCode {
+- (void)updateTableWithError:(NSError *)error {
     NSString *errorTitle;
     NSString *errorExplanation;
+    NSString *message;
     
-    switch (errorCode) {
-        case kCLErrorLocationUnknown:
-            errorTitle = @"kCLErrorLocationUnknown";
-            errorExplanation = @"The location manager was unable to obtain a location value right now.";
-            break;
-        case kCLErrorDenied:
-            errorTitle = @"kCLErrorDenied";
-            errorExplanation = @"Access to the location service was denied by the user.";
-            break;
-        case kCLErrorNetwork:
-            errorTitle = @"kCLErrorNetwork";
-            errorExplanation = @"The network was unavailable or a network error occurred.";
-            break;
-        case kCLErrorHeadingFailure:
-            errorTitle = @"kCLErrorHeadingFailure";
-            errorExplanation = @"The heading could not be determined.";
-            break;
-        case kCLErrorRegionMonitoringDenied:
-            errorTitle = @"kCLErrorRegionMonitoringDenied";
-            errorExplanation = @"Access to the region monitoring service was denied by the user.";
-            break;
-        case kCLErrorRegionMonitoringFailure:
-            errorTitle = @"kCLErrorRegionMonitoringFailure";
-            errorExplanation = @"A registered region cannot be monitored. Monitoring can fail if the app has exceeded the maximum number of regions that it can monitor simultaneously. Monitoring can also fail if the region’s radius distance is too large.";
-            break;
-        case kCLErrorRegionMonitoringSetupDelayed:
-            errorTitle = @"kCLErrorRegionMonitoringSetupDelayed";
-            errorExplanation = @"Core Location could not initialize the region monitoring feature immediately.";
-            break;
-        case kCLErrorRegionMonitoringResponseDelayed:
-            errorTitle = @"kCLErrorRegionMonitoringResponseDelayed";
-            errorExplanation = @"Core Location will deliver events but they may be delayed. Possible keys in the user information dictionary are described in Error User Info Keys.";
-            break;
-        case kCLErrorGeocodeFoundNoResult:
-            errorTitle = @"kCLErrorGeocodeFoundNoResult";
-            errorExplanation = @"The geocode request yielded no result.";
-            break;
-        case kCLErrorGeocodeFoundPartialResult:
-            errorTitle = @"kCLErrorGeocodeFoundPartialResult";
-            errorExplanation = @"The geocode request yielded a partial result.";
-            break;
-        case kCLErrorGeocodeCanceled:
-            errorTitle = @"kCLErrorGeocodeCanceled";
-            errorExplanation = @"The geocode request was canceled.";
-            break;
-        case kCLErrorDeferredFailed:
-            errorTitle = @"kCLErrorDeferredFailed";
-            errorExplanation = @"The location manager did not enter deferred mode for an unknown reason. This error can occur if GPS is unavailable, not active, or is temporarily interrupted. If you get this error on a device that has GPS hardware, the solution is to try again.";
-            break;
-        case kCLErrorDeferredNotUpdatingLocation:
-            errorTitle = @"kCLErrorDeferredNotUpdatingLocation";
-            errorExplanation = @"The location manager did not enter deferred mode because location updates were already disabled or paused.";
-            break;
-        case kCLErrorDeferredAccuracyTooLow:
-            errorTitle = @"kCLErrorDeferredAccuracyTooLow";
-            errorExplanation = @"Deferred mode is not supported for the requested accuracy. The accuracy must be set to kCLLocationAccuracyBest or kCLLocationAccuracyBestForNavigation.";
-            break;
-        case kCLErrorDeferredDistanceFiltered:
-            errorTitle = @"kCLErrorDeferredDistanceFiltered";
-            errorExplanation = @"Deferred mode does not support distance filters. Set the distance filter to kCLDistanceFilterNone.";
-            break;
-        case kCLErrorDeferredCanceled:
-            errorTitle = @"kCLErrorDeferredCanceled";
-            errorExplanation = @"The request for deferred updates was canceled by your app or by the location manager. This error is returned if you call the disallowDeferredLocationUpdates method or schedule a new deferred update before the previous deferred update request is processed. The location manager may also report this error too. For example, if the app is in the foreground when a new location is determined, the location manager cancels deferred updates and delivers the location data to your app.";
-            break;
-        case kCLErrorRangingUnavailable:
-            errorTitle = @"kCLErrorRangingUnavailable";
-            errorExplanation = @"Ranging is disabled. This might happen if the device is in Airplane mode or if Bluetooth or location services are disabled.";
-            break;
-        case kCLErrorRangingFailure:
-            errorTitle = @"kCLErrorRangingFailure";
-            errorExplanation = @"A general ranging error occurred.";
-            break;
+    if ([error.domain isEqualToString:kCLErrorDomain]) {
+        CLError errorCode = error.code;
+    
+        switch (errorCode) {
+            case kCLErrorLocationUnknown:
+                errorTitle = @"kCLErrorLocationUnknown";
+                errorExplanation = @"The location manager was unable to obtain a location value right now.";
+                break;
+            case kCLErrorDenied:
+                errorTitle = @"kCLErrorDenied";
+                errorExplanation = @"Access to the location service was denied by the user.";
+                break;
+            case kCLErrorNetwork:
+                errorTitle = @"kCLErrorNetwork";
+                errorExplanation = @"The network was unavailable or a network error occurred.";
+                break;
+            case kCLErrorHeadingFailure:
+                errorTitle = @"kCLErrorHeadingFailure";
+                errorExplanation = @"The heading could not be determined.";
+                break;
+            case kCLErrorRegionMonitoringDenied:
+                errorTitle = @"kCLErrorRegionMonitoringDenied";
+                errorExplanation = @"Access to the region monitoring service was denied by the user.";
+                break;
+            case kCLErrorRegionMonitoringFailure:
+                errorTitle = @"kCLErrorRegionMonitoringFailure";
+                errorExplanation = @"A registered region cannot be monitored. Monitoring can fail if the app has exceeded the maximum number of regions that it can monitor simultaneously. Monitoring can also fail if the region’s radius distance is too large.";
+                break;
+            case kCLErrorRegionMonitoringSetupDelayed:
+                errorTitle = @"kCLErrorRegionMonitoringSetupDelayed";
+                errorExplanation = @"Core Location could not initialize the region monitoring feature immediately.";
+                break;
+            case kCLErrorRegionMonitoringResponseDelayed:
+                errorTitle = @"kCLErrorRegionMonitoringResponseDelayed";
+                errorExplanation = @"Core Location will deliver events but they may be delayed. Possible keys in the user information dictionary are described in Error User Info Keys.";
+                break;
+            case kCLErrorGeocodeFoundNoResult:
+                errorTitle = @"kCLErrorGeocodeFoundNoResult";
+                errorExplanation = @"The geocode request yielded no result.";
+                break;
+            case kCLErrorGeocodeFoundPartialResult:
+                errorTitle = @"kCLErrorGeocodeFoundPartialResult";
+                errorExplanation = @"The geocode request yielded a partial result.";
+                break;
+            case kCLErrorGeocodeCanceled:
+                errorTitle = @"kCLErrorGeocodeCanceled";
+                errorExplanation = @"The geocode request was canceled.";
+                break;
+            case kCLErrorDeferredFailed:
+                errorTitle = @"kCLErrorDeferredFailed";
+                errorExplanation = @"The location manager did not enter deferred mode for an unknown reason. This error can occur if GPS is unavailable, not active, or is temporarily interrupted. If you get this error on a device that has GPS hardware, the solution is to try again.";
+                break;
+            case kCLErrorDeferredNotUpdatingLocation:
+                errorTitle = @"kCLErrorDeferredNotUpdatingLocation";
+                errorExplanation = @"The location manager did not enter deferred mode because location updates were already disabled or paused.";
+                break;
+            case kCLErrorDeferredAccuracyTooLow:
+                errorTitle = @"kCLErrorDeferredAccuracyTooLow";
+                errorExplanation = @"Deferred mode is not supported for the requested accuracy. The accuracy must be set to kCLLocationAccuracyBest or kCLLocationAccuracyBestForNavigation.";
+                break;
+            case kCLErrorDeferredDistanceFiltered:
+                errorTitle = @"kCLErrorDeferredDistanceFiltered";
+                errorExplanation = @"Deferred mode does not support distance filters. Set the distance filter to kCLDistanceFilterNone.";
+                break;
+            case kCLErrorDeferredCanceled:
+                errorTitle = @"kCLErrorDeferredCanceled";
+                errorExplanation = @"The request for deferred updates was canceled by your app or by the location manager. This error is returned if you call the disallowDeferredLocationUpdates method or schedule a new deferred update before the previous deferred update request is processed. The location manager may also report this error too. For example, if the app is in the foreground when a new location is determined, the location manager cancels deferred updates and delivers the location data to your app.";
+                break;
+            case kCLErrorRangingUnavailable:
+                errorTitle = @"kCLErrorRangingUnavailable";
+                errorExplanation = @"Ranging is disabled. This might happen if the device is in Airplane mode or if Bluetooth or location services are disabled.";
+                break;
+            case kCLErrorRangingFailure:
+                errorTitle = @"kCLErrorRangingFailure";
+                errorExplanation = @"A general ranging error occurred.";
+                break;
+        }
+        
+        message = [NSString stringWithFormat:@"ERROR: %@ (Details, via Apple docs: %@)", errorTitle, errorExplanation];
+    } else {
+        message = [NSString stringWithFormat:@"ERROR: %@ (%d)", error.domain, error.code];
     }
     
-    NSString *message = [NSString stringWithFormat:@"ERROR: %@ (Details, via Apple docs: %@)", errorTitle, errorExplanation];
     [self updateTableWithMessage:message];
 }
 @end

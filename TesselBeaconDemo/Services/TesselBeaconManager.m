@@ -142,7 +142,7 @@
 
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
-    NSLog(@"================> %@", @"monitoring failed");
+    [self.delegate monitoringFailedWithError:error];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
