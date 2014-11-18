@@ -41,12 +41,12 @@
 }
 
 #pragma warning - Untest
-- (BOOL)monitoringEnabled {
+- (BOOL)isMonitoringTesselRegion {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     return [self.locationManager.monitoredRegions containsObject:region];
 }
 
-- (void)enableTesselBeaconMonitoring {
+- (void)startMonitoringTesselRegion {
 
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusAuthorizedWhenInUse:
@@ -65,23 +65,23 @@
     }
 }
 
-- (void)stopTesselBeaconMonitoring {
+- (void)stopMonitoringTesselRegion {
     CLRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     [self.locationManager stopMonitoringForRegion:region];
 }
 
 #pragma warning - Untested
-- (BOOL)rangingEnabled {
+- (BOOL)isRangingTesselRegion {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     return [self.locationManager.rangedRegions containsObject:region];
 }
 
-- (void)monitorProximityToTesselBeacon {
+- (void)startRangingTesselRegion {
     CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
     [self.locationManager startRangingBeaconsInRegion:region];
 }
 
-- (void)stopMonitoringProximityToTessel {
+- (void)stopRangingTesselRegion {
     //This array should never have more than 1 object
     for (CLBeaconRegion *region in self.locationManager.rangedRegions) {
         [self.locationManager stopRangingBeaconsInRegion:region];

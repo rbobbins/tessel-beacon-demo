@@ -23,27 +23,27 @@ describe(@"MainViewController", ^{
     
     describe(@"configuring the switches correctly", ^{
         it(@"should toggle the proximity switch to ON when a beacon is being ranged", ^{
-            beaconManager stub_method(@selector(rangingEnabled)).and_return(YES);
+            beaconManager stub_method(@selector(isRangingTesselRegion)).and_return(YES);
             subject.view should_not be_nil;
             
             subject.proximitySwitch.on should be_truthy;
         });
         
         it(@"should toggle the proximity switch to OFF when no region is being ranged", ^{
-            beaconManager stub_method(@selector(rangingEnabled)).and_return(NO);
+            beaconManager stub_method(@selector(isRangingTesselRegion)).and_return(NO);
             subject.view should_not be_nil;
             
             subject.proximitySwitch.on should be_falsy;
         });
         
         it(@"should toggle the region monitoring switch to ON when a region is being monitored", ^{
-            beaconManager stub_method(@selector(monitoringEnabled)).and_return(YES);
+            beaconManager stub_method(@selector(isMonitoringTesselRegion)).and_return(YES);
             subject.view should_not be_nil;
             subject.monitoringSwitch.on should be_truthy;
         });
         
         it(@"should toggle the region monitoring switch to OFF when no region is being monitored", ^{
-            beaconManager stub_method(@selector(monitoringEnabled)).and_return(NO);
+            beaconManager stub_method(@selector(isMonitoringTesselRegion)).and_return(NO);
             subject.view should_not be_nil;
             subject.monitoringSwitch.on should be_falsy;
         });
@@ -60,7 +60,7 @@ describe(@"MainViewController", ^{
         });
         
         it(@"should tell the tesselManger to monitorProximityToBeacon", ^{
-            beaconManager should have_received(@selector(monitorProximityToTesselBeacon));
+            beaconManager should have_received(@selector(startRangingTesselRegion));
         });
         
         it(@"should log the event", ^{
@@ -75,7 +75,7 @@ describe(@"MainViewController", ^{
             });
             
             it(@"should tell the tesselManager to stop monitoring the beacon's proximity", ^{
-                beaconManager should have_received(@selector(stopMonitoringProximityToTessel));
+                beaconManager should have_received(@selector(stopRangingTesselRegion));
             });
             
             it(@"should log the event", ^{
@@ -94,7 +94,7 @@ describe(@"MainViewController", ^{
         });
         
         it(@"should tell the beacon manager to begin monitoring when toggled on", ^{
-            beaconManager should have_received(@selector(enableTesselBeaconMonitoring));
+            beaconManager should have_received(@selector(startMonitoringTesselRegion));
         });
         
         it(@"should log that", ^{
@@ -108,7 +108,7 @@ describe(@"MainViewController", ^{
                 [subject.monitoringSwitch sendActionsForControlEvents:UIControlEventValueChanged];
             });
             it(@"should tell the beacon manager to stop monitoring", ^{
-                beaconManager should have_received(@selector(stopTesselBeaconMonitoring));
+                beaconManager should have_received(@selector(stopMonitoringTesselRegion));
             });
             
             it(@"should log that", ^{

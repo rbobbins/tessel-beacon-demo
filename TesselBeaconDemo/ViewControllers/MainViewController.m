@@ -44,8 +44,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.messages = [NSMutableArray array];
-    self.proximitySwitch.on = [self.beaconManager rangingEnabled];
-    self.monitoringSwitch.on = [self.beaconManager monitoringEnabled];
+    self.proximitySwitch.on = [self.beaconManager isRangingTesselRegion];
+    self.monitoringSwitch.on = [self.beaconManager isMonitoringTesselRegion];
 
 }
 
@@ -110,20 +110,20 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (IBAction)didToggleTesselMonitoring:(id)sender {
     if (self.monitoringSwitch.on) {
-        [self.beaconManager enableTesselBeaconMonitoring];
+        [self.beaconManager startMonitoringTesselRegion];
         [self updateTableWithMessage:@"User toggled boundary monitoring ON"];
     } else {
-        [self.beaconManager stopTesselBeaconMonitoring];
+        [self.beaconManager stopMonitoringTesselRegion];
         [self updateTableWithMessage:@"User toggled boundary monitoring OFF"];
     }
 }
 
 - (IBAction)didToggleProximityMonitoring:(id)sender {
     if (self.proximitySwitch.on) {
-        [self.beaconManager monitorProximityToTesselBeacon];
+        [self.beaconManager startRangingTesselRegion];
         [self updateTableWithMessage:@"User toggled proximity monitoring. Will attempt to monitor proximity to tessel beacon"];
     } else {
-        [self.beaconManager stopMonitoringProximityToTessel];
+        [self.beaconManager stopRangingTesselRegion];
         [self updateTableWithMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon"];
     }
 

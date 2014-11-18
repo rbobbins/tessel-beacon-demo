@@ -50,7 +50,7 @@ describe(@"TesselBeaconManager", ^{
         describe(@"when CLLocationManager auth status is AuthorizedAlways ", ^{
             beforeEach(^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusAuthorizedAlways);
-                [subject enableTesselBeaconMonitoring];
+                [subject startMonitoringTesselRegion];
             });
 
             it(@"should request a list of regions to monitor", ^{
@@ -65,7 +65,7 @@ describe(@"TesselBeaconManager", ^{
         describe(@"when CLLocationManager auth status is Undetermined", ^{
             beforeEach(^{
                 locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusNotDetermined);
-                [subject enableTesselBeaconMonitoring];
+                [subject startMonitoringTesselRegion];
             });
 
             it(@"should prompt the user for permisson to monitor location", ^{
@@ -74,16 +74,16 @@ describe(@"TesselBeaconManager", ^{
         });
     });
 
-    describe(@"-stopTesselBeaconMonitoring", ^{
+    describe(@"-stopMonitoringTesselRegion", ^{
         it(@"should tell the location manager to stop monitoring", ^{
-            [subject stopTesselBeaconMonitoring];
+            [subject stopMonitoringTesselRegion];
             fakeLocationManager should have_received(@selector(stopMonitoringForRegion:)).with(region);
         });
     });
     
-    describe(@"-monitorProximityToTesselBeacon", ^{
+    describe(@"-startRangingTesselRegion", ^{
         beforeEach(^{
-            [subject monitorProximityToTesselBeacon];
+            [subject startRangingTesselRegion];
         });
         
         it(@"should begin ranging for beacon", ^{
@@ -117,7 +117,7 @@ describe(@"TesselBeaconManager", ^{
         });
     });
     
-    describe(@"-stopMonitoringProximityToTessel", ^{
+    describe(@"-stopRangingTesselRegion", ^{
         
         context(@"when the Tessel's proximity is being monitored", ^{
             
@@ -126,7 +126,7 @@ describe(@"TesselBeaconManager", ^{
             });
             
             it(@"should tell the location manager to stop ranging", ^{
-                [subject stopMonitoringProximityToTessel];
+                [subject stopRangingTesselRegion];
                 fakeLocationManager should have_received(@selector(stopRangingBeaconsInRegion:)).with(region);
             });
         });
