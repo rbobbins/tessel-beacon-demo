@@ -12,7 +12,7 @@
 
 static NSString *cellIdentifier = @"cellIdentifier";
 
-@interface MainViewController () <UITableViewDataSource>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) TesselBeaconManager *beaconManager;
@@ -69,6 +69,25 @@ static NSString *cellIdentifier = @"cellIdentifier";
     return cell;
 }
 
+#pragma mark - <UITableViewDelegate>
+
+
+#warning - Selecting a tableview cell has no tests
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *fullText = cell.textLabel.text;
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Full Text"
+                                                                            message:fullText
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil];
+    [alertController addAction:dismiss];
+    [self presentViewController:alertController animated:NO completion:nil];
+}
 
 #pragma mark <TesselBeaconDelegate>
 

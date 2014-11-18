@@ -705,6 +705,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesselBeaconDemo/TesselBeaconDemo-Prefix.pch";
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/TesselBeaconDemo/TesselBeaconDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -724,6 +725,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TesselBeaconDemo/TesselBeaconDemo-Prefix.pch";
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/TesselBeaconDemo/TesselBeaconDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8;
 				PRODUCT_NAME = "$(TARGET_NAME)";

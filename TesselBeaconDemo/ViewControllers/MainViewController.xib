@@ -65,6 +65,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="wsC-Ip-rTj"/>
+                        <outlet property="delegate" destination="-1" id="JiQ-RE-LXs"/>
                     </connections>
                 </tableView>
             </subviews>
