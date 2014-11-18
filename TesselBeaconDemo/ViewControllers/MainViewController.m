@@ -14,12 +14,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 @interface MainViewController () <UITableViewDataSource>
 
-- (IBAction)didToggleTesselMonitoring:(id)sender;
-- (IBAction)didToggleProximityMonitoring:(id)sender;
-
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic) TesselBeaconManager *beaconManager;
 @property (nonatomic) NSMutableArray *messages;
 @property (nonatomic) NSDateFormatter *timestampFormatter;
@@ -49,7 +44,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.messages = [NSMutableArray array];
-    [self.proximitySwitch setOn:[self.beaconManager isMonitoringProximityToTesselBeacon]];
+    self.proximitySwitch.on = [self.beaconManager rangingEnabled];
+    self.monitoringSwitch.on = [self.beaconManager monitoringEnabled];
 
 }
 
@@ -113,7 +109,13 @@ static NSString *cellIdentifier = @"cellIdentifier";
 #pragma mark - Actions
 
 - (IBAction)didToggleTesselMonitoring:(id)sender {
-
+    if (self.monitoringSwitch.on) {
+        [self.beaconManager enableTesselBeaconMonitoring];
+        [self updateTableWithMessage:@"User toggled boundary monitoring ON"];
+    } else {
+        [self.beaconManager stopTesselBeaconMonitoring];
+        [self updateTableWithMessage:@"User toggled boundary monitoring OFF"];
+    }
 }
 
 - (IBAction)didToggleProximityMonitoring:(id)sender {

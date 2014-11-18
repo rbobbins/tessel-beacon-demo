@@ -74,6 +74,12 @@ describe(@"TesselBeaconManager", ^{
         });
     });
 
+    describe(@"-stopTesselBeaconMonitoring", ^{
+        it(@"should tell the location manager to stop monitoring", ^{
+            [subject stopTesselBeaconMonitoring];
+            fakeLocationManager should have_received(@selector(stopMonitoringForRegion:)).with(region);
+        });
+    });
     
     describe(@"-monitorProximityToTesselBeacon", ^{
         beforeEach(^{

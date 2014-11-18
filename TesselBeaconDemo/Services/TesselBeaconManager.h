@@ -33,9 +33,11 @@
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
 - (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
 
+- (BOOL)monitoringEnabled;
 - (void)enableTesselBeaconMonitoring;
+- (void)stopTesselBeaconMonitoring;
 
-- (BOOL)isMonitoringProximityToTesselBeacon;
+- (BOOL)rangingEnabled;
 - (void)monitorProximityToTesselBeacon;
 - (void)stopMonitoringProximityToTessel;
 

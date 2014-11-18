@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="monitoringSwitch" destination="XI7-4k-JlC" id="5io-Va-6cl"/>
                 <outlet property="proximitySwitch" destination="zta-9e-386" id="mBs-95-C42"/>
                 <outlet property="tableView" destination="h0u-Fu-5zT" id="Rw4-jT-RwQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UHi-Hc-hnF"/>
@@ -38,7 +39,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XI7-4k-JlC">
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XI7-4k-JlC">
                             <rect key="frame" x="230" y="15" width="51" height="31"/>
                             <connections>
                                 <action selector="didToggleTesselMonitoring:" destination="-1" eventType="valueChanged" id="C1z-mc-BHI"/>

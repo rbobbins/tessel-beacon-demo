@@ -22,23 +22,35 @@ describe(@"MainViewController", ^{
     });
     
     describe(@"configuring the switches correctly", ^{
-        it(@"should toggle the proximity switch to ON when a region is being monitored", ^{
-            beaconManager stub_method(@selector(isMonitoringProximityToTesselBeacon)).and_return(YES);
+        it(@"should toggle the proximity switch to ON when a beacon is being ranged", ^{
+            beaconManager stub_method(@selector(rangingEnabled)).and_return(YES);
             subject.view should_not be_nil;
             
             subject.proximitySwitch.on should be_truthy;
         });
         
-        it(@"should toggle the proximity switch to OFF when no region is being monitored", ^{
-            beaconManager stub_method(@selector(isMonitoringProximityToTesselBeacon)).and_return(NO);
+        it(@"should toggle the proximity switch to OFF when no region is being ranged", ^{
+            beaconManager stub_method(@selector(rangingEnabled)).and_return(NO);
             subject.view should_not be_nil;
             
             subject.proximitySwitch.on should be_falsy;
         });
+        
+        it(@"should toggle the region monitoring switch to ON when a region is being monitored", ^{
+            beaconManager stub_method(@selector(monitoringEnabled)).and_return(YES);
+            subject.view should_not be_nil;
+            subject.monitoringSwitch.on should be_truthy;
+        });
+        
+        it(@"should toggle the region monitoring switch to OFF when no region is being monitored", ^{
+            beaconManager stub_method(@selector(monitoringEnabled)).and_return(NO);
+            subject.view should_not be_nil;
+            subject.monitoringSwitch.on should be_falsy;
+        });
     });
     
     
-    describe(@"toggling the proximity switch to ON", ^{
+    describe(@"toggling the proximity switch", ^{
         beforeEach(^{
             subject.view should_not be_nil;
 
@@ -71,6 +83,38 @@ describe(@"MainViewController", ^{
                 cell.textLabel.text should contain(@"Will stop monitoring and logging proximity");
             });
 
+        });
+    });
+    
+    describe(@"toggling the monitoring switch", ^{
+        beforeEach(^{
+            subject.view should_not be_nil;
+            subject.monitoringSwitch.on = YES;
+            [subject.monitoringSwitch sendActionsForControlEvents:UIControlEventValueChanged];
+        });
+        
+        it(@"should tell the beacon manager to begin monitoring when toggled on", ^{
+            beaconManager should have_received(@selector(enableTesselBeaconMonitoring));
+        });
+        
+        it(@"should log that", ^{
+            UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
+            cell.textLabel.text should contain(@"boundary monitoring ON");
+        });
+        
+        describe(@"when toggled again", ^{
+            beforeEach(^{
+                subject.monitoringSwitch.on = NO;
+                [subject.monitoringSwitch sendActionsForControlEvents:UIControlEventValueChanged];
+            });
+            it(@"should tell the beacon manager to stop monitoring", ^{
+                beaconManager should have_received(@selector(stopTesselBeaconMonitoring));
+            });
+            
+            it(@"should log that", ^{
+                UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
+                cell.textLabel.text should contain(@"boundary monitoring OFF");
+            });
         });
     });
     

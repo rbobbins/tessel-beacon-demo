@@ -13,6 +13,7 @@
 @interface MainViewController : UIViewController <TesselBeaconDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *proximitySwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *monitoringSwitch;
 @property (weak, readonly) UITableView *tableView;
 
 
