@@ -40,7 +40,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
 
     self.timestampFormatter = [[NSDateFormatter alloc] init];
-    self.timestampFormatter.dateFormat = @"HH:mm:ss.SSS";
+    self.timestampFormatter.timeStyle = NSDateFormatterMediumStyle;
     self.navigationController.navigationBarHidden = YES;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
