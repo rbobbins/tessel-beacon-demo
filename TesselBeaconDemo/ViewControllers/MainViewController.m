@@ -101,10 +101,12 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rangingFailedWithError:(NSError *)error {
+    self.proximitySwitch.on = NO;
     [self updateTableWithError:error];
 }
 
 - (void)monitoringFailedWithError:(NSError *)error {
+    self.monitoringSwitch.on = NO;
     [self updateTableWithError:error];
 }
 

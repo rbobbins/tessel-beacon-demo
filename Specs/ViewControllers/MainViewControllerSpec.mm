@@ -166,18 +166,28 @@ describe(@"MainViewController", ^{
         });
     
         describe(@"when failing to range a Tessel", ^{
-            it(@"should log the error and its explanation", ^{
-                NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
+            __block NSError *error;
+            
+            beforeEach(^{
+                subject.proximitySwitch.on = YES;
+                error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
                 [subject rangingFailedWithError:error];
-                
+            });
+            
+            it(@"should log the error and its explanation", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"kCLErrorRangingUnavailable");
                 cell.textLabel.text should contain(@"Ranging is disabled.");
+            });
+            
+            it(@"should turn the ranging switch off", ^{
+                subject.proximitySwitch.on should be_falsy;
             });
         });
     
         describe(@"when failing to monitor a Tessel", ^{
             beforeEach(^{
+                subject.monitoringSwitch.on = YES;
                 NSError *error = [[NSError alloc] initWithDomain:kCLErrorDomain
                                                             code:kCLErrorRegionMonitoringFailure userInfo:nil];
                 [subject monitoringFailedWithError:error];
@@ -186,6 +196,10 @@ describe(@"MainViewController", ^{
             it(@"should log the error", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
                 cell.textLabel.text should contain(@"kCLErrorRegionMonitoringFailure");
+            });
+            
+            it(@"should toggle the monitoring switch off", ^{
+                subject.monitoringSwitch.on should be_falsy;
             });
         });
     });
