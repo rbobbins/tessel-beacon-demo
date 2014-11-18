@@ -15,12 +15,6 @@ describe(@"MainViewController", ^{
         subject = [[MainViewController alloc] initWithBeaconManager:beaconManager];
     });
     
-    it(@"should assign itself as the tessel manager's delegate and the beacon manager's delegate", ^{
-        subject.view should_not be_nil;
-
-        beaconManager should have_received(@selector(registerDelegate:)).with(subject);
-    });
-    
     describe(@"configuring the switches correctly", ^{
         it(@"should toggle the proximity switch to ON when a beacon is being ranged", ^{
             beaconManager stub_method(@selector(isRangingTesselRegion)).and_return(YES);
@@ -48,7 +42,6 @@ describe(@"MainViewController", ^{
             subject.monitoringSwitch.on should be_falsy;
         });
     });
-    
     
     describe(@"toggling the proximity switch", ^{
         beforeEach(^{

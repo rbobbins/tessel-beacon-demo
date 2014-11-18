@@ -32,7 +32,7 @@ describe(@"TesselBeaconManager", ^{
                                           tesselRegistrationRepository:tesselRegistrationRepository];
         fakeLocationManager stub_method(@selector(delegate)).and_return(subject);
         fakeBeaconDelegate = nice_fake_for(@protocol(TesselBeaconDelegate));
-        [subject registerDelegate:fakeBeaconDelegate];
+        subject.delegate = fakeBeaconDelegate;
     });
 
     it(@"should register itself as the location manager's delegate", ^{

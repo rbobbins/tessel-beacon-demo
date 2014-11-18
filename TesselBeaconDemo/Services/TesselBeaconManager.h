@@ -25,6 +25,7 @@
 
 @interface TesselBeaconManager : NSObject
 
+@property (nonatomic, weak) id<TesselBeaconDelegate> delegate;
 @property (nonatomic, readonly) CLLocationManager *locationManager;
 
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
@@ -37,8 +38,5 @@
 - (BOOL)isRangingTesselRegion;
 - (void)startRangingTesselRegion;
 - (void)stopRangingTesselRegion;
-
-#pragma TODO: Singularize
-- (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate;
 
 @end

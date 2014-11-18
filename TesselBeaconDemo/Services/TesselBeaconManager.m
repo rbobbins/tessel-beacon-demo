@@ -16,9 +16,8 @@
 
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) TesselCheckinRepository *tesselCheckinRepository;
-@property (nonatomic) NSMutableArray *delegates;
+@property (nonatomic) TesselRegistrationRepository *tesselRegistrationRepository;
 
-@property (nonatomic, strong) TesselRegistrationRepository *tesselRegistrationRepository;
 @end
 
 
@@ -33,7 +32,6 @@
         self.locationManager = locationManager;
         self.tesselCheckinRepository = tesselCheckinRepository;
         self.tesselRegistrationRepository = tesselRegistrationRepository;
-        self.delegates = [NSMutableArray array];
         self.locationManager.delegate = self;
     }
 
@@ -89,12 +87,6 @@
     }
 }
 
-- (void)registerDelegate:(id<TesselBeaconDelegate>)tesselBeaconDelegate {
-    if (![self.delegates containsObject:tesselBeaconDelegate]) {
-        [self.delegates addObject:tesselBeaconDelegate];
-    }
-}
-
 #pragma mark - <CLLocationManagerDelegate> 
 #pragma mark Responding to Authorization Changes
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -122,16 +114,12 @@
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     
     [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didEnterTesselRange];
-    }
+    [self.delegate didEnterTesselRange];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     [manager stopRangingBeaconsInRegion:(CLBeaconRegion *)region];
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate didExitTesselRange];
-    }
+    [self.delegate didExitTesselRange];
 }
 
 -(void)locationManager:(CLLocationManager *)manager
@@ -169,17 +157,14 @@
                inRegion:(CLBeaconRegion *)region {
     
     CLBeacon *beacon = (id)[beacons firstObject];
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate rangingSucceededWithProximity:beacon.proximity];
-    }
+    [self.delegate rangingSucceededWithProximity:beacon.proximity];
 }
 
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region
               withError:(NSError *)error {
-    for (id<TesselBeaconDelegate>delegate in self.delegates) {
-        [delegate rangingFailedWithError:error];
-    }
+    
+    [self.delegate rangingFailedWithError:error];
 }
 
 

@@ -27,8 +27,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
     self = [super init];
     if (self) {
         self.beaconManager = beaconManager;
-        [self.beaconManager registerDelegate:self];
+        self.beaconManager.delegate = self;
     }
+    
     return self;
 }
 
