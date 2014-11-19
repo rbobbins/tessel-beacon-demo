@@ -3,17 +3,17 @@ var blePort = tessel.port['A'];
 var bleLib = require('../');
 
 var ble = bleLib.use(blePort, function(err) {
-                     if (err) return console.log("Error connecting to slave", err);
-                     
-                     ble.setAdvertisingData(createIBeaconAdvertisementPacket(0, 0), function (e2){
-                                            if (e2) console.log("Error setting advertisement packet", e2);
-                                            // start adveristing to any listening masters
-                                            ble.startAdvertising(function(e3) {
-                                                                 if (e3) return console.log("Err starting to advertise", e3);
-                                                                 console.log('waiting to be discovered...');
-                                                                 });
-                                            });
-                     });
+    if (err) return console.log("Error connecting to slave", err);
+     
+    ble.setAdvertisingData(createIBeaconAdvertisementPacket(0, 0), function (e2){
+        if (e2) console.log("Error setting advertisement packet", e2);
+          // start adveristing to any listening masters
+        ble.startAdvertising(function(e3) {
+             if (e3) return console.log("Err starting to advertise", e3);
+             console.log('waiting to be discovered...');
+        });
+    });
+});
 
 // Major is usually meant to differentiate discrete locations (store A, store B)
 // Minor is meant to differentiate microlocations within a discrete location (corners of a store)
