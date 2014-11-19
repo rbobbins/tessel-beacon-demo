@@ -11,8 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "NSUUID+Formatting.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TesselInformationViewController ()
+@interface TesselInformationViewController () <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic) TesselRegistrationRepository *tesselRegistrationRepository;
 @property (weak, nonatomic) IBOutlet UILabel *tesselIdLabel;
@@ -69,6 +70,34 @@
     CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion];
     NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
     [[UIPasteboard generalPasteboard] setValue:byteArrayString forPasteboardType:(NSString *)kUTTypePlainText];
+}
+
+- (IBAction)didTapToEmail:(id)sender {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        mailViewController.subject = @"Tessel iBeacon information";
+        [mailViewController setMessageBody:@"foo bar baz" isHTML:NO];
+        
+        [self presentViewController:mailViewController animated:NO completion:nil];
+    } else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Uh-oh" message:@"Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:alertController animated:NO completion:nil];
+    }
+    
+    
+}
+
+#pragma mark - <MFMailComposeViewControllerDelegate>
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

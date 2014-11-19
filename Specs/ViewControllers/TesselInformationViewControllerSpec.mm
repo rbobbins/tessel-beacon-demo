@@ -4,6 +4,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "NSUUID+Formatting.h"
+#import <MessageUI/MessageUI.h>
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -51,6 +52,47 @@ describe(@"TesselInformationViewController", ^{
                 NSString *expectedPasteBuffer = [NSString stringWithFormat:@"[%@]", [uuid byteArrayString]];
                 fakePasteboard should have_received(@selector(setValue:forPasteboardType:))
                     .with(expectedPasteBuffer, (NSString *)kUTTypePlainText);
+            });
+        });
+        
+        describe(@"tapping the 'Email to myself' button", ^{
+            context(@"when the user can send email", ^{
+                beforeEach(^{
+                    spy_on([MFMailComposeViewController class]);
+                    [MFMailComposeViewController class] stub_method(@selector(canSendMail)).and_return(YES);
+                    [subject.emailButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                });
+                
+                it(@"should present a mail view controller", ^{
+                    subject.presentedViewController should be_instance_of([MFMailComposeViewController class]);
+                });
+                
+                describe(@"after finishing the email", ^{
+                    beforeEach(^{
+                        MFMailComposeViewController *mailViewController = (id)subject.presentedViewController;
+                        [mailViewController.mailComposeDelegate mailComposeController:mailViewController didFinishWithResult:MFMailComposeResultSaved error:nil];
+                    });
+                    
+                    it(@"should dismiss the mail view controller", ^{
+                        subject.presentedViewController should be_nil;
+                    });
+                });
+            });
+            
+            context(@"when the user cannot send email", ^{
+                beforeEach(^{
+                    spy_on([MFMailComposeViewController class]);
+                    [MFMailComposeViewController class] stub_method(@selector(canSendMail)).and_return(NO);
+                    
+                    [subject.emailButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                });
+                
+                it(@"should present an alert telling them that email is not enabled", ^{
+                    subject.presentedViewController should be_instance_of([UIAlertController class]);
+                    
+                    UIAlertController *alertController = (id)subject.presentedViewController;
+                    alertController.message should contain(@"not properly configured for email");
+                }); 
             });
         });
         

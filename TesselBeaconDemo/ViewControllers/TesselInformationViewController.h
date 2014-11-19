@@ -17,5 +17,6 @@
 @property (weak, nonatomic, readonly) UILabel *tesselIdLabel;
 @property (weak, nonatomic, readonly) UIButton *dismissButton;
 @property (weak, nonatomic, readonly) UIButton *clipboardButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton;
 
 @end

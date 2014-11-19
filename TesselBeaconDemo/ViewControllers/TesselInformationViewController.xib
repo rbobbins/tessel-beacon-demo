@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="clipboardButton" destination="k34-bT-i9D" id="GA2-W8-29L"/>
                 <outlet property="dismissButton" destination="o9R-q9-WLD" id="UUa-zG-YJM"/>
+                <outlet property="emailButton" destination="Lz2-Na-t58" id="inR-Rt-H3S"/>
                 <outlet property="explanatoryText" destination="YL6-Et-ptc" id="uGU-9I-a91"/>
                 <outlet property="tesselIdLabel" destination="hSG-J2-RMc" id="x9t-Hx-MhX"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jke-8F-vBD"/>
@@ -64,6 +65,19 @@
                         <action selector="didTapToCopyToClipboard:" destination="-1" eventType="touchUpInside" id="dWJ-6D-krF"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-Na-t58">
+                    <rect key="frame" x="195" y="422" width="200" height="44"/>
+                    <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="LPS-V4-Uvh"/>
+                    </constraints>
+                    <state key="normal" title="Email ID to myself">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapToEmail:" destination="-1" eventType="touchUpInside" id="ZCa-XN-E7N"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -74,16 +88,19 @@
                 <constraint firstItem="YL6-Et-ptc" firstAttribute="top" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="8" id="ET4-HR-m3T"/>
                 <constraint firstItem="N8X-CE-ot2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="OIv-41-kZP"/>
                 <constraint firstItem="k34-bT-i9D" firstAttribute="centerX" secondItem="o9R-q9-WLD" secondAttribute="centerX" id="SwC-ic-jHy"/>
+                <constraint firstItem="k34-bT-i9D" firstAttribute="top" secondItem="Lz2-Na-t58" secondAttribute="bottom" constant="8" symbolic="YES" id="YEz-Pq-Pli"/>
                 <constraint firstItem="hSG-J2-RMc" firstAttribute="leading" secondItem="N8X-CE-ot2" secondAttribute="leading" id="YMr-Dt-9Aw"/>
                 <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="k34-bT-i9D" secondAttribute="bottom" constant="8" symbolic="YES" id="aY8-oI-ZlC"/>
                 <constraint firstItem="YL6-Et-ptc" firstAttribute="top" secondItem="hSG-J2-RMc" secondAttribute="bottom" constant="8" id="d5T-fw-fU6"/>
                 <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="hSG-J2-RMc" secondAttribute="bottom" constant="20" id="dmT-7f-Dp1"/>
                 <constraint firstItem="k34-bT-i9D" firstAttribute="top" secondItem="YL6-Et-ptc" secondAttribute="bottom" constant="8" symbolic="YES" id="f6t-FP-ahX"/>
                 <constraint firstItem="o9R-q9-WLD" firstAttribute="top" secondItem="YL6-Et-ptc" secondAttribute="bottom" constant="8" symbolic="YES" id="j6x-HH-eJN"/>
+                <constraint firstItem="k34-bT-i9D" firstAttribute="width" secondItem="Lz2-Na-t58" secondAttribute="width" id="jq1-fJ-Lvq"/>
                 <constraint firstItem="hSG-J2-RMc" firstAttribute="top" secondItem="N8X-CE-ot2" secondAttribute="bottom" constant="8" id="lxL-iI-a3r"/>
                 <constraint firstAttribute="bottom" secondItem="o9R-q9-WLD" secondAttribute="bottom" constant="30" id="m6t-j5-fim"/>
                 <constraint firstItem="YL6-Et-ptc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="qDe-yL-iCr"/>
                 <constraint firstAttribute="trailing" secondItem="N8X-CE-ot2" secondAttribute="trailing" constant="20" symbolic="YES" id="ukb-Ci-LdF"/>
+                <constraint firstItem="k34-bT-i9D" firstAttribute="centerX" secondItem="Lz2-Na-t58" secondAttribute="centerX" id="vUG-PX-ied"/>
                 <constraint firstItem="k34-bT-i9D" firstAttribute="width" secondItem="o9R-q9-WLD" secondAttribute="width" id="vqN-qK-wkA"/>
             </constraints>
             <variation key="default">
