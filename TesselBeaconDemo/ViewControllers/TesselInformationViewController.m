@@ -37,6 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion] ;
     
     if (registeredRegion) {

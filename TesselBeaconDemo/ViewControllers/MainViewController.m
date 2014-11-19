@@ -55,7 +55,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     self.timestampFormatter = [[NSDateFormatter alloc] init];
     self.timestampFormatter.timeStyle = NSDateFormatterMediumStyle;
-    self.navigationController.navigationBarHidden = YES;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.briefMessages = [NSMutableArray array];
@@ -63,6 +62,12 @@ static NSString *cellIdentifier = @"cellIdentifier";
     self.proximitySwitch.on = [self.beaconManager isRangingTesselRegion];
     self.monitoringSwitch.on = [self.beaconManager isMonitoringTesselRegion];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -165,9 +170,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (IBAction)didTapMyTesselButton:(id)sender {
     TesselInformationViewController *viewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.beaconManager.tesselRegistrationRepository];
-    [self presentViewController:viewController
-                       animated:NO
-                     completion:nil];
+    [self.navigationController pushViewController:viewController animated:NO];
 }
 
 

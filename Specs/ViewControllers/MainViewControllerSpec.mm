@@ -132,14 +132,22 @@ describe(@"MainViewController", ^{
     });
     
     describe(@"tapping the My Tessel button", ^{
+        __block UINavigationController *navController;
+
         beforeEach(^{
             subject.view should_not be_nil;
+            navController = [[UINavigationController alloc] initWithRootViewController:subject];
             [subject.myTesselButton sendActionsForControlEvents:UIControlEventTouchUpInside];
         });
         
-        it(@"should present a TesselInformationViewController", ^{
-            subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
+        it(@"should push a TesselInformationViewController", ^{
+            navController.topViewController should be_instance_of([TesselInformationViewController class]);
         });
+        
+        it(@"should un-hide the navbar, so user can get back to this screen", ^{
+            navController.topViewController.navigationController.navigationBarHidden should be_falsy;
+        });
+        
     });
     
     describe(@"responding to TesselBeaconManager events", ^{
