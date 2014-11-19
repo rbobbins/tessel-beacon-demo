@@ -19,6 +19,8 @@
 		5A19E30A1A1874A200AB4C26 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */; };
 		5A19E30B1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */; };
 		5A19E30C1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */; };
+		5A19E30E1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
+		5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
 		5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */; };
 		5A4C800E19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */; };
 		5A4C800F19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */; };
@@ -89,6 +91,7 @@
 		5A19E3061A1874A200AB4C26 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		5A19E30D1A1C679100AB4C26 /* ibeacon.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ibeacon.js; sourceTree = "<group>"; };
 		5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RegistrationViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800B19F4D14D00E10062 /* LocationPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LocationPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C800C19F4D14D00E10062 /* AlertPermissionViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertPermissionViewControllerSpec.mm; sourceTree = "<group>"; };
@@ -296,6 +299,7 @@
 				5AB8AB6C19DBC0880085B4BE /* Images.xcassets */,
 				5AB8AB5B19DBC0880085B4BE /* Supporting Files */,
 				5A96613C19DFD0850039D844 /* LaunchScreen.xib */,
+				5A19E30D1A1C679100AB4C26 /* ibeacon.js */,
 			);
 			path = TesselBeaconDemo;
 			sourceTree = "<group>";
@@ -456,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A19E30E1A1C679100AB4C26 /* ibeacon.js in Resources */,
 				5A4C801919F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
 				5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
 				5A19E30B1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */,
@@ -480,6 +485,7 @@
 				5A19E30C1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */,
 				5A4C802219F4D16E00E10062 /* AlertPermissionViewController.xib in Resources */,
 				5AC4B0E619DE6A7B0078A65F /* Default-568h@2x.png in Resources */,
+				5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
