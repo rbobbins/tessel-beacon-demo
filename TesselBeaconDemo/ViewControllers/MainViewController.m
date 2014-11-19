@@ -136,11 +136,13 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (void)rangingFailedWithError:(NSError *)error {
     self.proximitySwitch.on = NO;
+    [self updateTableWithBriefMessage:@"Automatically toggled ranging switch to off" completeMessage:nil];
     [self updateTableWithError:error];
 }
 
 - (void)monitoringFailedWithError:(NSError *)error {
     self.monitoringSwitch.on = NO;
+    [self updateTableWithBriefMessage:@"Automatically toggled monitoring switch to off" completeMessage:nil];
     [self updateTableWithError:error];
 }
 
