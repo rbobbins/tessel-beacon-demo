@@ -38,8 +38,6 @@
 		5A4C802419F4D16E00E10062 /* AlertPermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C801719F4D16E00E10062 /* AlertPermissionViewController.m */; };
 		5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */; };
 		5A4C802C19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */; };
-		5A4C802D19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C802A19F4D19800E10062 /* UIAlertController+Temporary.m */; };
-		5A4C802E19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C802A19F4D19800E10062 /* UIAlertController+Temporary.m */; };
 		5A77A4A719DE6BFC00187EE1 /* MainViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */; };
 		5A77A4A819DE6EC400187EE1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB8AB9419DBC3E60085B4BE /* CoreBluetooth.framework */; };
 		5A77A4A919DE6ECF00187EE1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8AB9019DBC17C0085B4BE /* MainViewController.m */; };
@@ -106,8 +104,6 @@
 		5A4C801819F4D16E00E10062 /* AlertPermissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertPermissionViewController.h; sourceTree = "<group>"; };
 		5A4C802719F4D19800E10062 /* NSUserDefaults+Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Keys.h"; sourceTree = "<group>"; };
 		5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Keys.m"; sourceTree = "<group>"; };
-		5A4C802919F4D19800E10062 /* UIAlertController+Temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Temporary.h"; sourceTree = "<group>"; };
-		5A4C802A19F4D19800E10062 /* UIAlertController+Temporary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Temporary.m"; sourceTree = "<group>"; };
 		5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A77A4AB19DE723000187EE1 /* libPods-TesselBeaconDemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TesselBeaconDemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-TesselBeaconDemoTests-Cedar.a"; sourceTree = "<group>"; };
 		5A8144F719DD05AC006077B3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -189,8 +185,6 @@
 			children = (
 				5A4C802719F4D19800E10062 /* NSUserDefaults+Keys.h */,
 				5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */,
-				5A4C802919F4D19800E10062 /* UIAlertController+Temporary.h */,
-				5A4C802A19F4D19800E10062 /* UIAlertController+Temporary.m */,
 				5A94792319FDA934007F840E /* UIView+Constraints.h */,
 				5A94792419FDA934007F840E /* UIView+Constraints.m */,
 				5AFC6BBC1A108E150025690A /* NSUUID+Formatting.h */,
@@ -560,7 +554,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AB3798C19FA176100775FEB /* TesselRegistrationRepository.m in Sources */,
-				5A4C802D19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
 				5AB8AB6519DBC0880085B4BE /* AppDelegate.m in Sources */,
 				5A94792519FDA934007F840E /* UIView+Constraints.m in Sources */,
 				5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
@@ -582,7 +575,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AFC6BBF1A108E150025690A /* NSUUID+Formatting.m in Sources */,
-				5A4C802E19F4D19800E10062 /* UIAlertController+Temporary.m in Sources */,
 				5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A4C802019F4D16E00E10062 /* LocationPermissionViewController.m in Sources */,
 				5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */,

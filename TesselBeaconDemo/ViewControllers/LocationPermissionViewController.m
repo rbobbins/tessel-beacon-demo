@@ -9,7 +9,7 @@
 #import "LocationPermissionViewController.h"
 #import "AlertPermissionViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import "UIAlertController+Temporary.h"
+
 
 @interface LocationPermissionViewController () <CLLocationManagerDelegate>
 
