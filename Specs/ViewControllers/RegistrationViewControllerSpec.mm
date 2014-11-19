@@ -47,13 +47,11 @@ describe(@"RegistrationViewController", ^{
         
         describe(@"when the user clicks Yes", ^{
             __block KSDeferred *deferred;
-            __block UIActivityIndicatorView *spinner;
             
             beforeEach(^{
                 deferred = [KSDeferred defer];
                 registrationRepository stub_method(@selector(registerNewTessel)).and_return(deferred.promise);
                 [subject.yesButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-                spinner = subject.yesButton.subviews.lastObject;
             });
             
             it(@"should send a request to register a Tessel", ^{
@@ -61,8 +59,8 @@ describe(@"RegistrationViewController", ^{
             });
             
             it(@"should display a spinner", ^{
-                spinner should be_instance_of([UIActivityIndicatorView class]);
-                spinner.isAnimating should be_truthy;
+                subject.spinner should be_instance_of([UIActivityIndicatorView class]);
+                subject.spinner.isAnimating should be_truthy;
             });
             
             it(@"should disable all interaction", ^{
@@ -99,7 +97,7 @@ describe(@"RegistrationViewController", ^{
                 it(@"should allow the user to try again", ^{
                     subject.yesButton.userInteractionEnabled should be_truthy;
                     subject.yesButton.titleLabel.text should equal(@"Yes!");
-                    subject.yesButton.subviews should_not contain(spinner);
+                    subject.spinner.isAnimating should be_falsy;
                 });
             });
         });

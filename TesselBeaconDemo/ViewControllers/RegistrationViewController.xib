@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="explanatoryLabel" destination="RZG-Nc-PR1" id="a7Q-6e-94S"/>
                 <outlet property="noButton" destination="NL2-7u-JOI" id="W6T-Zb-S9Q"/>
+                <outlet property="spinner" destination="IDB-an-PDl" id="bWB-g0-sNo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yesButton" destination="ckK-Pa-Xi1" id="ACG-MR-xg3"/>
             </connections>
@@ -47,10 +48,15 @@
                         <action selector="didTapToContinue:" destination="-1" eventType="touchUpInside" id="2bE-qJ-REN"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IDB-an-PDl">
+                    <rect key="frame" x="290" y="371" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="IDB-an-PDl" firstAttribute="centerY" secondItem="ckK-Pa-Xi1" secondAttribute="centerY" id="2NY-lr-gRD"/>
                 <constraint firstAttribute="trailing" secondItem="RZG-Nc-PR1" secondAttribute="trailing" constant="8" id="4Mb-QY-PsS"/>
+                <constraint firstItem="IDB-an-PDl" firstAttribute="centerX" secondItem="ckK-Pa-Xi1" secondAttribute="centerX" id="8Nk-vE-qS8"/>
                 <constraint firstAttribute="centerY" secondItem="RZG-Nc-PR1" secondAttribute="centerY" id="DOJ-e4-aZ6"/>
                 <constraint firstAttribute="centerX" secondItem="NL2-7u-JOI" secondAttribute="centerX" id="FDn-JI-iI2"/>
                 <constraint firstItem="NL2-7u-JOI" firstAttribute="top" secondItem="ckK-Pa-Xi1" secondAttribute="bottom" constant="20" id="Lq4-le-52d"/>

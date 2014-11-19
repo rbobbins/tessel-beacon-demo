@@ -43,8 +43,6 @@
 		5A77A4A919DE6ECF00187EE1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8AB9019DBC17C0085B4BE /* MainViewController.m */; };
 		5A77A4AA19DE6ED400187EE1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A8144F719DD05AC006077B3 /* MainViewController.xib */; };
 		5A8144F819DD05AC006077B3 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A8144F719DD05AC006077B3 /* MainViewController.xib */; };
-		5A94792519FDA934007F840E /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792419FDA934007F840E /* UIView+Constraints.m */; };
-		5A94792619FDA934007F840E /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792419FDA934007F840E /* UIView+Constraints.m */; };
 		5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792819FDAE29007F840E /* TesselCheckinRepository.m */; };
 		5A94792A19FDAE29007F840E /* TesselCheckinRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A94792819FDAE29007F840E /* TesselCheckinRepository.m */; };
 		5A96613A19DFA9770039D844 /* AppDelegateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A96613919DFA9770039D844 /* AppDelegateSpec.mm */; };
@@ -107,8 +105,6 @@
 		5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A77A4AB19DE723000187EE1 /* libPods-TesselBeaconDemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TesselBeaconDemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-TesselBeaconDemoTests-Cedar.a"; sourceTree = "<group>"; };
 		5A8144F719DD05AC006077B3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		5A94792319FDA934007F840E /* UIView+Constraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Constraints.h"; sourceTree = "<group>"; };
-		5A94792419FDA934007F840E /* UIView+Constraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Constraints.m"; sourceTree = "<group>"; };
 		5A94792719FDAE29007F840E /* TesselCheckinRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselCheckinRepository.h; sourceTree = "<group>"; };
 		5A94792819FDAE29007F840E /* TesselCheckinRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselCheckinRepository.m; sourceTree = "<group>"; };
 		5A96613919DFA9770039D844 /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
@@ -180,16 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A4C802619F4D19800E10062 /* UIKit+Categories */ = {
+		5A4C802619F4D19800E10062 /* UIKit/Foundation+Categories */ = {
 			isa = PBXGroup;
 			children = (
 				5A4C802719F4D19800E10062 /* NSUserDefaults+Keys.h */,
 				5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */,
-				5A94792319FDA934007F840E /* UIView+Constraints.h */,
-				5A94792419FDA934007F840E /* UIView+Constraints.m */,
 				5AFC6BBC1A108E150025690A /* NSUUID+Formatting.h */,
 				5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */,
 			);
+			name = "UIKit/Foundation+Categories";
 			path = "UIKit+Categories";
 			sourceTree = "<group>";
 		};
@@ -285,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				5AB3798919FA174C00775FEB /* Repositories */,
-				5A4C802619F4D19800E10062 /* UIKit+Categories */,
+				5A4C802619F4D19800E10062 /* UIKit/Foundation+Categories */,
 				5A96613119DF38CE0039D844 /* Services */,
 				5AB8AB8E19DBC13C0085B4BE /* ViewControllers */,
 				5AB8AB6319DBC0880085B4BE /* AppDelegate.h */,
@@ -555,7 +550,6 @@
 			files = (
 				5AB3798C19FA176100775FEB /* TesselRegistrationRepository.m in Sources */,
 				5AB8AB6519DBC0880085B4BE /* AppDelegate.m in Sources */,
-				5A94792519FDA934007F840E /* UIView+Constraints.m in Sources */,
 				5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
 				5A19E3091A1874A200AB4C26 /* WelcomeViewController.m in Sources */,
 				5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
@@ -594,7 +588,6 @@
 				5A08DA501A0C83AF0099991B /* TesselInformationViewControllerSpec.mm in Sources */,
 				5A19E3051A18746E00AB4C26 /* WelcomeViewControllerSpec.mm in Sources */,
 				5A77A4A919DE6ECF00187EE1 /* MainViewController.m in Sources */,
-				5A94792619FDA934007F840E /* UIView+Constraints.m in Sources */,
 				5A96614519E081C20039D844 /* TesselBeaconManagerSpec.mm in Sources */,
 				5A96613B19DFAA600039D844 /* AppDelegate.m in Sources */,
 				4565BC2A08DEBB431AF51F60 /* TesselCheckinRepositorySpec.mm in Sources */,
