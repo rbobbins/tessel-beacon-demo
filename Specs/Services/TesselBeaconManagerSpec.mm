@@ -71,6 +71,27 @@ describe(@"TesselBeaconManager", ^{
             it(@"should prompt the user for permisson to monitor location", ^{
                 fakeLocationManager should have_received(@selector(requestAlwaysAuthorization));
             });
+            
+            it(@"should tell its delegate that an error occurred, but it can try again", ^{
+                NSError *expectedError = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                                    code:TesselWarningUndeterminedPermissionUserShouldTryAgain
+                                                                userInfo:nil];
+                fakeBeaconDelegate should have_received(@selector(monitoringFailedWithError:)).with(expectedError);
+            });
+        });
+        
+        describe(@"when authorization status is anything else", ^{
+            beforeEach(^{
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusDenied);
+                [subject startMonitoringTesselRegion];
+            });
+            
+            it(@"should tell its delegate that monitoring failed due to being explicitly denied permission", ^{
+                NSError *expectedError = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                                    code:TesselErrorInsufficientPermission
+                                                                userInfo:nil];
+                fakeBeaconDelegate should have_received(@selector(monitoringFailedWithError:)).with(expectedError);
+            });
         });
     });
 
@@ -82,37 +103,79 @@ describe(@"TesselBeaconManager", ^{
     });
     
     describe(@"-startRangingTesselRegion", ^{
+        __block Class locationManagerClass;
+        
         beforeEach(^{
-            [subject startRangingTesselRegion];
+            locationManagerClass = [CLLocationManager class];
+            spy_on(locationManagerClass);
         });
         
-        it(@"should begin ranging for beacon", ^{
-            fakeLocationManager should have_received(@selector(startRangingBeaconsInRegion:)).with(region);
-        });
-        
-        describe(@"when ranging is succesful", ^{
+        context(@"when permission level is AuthorizedAlways", ^{
             beforeEach(^{
-                CLBeacon *beacon = nice_fake_for([CLBeacon class]);
-                beacon stub_method(@selector(proximity)).and_return(CLProximityImmediate);
-                [fakeLocationManager.delegate locationManager:fakeLocationManager
-                                              didRangeBeacons:@[beacon]
-                                                     inRegion:region];
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusAuthorizedAlways);
+                [subject startRangingTesselRegion];
             });
             
-            it(@"should inform any registered delegates", ^{
-                fakeBeaconDelegate should have_received(@selector(rangingSucceededWithProximity:)).with(CLProximityImmediate);
+            it(@"should begin ranging for beacon", ^{
+                fakeLocationManager should have_received(@selector(startRangingBeaconsInRegion:)).with(region);
+            });
+            
+            describe(@"when ranging is succesful", ^{
+                beforeEach(^{
+                    CLBeacon *beacon = nice_fake_for([CLBeacon class]);
+                    beacon stub_method(@selector(proximity)).and_return(CLProximityImmediate);
+                    [fakeLocationManager.delegate locationManager:fakeLocationManager
+                                                  didRangeBeacons:@[beacon]
+                                                         inRegion:region];
+                });
+                
+                it(@"should inform any registered delegates", ^{
+                    fakeBeaconDelegate should have_received(@selector(rangingSucceededWithProximity:)).with(CLProximityImmediate);
+                });
+            });
+            
+            describe(@"when ranging fails", ^{
+                __block NSError *error;
+                beforeEach(^{
+                    error = nice_fake_for([NSError class]);
+                    [fakeLocationManager.delegate locationManager:fakeLocationManager rangingBeaconsDidFailForRegion:region withError:error];
+                });
+                
+                it(@"should inform its delegate", ^{
+                    fakeBeaconDelegate should have_received(@selector(rangingFailedWithError:)).with(error);
+                });
             });
         });
         
-        describe(@"when ranging fails", ^{
-            __block NSError *error;
+        context(@"when authorization status NotDetermined ", ^{
             beforeEach(^{
-                error = nice_fake_for([NSError class]);
-                [fakeLocationManager.delegate locationManager:fakeLocationManager rangingBeaconsDidFailForRegion:region withError:error];
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusNotDetermined);
+                [subject startRangingTesselRegion];
             });
             
-            it(@"should inform its delegate", ^{
-                fakeBeaconDelegate should have_received(@selector(rangingFailedWithError:)).with(error);
+            it(@"should request authorization", ^{
+                fakeLocationManager should have_received(@selector(requestAlwaysAuthorization));
+            });
+            
+            it(@"should tell its delegate that an error occured, but it should try again", ^{
+                NSError *expectedError = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                                    code:TesselWarningUndeterminedPermissionUserShouldTryAgain
+                                                                userInfo:nil];
+                fakeBeaconDelegate should have_received(@selector(rangingFailedWithError:)).with(expectedError);
+            });
+        });
+        
+        context(@"when authorization status is anything else NotDetermined ", ^{
+            beforeEach(^{
+                locationManagerClass stub_method(@selector(authorizationStatus)).and_return(kCLAuthorizationStatusDenied);
+                [subject startRangingTesselRegion];
+            });
+            
+            it(@"should tell its delegate that an error occured, but it should try again", ^{
+                NSError *expectedError = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                                    code:TesselErrorInsufficientPermission
+                                                                userInfo:nil];
+                fakeBeaconDelegate should have_received(@selector(rangingFailedWithError:)).with(expectedError);
             });
         });
     });
@@ -140,20 +203,9 @@ describe(@"TesselBeaconManager", ^{
                     [fakeLocationManager.delegate locationManager:fakeLocationManager
                                      didChangeAuthorizationStatus:kCLAuthorizationStatusAuthorizedAlways];
                 });
-
+                
                 it(@"should begin monitoring tessel regions", ^{
                     fakeLocationManager should have_received(@selector(startMonitoringForRegion:)).with(region);
-                });
-            });
-
-            context(@"when it is kCLAuthorizationStatusAuthorizedWhenInUse", ^{
-                beforeEach(^{
-                    [fakeLocationManager.delegate locationManager:fakeLocationManager
-                                     didChangeAuthorizationStatus:kCLAuthorizationStatusAuthorizedWhenInUse];
-                });
-
-                it(@"should begin monitoring tessel regions", ^{
-                    fakeLocationManager should_not have_received(@selector(startMonitoringForRegion:));
                 });
             });
         });

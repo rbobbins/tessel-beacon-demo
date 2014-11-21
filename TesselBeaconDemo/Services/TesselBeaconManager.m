@@ -45,14 +45,25 @@
 
 - (void)startMonitoringTesselRegion {
 
+    // Check permission, since locationManager:monitoringDidFailForRegion:withError:
+    // does not get triggered when monitoring fails due to insufficient permission.
     switch ([CLLocationManager authorizationStatus]) {
         case kCLAuthorizationStatusAuthorizedWhenInUse:
         case kCLAuthorizationStatusDenied:
-        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusRestricted: {
+            NSError *error = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                        code:TesselErrorInsufficientPermission
+                                                    userInfo:nil];
+            [self.delegate monitoringFailedWithError:error];
             return;
-        case kCLAuthorizationStatusNotDetermined:
+        }
+        case kCLAuthorizationStatusNotDetermined: {
+            NSError *error = [[NSError alloc] initWithDomain:kTesselErrorDomain code:TesselWarningUndeterminedPermissionUserShouldTryAgain userInfo:nil];
+            [self.delegate monitoringFailedWithError:error];
             [self.locationManager requestAlwaysAuthorization];
             return;
+        }
+
         case kCLAuthorizationStatusAuthorizedAlways: {
             CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
             [self.locationManager startMonitoringForRegion:region];
@@ -73,8 +84,37 @@
 }
 
 - (void)startRangingTesselRegion {
-    CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
-    [self.locationManager startRangingBeaconsInRegion:region];
+    
+    // Check permission, since locationManager:monitoringDidFailForRegion:withError:
+    // does not get triggered when monitoring fails due to insufficient permission.
+    
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted: {
+            NSError *error = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                        code:TesselErrorInsufficientPermission
+                                                    userInfo:nil];
+            [self.delegate rangingFailedWithError:error];
+            return;
+        }
+        case kCLAuthorizationStatusNotDetermined: {
+            NSError *error = [[NSError alloc] initWithDomain:kTesselErrorDomain
+                                                        code:TesselWarningUndeterminedPermissionUserShouldTryAgain
+                                                    userInfo:nil];
+            [self.delegate rangingFailedWithError:error];
+            [self.locationManager requestAlwaysAuthorization];
+            return;
+        }
+            
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
+            [self.locationManager startRangingBeaconsInRegion:region];
+        }
+        default:
+            break;
+    }
+
 }
 
 - (void)stopRangingTesselRegion {

@@ -13,6 +13,12 @@
 @class TesselCheckinRepository;
 @class TesselRegistrationRepository;
 
+static NSString * const kTesselErrorDomain = @"kTesselErrorDomain";
+typedef NS_ENUM(NSInteger, TesselErrorDomain) {
+    TesselWarningUndeterminedPermissionUserShouldTryAgain,
+    TesselErrorInsufficientPermission
+};
+
 
 @protocol TesselBeaconDelegate <NSObject>
 
@@ -33,7 +39,9 @@
 @property (nonatomic, readonly) TesselRegistrationRepository *tesselRegistrationRepository;
 
 - (id)init __attribute((unavailable("use with initWithLocationManager:tesselCheckinRepository:tesselRegistrationRepository: instead")));
-- (instancetype)initWithLocationManager:(CLLocationManager *)locationManager tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
+- (instancetype)initWithLocationManager:(CLLocationManager *)locationManager
+                tesselCheckinRepository:(TesselCheckinRepository *)tesselCheckinRepository
+           tesselRegistrationRepository:(TesselRegistrationRepository *)tesselRegistrationRepository;
 
 - (BOOL)isMonitoringTesselRegion;
 - (void)startMonitoringTesselRegion;

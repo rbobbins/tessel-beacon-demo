@@ -44,7 +44,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
 #if TARGET_IPHONE_SIMULATOR
 #ifndef SPECS
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning"
-                                                                             message:@"You appear to be using a simulator, not a real device. Because the simulator does not have bluetooth, iBeacons will not work properly" preferredStyle:UIAlertControllerStyleAlert];
+                                                                             message:@"You appear to be using a simulator, not a real device. Because the simulator does not have bluetooth, iBeacons will not work properly"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
                                                       style:UIAlertActionStyleCancel
                                                     handler:nil];
