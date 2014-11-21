@@ -202,9 +202,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     NSString *errorExplanation;
     
     if ([error.domain isEqualToString:kCLErrorDomain]) {
-        CLError errorCode = error.code;
-    
-        switch (errorCode) {
+        switch ((CLError)error.code) {
             case kCLErrorLocationUnknown:
                 errorTitle = @"kCLErrorLocationUnknown";
                 errorExplanation = @"The location manager was unable to obtain a location value right now.";
@@ -279,14 +277,29 @@ static NSString *cellIdentifier = @"cellIdentifier";
                 break;
         }
         
-
-        [self updateTableWithBriefMessage:[NSString stringWithFormat:@"ERROR: %@ (tap for more details)", errorTitle]
-                          completeMessage:[NSString stringWithFormat:@"ERROR: %@\n\nApple says:\n%@", errorTitle, errorExplanation]];
-    } else {
-        [self updateTableWithBriefMessage:[NSString stringWithFormat:@"ERROR: %@ (%d)", error.domain, error.code]
-                          completeMessage:nil];
-
+        errorExplanation = [NSString stringWithFormat:@"Apple says:\n%@", errorExplanation];
     }
+    else if ([error.domain isEqualToString:kTesselErrorDomain]) {
+        switch ((TesselErrorDomain)error.code) {
+            case TesselErrorInsufficientPermission:
+                errorTitle = @"TesselErrorInsufficientPermission";
+                errorExplanation = @"Either you've explicitly denied this application permission for location monitoring, or other settings (i.e. parental controls) prevent you from granting permission. Try going to your device's settings, and checking on the location permissions for this application";
+                break;
+            case TesselWarningUndeterminedPermissionUserShouldTryAgain:
+                errorTitle = @"TesselWarningUndeterminedPermissionUserShouldTryAgain";
+                errorExplanation = @"This application didn't have location permission when you last tried to do ranging or monitoring. It immediately asked for location permission - if you granted permission, you should be able to try ranging or monitoring again, without any problems";
+            default:
+                break;
+        }
+    }
+    else {
+        errorTitle = [NSString stringWithFormat:@"Error domain: %@", error.domain];
+        errorExplanation = [NSString stringWithFormat:@"Error code: %d", error.code];
+    }
+    
+    [self updateTableWithBriefMessage:[NSString stringWithFormat:@"ERROR: %@ (tap for more details)", errorTitle]
+                      completeMessage:[NSString stringWithFormat:@"ERROR: %@\n\n\n%@", errorTitle, errorExplanation]];
+
     
 }
 @end
