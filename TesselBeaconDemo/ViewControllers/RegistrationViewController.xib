@@ -7,7 +7,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationViewController">
             <connections>
                 <outlet property="explanatoryLabel" destination="RZG-Nc-PR1" id="a7Q-6e-94S"/>
-                <outlet property="noButton" destination="NL2-7u-JOI" id="W6T-Zb-S9Q"/>
                 <outlet property="spinner" destination="IDB-an-PDl" id="bWB-g0-sNo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yesButton" destination="ckK-Pa-Xi1" id="ACG-MR-xg3"/>
@@ -18,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to register your own Tessel?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="RZG-Nc-PR1">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text about what it means to register a Tessel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="RZG-Nc-PR1">
                     <rect key="frame" x="8" y="290" width="584" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -31,21 +30,11 @@
                         <constraint firstAttribute="width" constant="120" id="9tA-p6-Ppn"/>
                         <constraint firstAttribute="height" constant="50" id="XMp-7U-pjg"/>
                     </constraints>
-                    <state key="normal" title="Yes!">
+                    <state key="normal" title="Continue">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="didTapYes:" destination="-1" eventType="touchUpInside" id="2iD-nh-zRR"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NL2-7u-JOI">
-                    <rect key="frame" x="260" y="426" width="81" height="30"/>
-                    <color key="backgroundColor" red="0.93172554347826086" green="0.93172554347826086" blue="0.93172554347826086" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Maybe later">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="didTapToContinue:" destination="-1" eventType="touchUpInside" id="2bE-qJ-REN"/>
                     </connections>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IDB-an-PDl">
@@ -58,8 +47,6 @@
                 <constraint firstAttribute="trailing" secondItem="RZG-Nc-PR1" secondAttribute="trailing" constant="8" id="4Mb-QY-PsS"/>
                 <constraint firstItem="IDB-an-PDl" firstAttribute="centerX" secondItem="ckK-Pa-Xi1" secondAttribute="centerX" id="8Nk-vE-qS8"/>
                 <constraint firstAttribute="centerY" secondItem="RZG-Nc-PR1" secondAttribute="centerY" id="DOJ-e4-aZ6"/>
-                <constraint firstAttribute="centerX" secondItem="NL2-7u-JOI" secondAttribute="centerX" id="FDn-JI-iI2"/>
-                <constraint firstItem="NL2-7u-JOI" firstAttribute="top" secondItem="ckK-Pa-Xi1" secondAttribute="bottom" constant="20" id="Lq4-le-52d"/>
                 <constraint firstItem="RZG-Nc-PR1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Lyl-Pb-YLV"/>
                 <constraint firstAttribute="centerX" secondItem="ckK-Pa-Xi1" secondAttribute="centerX" id="R5b-Ko-p9O"/>
                 <constraint firstAttribute="centerX" secondItem="RZG-Nc-PR1" secondAttribute="centerX" id="VC7-p5-9q7"/>

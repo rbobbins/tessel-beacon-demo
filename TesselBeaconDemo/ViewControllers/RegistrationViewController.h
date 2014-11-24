@@ -4,7 +4,6 @@
 
 @interface RegistrationViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *noButton;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UILabel *explanatoryLabel;

@@ -40,12 +40,11 @@ describe(@"RegistrationViewController", ^{
         });
         
         it(@"should ask the user whether they'd like to register a Tessel", ^{
-            subject.explanatoryLabel.text should equal(@"Would you like to register your own Tessel?");
+            subject.explanatoryLabel.text should contain(@"will be automatically whitelisted");
         });
         
-        it(@"should allow the user to choose whether or not they'd like to register a Tessel", ^{
-            subject.noButton.titleLabel.text should equal(@"Maybe later");
-            subject.yesButton.titleLabel.text should equal(@"Yes!");
+        it(@"should allow the user to tap to continue", ^{
+            subject.yesButton.titleLabel.text should equal(@"Continue");
         });
         
         describe(@"when the user clicks Yes", ^{
@@ -104,35 +103,8 @@ describe(@"RegistrationViewController", ^{
                 });
             });
         });
-        
-        describe(@"when the user taps No", ^{
-            beforeEach(^{
-                [subject.noButton sendActionsForControlEvents:UIControlEventTouchUpInside];
-            });
-            
-            it(@"should pop back to the root view controller", ^{
-                navController.topViewController should be_same_instance_as(rootViewController);
-            });
-        });
+
     });
-    
-    context(@"when the user has already registered a Tessel", ^{
-        __block NSUUID *regionUUID;
-        
-        beforeEach(^{
-            regionUUID = [NSUUID UUID];
-            CLBeaconRegion *region = nice_fake_for([CLBeaconRegion class]);
-            region stub_method(@selector(proximityUUID)).and_return(regionUUID);
-            registrationRepository stub_method(@selector(registeredTesselRegion)).and_return(region);
-            
-            subject.view should_not be_nil;
-        });
-        
-        it(@"should immediately present their tessel's information", ^{
-            subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
-        });
-    });
-    
 });
 
 SPEC_END

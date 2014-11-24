@@ -5,7 +5,6 @@
 
 @interface RegistrationViewController ()
 - (IBAction)didTapYes:(id)sender;
-- (IBAction)didTapToContinue:(id)sender;
 
 @property (nonatomic) TesselRegistrationRepository *tesselRegistrationRepository;
 
@@ -28,14 +27,7 @@
     self.yesButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.title = @"Setup Your Tessel";
     self.navigationItem.hidesBackButton = YES;
-
-    
-    if ([self.tesselRegistrationRepository registeredTesselRegion]) {
-        TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
-        [self presentViewController:tesselInformationViewController animated:YES completion:^{
-            [self didTapToContinue:nil];
-        }];
-    }
+    self.explanatoryLabel.text = @"To get started using your Tessel as an iBeacon, we'll request a UUID from the server. Your iPhone will search for the iBeacon with this UUID, and it will be automatically whitelisted for posting checkins to the server.";
 }
 
 #pragma mark - Actions
@@ -53,7 +45,7 @@
         [self presentViewController:tesselInformationViewController
                            animated:YES
                          completion:^{
-            [self didTapToContinue:nil];
+            [self.navigationController popToRootViewControllerAnimated:NO];
         }];
         return nil;
     } error:^id(NSError *error) {
@@ -65,9 +57,6 @@
     }];
 }
 
-- (IBAction)didTapToContinue:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
 
 
 @end
