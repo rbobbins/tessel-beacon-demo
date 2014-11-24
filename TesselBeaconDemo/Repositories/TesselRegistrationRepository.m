@@ -54,6 +54,9 @@
         NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidString];
         CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
                                                       identifier:@""];
+        beaconRegion.notifyEntryStateOnDisplay = YES;
+        beaconRegion.notifyOnEntry = YES;
+        beaconRegion.notifyOnExit = YES;
         return beaconRegion;
     }
     return nil;

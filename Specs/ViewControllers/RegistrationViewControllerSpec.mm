@@ -3,8 +3,8 @@
 #import "TesselRegistrationRepository.h"
 #import "KSDeferred.h"
 #import "TesselInformationViewController.h"
-#import "LocationPermissionViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "AlertPermissionViewController.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -81,7 +81,7 @@ describe(@"RegistrationViewController", ^{
                 
                 it(@"should jump to the next step of the process when the TesselInformationViewController is dismissed ", ^{
                     [subject dismissViewControllerAnimated:NO completion:nil];
-                    navController.topViewController should be_instance_of([LocationPermissionViewController class]);
+                    navController.topViewController should be_instance_of([AlertPermissionViewController class]);
                 });
             });
             
@@ -107,8 +107,8 @@ describe(@"RegistrationViewController", ^{
                 [subject.noButton sendActionsForControlEvents:UIControlEventTouchUpInside];
             });
             
-            it(@"should push a LocationPermissionViewController onto the stack", ^{
-                navController.topViewController should be_instance_of([LocationPermissionViewController class]);
+            it(@"should push a AlertPermissionViewController onto the stack", ^{
+                navController.topViewController should be_instance_of([AlertPermissionViewController class]);
             });
         });
     });

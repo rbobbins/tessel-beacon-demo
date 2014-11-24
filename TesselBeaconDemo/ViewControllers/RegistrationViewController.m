@@ -1,8 +1,8 @@
 #import "RegistrationViewController.h"
-#import "LocationPermissionViewController.h"
 #import "TesselRegistrationRepository.h"
 #import "KSPromise.h"
 #import "TesselInformationViewController.h"
+#import "AlertPermissionViewController.h"
 
 @interface RegistrationViewController ()
 - (IBAction)didTapYes:(id)sender;
@@ -64,7 +64,7 @@
 }
 
 - (IBAction)didTapToContinue:(id)sender {
-    LocationPermissionViewController *viewController = [[LocationPermissionViewController alloc] init];
+    AlertPermissionViewController *viewController = [[AlertPermissionViewController alloc] init];
     [self.navigationController pushViewController:viewController
                                          animated:NO];
 }

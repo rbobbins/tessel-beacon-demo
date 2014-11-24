@@ -29,7 +29,7 @@
 {
 
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    NSURL *baseURL = nil;
+    NSURL *baseURL = [NSURL URLWithString:@"http://agile-lowlands-4276.herokuapp.com"];
     AFHTTPRequestOperationManager *requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
     
     TesselCheckinRepository *tesselCheckinRepository = [[TesselCheckinRepository alloc]
