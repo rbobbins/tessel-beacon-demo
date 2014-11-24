@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Step 3: Notification Permission";
+    self.title = @"Step 2: Notification Permission";
     self.navigationItem.hidesBackButton = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -35,18 +35,12 @@
 #pragma mark - Actions
 
 - (IBAction)didTapYes:(id)sender {
-    [self markOnboardingFlowAsComplete];
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 }
 
 - (IBAction)didTapNo:(id)sender {
-    [self markOnboardingFlowAsComplete];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-#pragma mark - Private
-- (void)markOnboardingFlowAsComplete {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kUserDidCompleteOnboarding];
-}
 @end

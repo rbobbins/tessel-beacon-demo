@@ -24,8 +24,8 @@ describe(@"AlertPermissionViewController", ^{
         subject.view should_not be_nil;
     });
     
-    it(@"should title itself as Step 3", ^{
-        subject.title should equal(@"Step 3: Notification Permission");
+    it(@"should title itself as Step 2", ^{
+        subject.title should equal(@"Step 2: Notification Permission");
     });
     
     it(@"should hide the back button", ^{
@@ -54,10 +54,6 @@ describe(@"AlertPermissionViewController", ^{
         it(@"should prompt them to allow notifications", ^{
             application should have_received(@selector(registerUserNotificationSettings:));
         });
-        
-        it(@"should mark them as having completed the onboarding flow", ^{
-            fakeUserDefaults should have_received(@selector(setBool:forKey:)).with(YES, kUserDidCompleteOnboarding);
-        });
     });
     
     describe(@"when the user taps No", ^{
@@ -68,10 +64,6 @@ describe(@"AlertPermissionViewController", ^{
         
         it(@"should pop back to the root view of the nav controller", ^{
             navController should have_received(@selector(popToRootViewControllerAnimated:));
-        });
-        
-        it(@"should mark them as having completed the onboarding flow", ^{
-            fakeUserDefaults should have_received(@selector(setBool:forKey:)).with(YES, kUserDidCompleteOnboarding);
         });
     });
 });
