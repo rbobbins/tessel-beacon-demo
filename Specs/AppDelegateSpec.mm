@@ -27,9 +27,14 @@ describe(@"AppDelegate", ^{
     });
     
     describe(@"-application:didFinishLaunchingWithOptions:", ^{
-        context(@"when the user is a new user", ^{
+        context(@"when the user has not yet registered a Tessel", ^{
             beforeEach(^{
+                fakeUserDefaults stub_method(@selector(stringForKey:))
+                    .with(kRegisteredTesselId)
+                    .and_return(nil);
+                
                 [subject application:fakeApplication didFinishLaunchingWithOptions:nil];
+
             });
             
             it(@"should initalize a TesselBeaconManager", ^{
@@ -59,16 +64,16 @@ describe(@"AppDelegate", ^{
             });
         });
         
-        context(@"when the user has completed the onboarding flow already", ^{
+        context(@"when the user has already registered a Tessel", ^{
             beforeEach(^{
-                fakeUserDefaults stub_method(@selector(boolForKey:))
-                    .with(kUserDidCompleteOnboarding)
-                    .and_return(YES);
+                NSString *uuidString = [NSUUID UUID].UUIDString;
+                fakeUserDefaults stub_method(@selector(stringForKey:))
+                    .with(kRegisteredTesselId)
+                    .and_return(uuidString);
                 [subject application:fakeApplication didFinishLaunchingWithOptions:nil];
             });
             
             it(@"should present the main view controller", ^{
-                
                 UINavigationController *navController = (id)subject.window.rootViewController;
                 navController should be_instance_of([UINavigationController class]);
                 navController.topViewController should be_instance_of([MainViewController class]);

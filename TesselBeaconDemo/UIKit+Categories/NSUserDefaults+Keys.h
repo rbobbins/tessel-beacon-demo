@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kUserDidCompleteOnboarding;
 extern NSString * const kUserNotificationSettingsAllowsAlert;
 extern NSString * const kRegisteredTesselId;
 

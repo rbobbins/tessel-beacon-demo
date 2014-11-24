@@ -38,16 +38,12 @@
     self.tesselBeaconManager = [[TesselBeaconManager alloc] initWithLocationManager:locationManager
                                                             tesselCheckinRepository:tesselCheckinRepository
                                                        tesselRegistrationRepository:tesselRegistrationRepository];
-
-
-    UIViewController *initialViewController;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     MainViewController *mainViewController = [[MainViewController alloc] initWithBeaconManager:self.tesselBeaconManager];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-
-    if (![userDefaults boolForKey:kUserDidCompleteOnboarding]) {
-        initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+    NSString *tesselId = [[NSUserDefaults standardUserDefaults] stringForKey:kRegisteredTesselId];
+    if (!tesselId || [tesselId isEqualToString:@""]) {
+        UIViewController *initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
         [navController pushViewController:initialViewController animated:NO];
     }
 

@@ -8,7 +8,6 @@
 
 #import "NSUserDefaults+Keys.h"
 
-NSString * const kUserDidCompleteOnboarding = @"kUserDidCompleteOnboarding";
 NSString * const kUserNotificationSettingsAllowsAlert = @"kUserNotificationSettingsAllowsAlert";
 NSString * const kRegisteredTesselId = @"kRegisteredTesselId";
 
