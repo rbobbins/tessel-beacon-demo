@@ -132,8 +132,8 @@
     switch (status) {
         case kCLAuthorizationStatusAuthorizedAlways:
         {
-            CLBeaconRegion *region = [self.tesselRegistrationRepository registeredTesselRegion];
-            [self.locationManager startMonitoringForRegion:region];
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
             return;            
         }
         default:

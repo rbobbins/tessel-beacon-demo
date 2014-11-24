@@ -2,7 +2,6 @@
 #import "TesselRegistrationRepository.h"
 #import "KSPromise.h"
 #import "TesselInformationViewController.h"
-#import "AlertPermissionViewController.h"
 
 @interface RegistrationViewController ()
 - (IBAction)didTapYes:(id)sender;
@@ -50,7 +49,9 @@
         [self.spinner stopAnimating];
         
         TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
-        [self presentViewController:tesselInformationViewController animated:YES completion:^{
+        [self presentViewController:tesselInformationViewController
+                           animated:YES
+                         completion:^{
             [self didTapToContinue:nil];
         }];
         return nil;
@@ -64,9 +65,7 @@
 }
 
 - (IBAction)didTapToContinue:(id)sender {
-    AlertPermissionViewController *viewController = [[AlertPermissionViewController alloc] init];
-    [self.navigationController pushViewController:viewController
-                                         animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 

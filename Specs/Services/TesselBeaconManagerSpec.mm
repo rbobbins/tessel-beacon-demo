@@ -198,14 +198,21 @@ describe(@"TesselBeaconManager", ^{
     
     describe(@"responding to location events", ^{
         describe(@"when location manager authorization status changes", ^{
+            
             context(@"when it is kCLAuthorizationStatusAuthorizedAlways", ^{
+                __block UIApplication *application;
+                
                 beforeEach(^{
+                    application = [UIApplication sharedApplication];
+                    spy_on(application);
+                    application stub_method(@selector(registerUserNotificationSettings:));
+                    
                     [fakeLocationManager.delegate locationManager:fakeLocationManager
                                      didChangeAuthorizationStatus:kCLAuthorizationStatusAuthorizedAlways];
                 });
                 
-                it(@"should begin monitoring tessel regions", ^{
-                    fakeLocationManager should have_received(@selector(startMonitoringForRegion:)).with(region);
+                it(@"should prompt them to allow notifications", ^{
+                    application should have_received(@selector(registerUserNotificationSettings:));
                 });
             });
         });

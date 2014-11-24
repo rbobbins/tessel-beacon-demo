@@ -4,7 +4,6 @@
 #import "KSDeferred.h"
 #import "TesselInformationViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import "AlertPermissionViewController.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
@@ -12,14 +11,18 @@ using namespace Cedar::Doubles;
 SPEC_BEGIN(RegistrationViewControllerSpec)
 
 describe(@"RegistrationViewController", ^{
+    __block UIViewController *rootViewController;
     __block RegistrationViewController *subject;
     __block UINavigationController *navController;
     __block TesselRegistrationRepository *registrationRepository;
 
     beforeEach(^{
+        rootViewController = [[UIViewController alloc] init];
+        navController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+
         registrationRepository = nice_fake_for([TesselRegistrationRepository class]);
         subject = [[RegistrationViewController alloc] initWithTesselRegistrationRepository:registrationRepository];
-        navController = [[UINavigationController alloc] initWithRootViewController:subject];
+        [navController pushViewController:subject animated:NO];
     });
 
     
@@ -79,9 +82,9 @@ describe(@"RegistrationViewController", ^{
                     subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
                 });
                 
-                it(@"should jump to the next step of the process when the TesselInformationViewController is dismissed ", ^{
+                it(@"should pop back to the root view of the nav controller ", ^{
                     [subject dismissViewControllerAnimated:NO completion:nil];
-                    navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+                    navController.topViewController should be_same_instance_as(rootViewController);
                 });
             });
             
@@ -107,8 +110,8 @@ describe(@"RegistrationViewController", ^{
                 [subject.noButton sendActionsForControlEvents:UIControlEventTouchUpInside];
             });
             
-            it(@"should push a AlertPermissionViewController onto the stack", ^{
-                navController.topViewController should be_instance_of([AlertPermissionViewController class]);
+            it(@"should pop back to the root view controller", ^{
+                navController.topViewController should be_same_instance_as(rootViewController);
             });
         });
     });
