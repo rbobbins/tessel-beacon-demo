@@ -56,25 +56,44 @@ describe(@"TesselInformationViewController", ^{
         });
         
         describe(@"tapping the 'Email to myself' button", ^{
+            __block MFMailComposeViewController *mailViewController;
             context(@"when the user can send email", ^{
                 beforeEach(^{
                     spy_on([MFMailComposeViewController class]);
                     [MFMailComposeViewController class] stub_method(@selector(canSendMail)).and_return(YES);
                     [subject.emailButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                    mailViewController = (id)subject.presentedViewController;
                 });
                 
                 it(@"should present a mail view controller", ^{
-                    subject.presentedViewController should be_instance_of([MFMailComposeViewController class]);
+                    mailViewController should be_instance_of([MFMailComposeViewController class]);
                 });
                 
-                describe(@"after finishing the email", ^{
+                describe(@"after sending the email", ^{
                     beforeEach(^{
-                        MFMailComposeViewController *mailViewController = (id)subject.presentedViewController;
-                        [mailViewController.mailComposeDelegate mailComposeController:mailViewController didFinishWithResult:MFMailComposeResultSaved error:nil];
+                        [mailViewController.mailComposeDelegate mailComposeController:mailViewController didFinishWithResult:MFMailComposeResultSent error:nil];
                     });
                     
                     it(@"should dismiss the mail view controller", ^{
                         subject.presentedViewController should be_nil;
+                    });
+                });
+                
+                describe(@"after failing to send the email", ^{
+                    beforeEach(^{
+                        [mailViewController.mailComposeDelegate mailComposeController:mailViewController didFinishWithResult:MFMailComposeResultFailed error:nil];
+                    });
+                    
+                    it(@"should alert the user", ^{
+                        subject.presentedViewController should be_instance_of([UIAlertController class]);
+                        
+                        UIAlertController *alertController = (id)subject.presentedViewController;
+                        alertController.title should contain(@"Email Not Sent");
+                        alertController.message should contain(@"your email was not sent.");
+                    });
+                    
+                    it(@"should dismiss the mail view controller", ^{
+                        subject.presentedViewController should_not be_same_instance_as(mailViewController);
                     });
                 });
             });

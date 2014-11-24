@@ -80,7 +80,9 @@
         
         [self presentViewController:mailViewController animated:NO completion:nil];
     } else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Uh-oh" message:@"Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Uh-oh"
+                                                                                 message:@"Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }]];
@@ -96,7 +98,18 @@
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (result != MFMailComposeResultSent) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email Not Sent"
+                                                                                     message:@"Due to either device error or user error, your email was not sent. If you're so inclined, try debugging it yourself! Otherwise, copy your device ID to the clipboard and email it directly to yourself"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }]];
+            [self presentViewController:alertController animated:NO completion:nil];
+
+        }
+    }];
 }
          
 #pragma mark - Private
