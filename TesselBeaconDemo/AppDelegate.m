@@ -14,7 +14,6 @@
 #import "TesselCheckinRepository.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFNetworking.h>
-#import "WelcomeViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic) TesselBeaconManager *tesselBeaconManager;
@@ -43,7 +42,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     NSString *tesselId = [[NSUserDefaults standardUserDefaults] stringForKey:kRegisteredTesselId];
     if (!tesselId || [tesselId isEqualToString:@""]) {
-        UIViewController *initialViewController = [[WelcomeViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+        RegistrationViewController *initialViewController = [[RegistrationViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
         [navController pushViewController:initialViewController animated:NO];
     }
 
