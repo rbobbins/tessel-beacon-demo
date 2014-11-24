@@ -14,11 +14,6 @@
 		5A08DA501A0C83AF0099991B /* TesselInformationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */; };
 		5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */; };
 		5A08DA531A0C86B20099991B /* TesselInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */; };
-		5A19E3051A18746E00AB4C26 /* WelcomeViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A19E3041A18746E00AB4C26 /* WelcomeViewControllerSpec.mm */; };
-		5A19E3091A1874A200AB4C26 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */; };
-		5A19E30A1A1874A200AB4C26 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */; };
-		5A19E30B1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */; };
-		5A19E30C1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */; };
 		5A19E30E1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
 		5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
 		5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */; };
@@ -73,10 +68,6 @@
 		5A08DA4C1A0C83830099991B /* TesselInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselInformationViewController.m; sourceTree = "<group>"; };
 		5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TesselInformationViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TesselInformationViewController.xib; sourceTree = "<group>"; };
-		5A19E3041A18746E00AB4C26 /* WelcomeViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WelcomeViewControllerSpec.mm; sourceTree = "<group>"; };
-		5A19E3061A1874A200AB4C26 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
-		5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		5A19E30D1A1C679100AB4C26 /* ibeacon.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ibeacon.js; sourceTree = "<group>"; };
 		5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RegistrationViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
@@ -176,7 +167,6 @@
 				5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */,
 				5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */,
 				5A08DA4F1A0C83AF0099991B /* TesselInformationViewControllerSpec.mm */,
-				5A19E3041A18746E00AB4C26 /* WelcomeViewControllerSpec.mm */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -296,9 +286,6 @@
 				5A08DA4B1A0C83830099991B /* TesselInformationViewController.h */,
 				5A08DA4C1A0C83830099991B /* TesselInformationViewController.m */,
 				5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */,
-				5A19E3061A1874A200AB4C26 /* WelcomeViewController.h */,
-				5A19E3071A1874A200AB4C26 /* WelcomeViewController.m */,
-				5A19E3081A1874A200AB4C26 /* WelcomeViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -426,7 +413,6 @@
 				5A19E30E1A1C679100AB4C26 /* ibeacon.js in Resources */,
 				5A4C801919F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
 				5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
-				5A19E30B1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */,
 				5A96613D19DFD0850039D844 /* LaunchScreen.xib in Resources */,
 				5AB8AB6D19DBC0880085B4BE /* Images.xcassets in Resources */,
 				5A8144F819DD05AC006077B3 /* MainViewController.xib in Resources */,
@@ -442,7 +428,6 @@
 				5AC4B0DE19DE6A7A0078A65F /* InfoPlist.strings in Resources */,
 				5A4C801A19F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
 				5A77A4AA19DE6ED400187EE1 /* MainViewController.xib in Resources */,
-				5A19E30C1A1874A200AB4C26 /* WelcomeViewController.xib in Resources */,
 				5AC4B0E619DE6A7B0078A65F /* Default-568h@2x.png in Resources */,
 				5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */,
 			);
@@ -521,7 +506,6 @@
 				5AB3798C19FA176100775FEB /* TesselRegistrationRepository.m in Sources */,
 				5AB8AB6519DBC0880085B4BE /* AppDelegate.m in Sources */,
 				5A94792919FDAE29007F840E /* TesselCheckinRepository.m in Sources */,
-				5A19E3091A1874A200AB4C26 /* WelcomeViewController.m in Sources */,
 				5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
 				5AB8AB6119DBC0880085B4BE /* main.m in Sources */,
 				5AFC6BBE1A108E150025690A /* NSUUID+Formatting.m in Sources */,
@@ -546,11 +530,9 @@
 				5A4C801C19F4D16E00E10062 /* RegistrationViewController.m in Sources */,
 				5AB3798719FA163400775FEB /* TesselRegistrationRepositorySpec.mm in Sources */,
 				5A96614119E066910039D844 /* TesselBeaconManager.m in Sources */,
-				5A19E30A1A1874A200AB4C26 /* WelcomeViewController.m in Sources */,
 				5A08DA4E1A0C83830099991B /* TesselInformationViewController.m in Sources */,
 				5AC4B0E019DE6A7A0078A65F /* main.m in Sources */,
 				5A08DA501A0C83AF0099991B /* TesselInformationViewControllerSpec.mm in Sources */,
-				5A19E3051A18746E00AB4C26 /* WelcomeViewControllerSpec.mm in Sources */,
 				5A77A4A919DE6ECF00187EE1 /* MainViewController.m in Sources */,
 				5A96614519E081C20039D844 /* TesselBeaconManagerSpec.mm in Sources */,
 				5A96613B19DFAA600039D844 /* AppDelegate.m in Sources */,
