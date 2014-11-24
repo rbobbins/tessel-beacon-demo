@@ -31,8 +31,8 @@ describe(@"RegistrationViewController", ^{
             subject.view should_not be_nil;
         });
         
-        it(@"should title itself as Step 1", ^{
-            subject.title should equal(@"Step 1: Register Tessel");
+        it(@"should title itself as Setup Your Tessel", ^{
+            subject.title should equal(@"Setup Your Tessel");
         });
         
         it(@"should hide the back button", ^{

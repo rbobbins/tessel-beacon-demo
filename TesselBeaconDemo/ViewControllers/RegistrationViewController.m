@@ -26,8 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.yesButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.title = @"Step 1: Register Tessel";
+    self.title = @"Setup Your Tessel";
     self.navigationItem.hidesBackButton = YES;
+
     
     if ([self.tesselRegistrationRepository registeredTesselRegion]) {
         TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
