@@ -7,29 +7,24 @@ Requirements
 ============
 
   - You must be a registered Apple Developer. You can install the app on an iOS simulator without being one, but you can't run bluetooth in the iOS simulator.
-  - Your Tessel must have the BLE module, and be running the code available here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js
+  - You must have the Tessel BLE module. The application will guide you through setting it up correctly.
   
 Features
 ========
 
-  - App scans for Tessel beacon. In foreground, it will present the user with a pop up and begin logging proximity to the Tessel.
-  - If app is in background (or closed) when recognizing a Tessel, it will show a notification.
-  - If user has built the app with a url for a remote Rails server (see instructions below), iOS app will post to the Rails Server each time the iOS device is within proximity of the Tessel
+  - _Tessel Beacon Monitoring_ : User can decide whether or not monitor for boundary changes when entering/exiting the region of the Tessel. If the user decides to monitor for boundary changes, they'll get notified each time they *enter* the region of a Tessel. This happens regardless of whether the app is currently in the foreground. Also, the app will ping [http://tessel-beacon-server.herokuapp.com](http://tessel-beacon-server.herokuapp.com) each time it enters the region of a Tessel. Currently, the app does not include notifications when exiting the region of a Tessel. 
+  - _Tessel Beacon Ranging_ : When the app is in the foreground, user can range the Tessel Beacon. While ranging is enabled, the app will display the proximity to the Tessel Beacon in realtime. scans for Tessel beacon. 
   
 
-Installation (without Rails server)
+Installation
 ============
 1. Fork/clone this repo.
-1. `cd` to your local repo, and run `pod install`
+1. If this is your first time building an iOS app, you'll probably have to install Cocoapods. Cocoapods is like NPM for iOS apps. To install: `sudo gem install cocoapods`. Yes, Cocoapods is a gem. If you don't have Ruby installed, you'll have to do that first. Dependencies are just turtles all the way down.
+1. `cd` to your local repo, and run `pod install`. 
 1. To run the app, build the TesselBeaconDemo target to an *iOS device*. As mentioned above, you've got to be a registered Apple Developer to do this.
 
-Installation (with Rails server)
-============
-1. Follow steps 1 & 2 from above.
-2. Deploy the Rails server, following the instructions here: [Here's](https://github.com/rbobbins/tessel-rails-server). You *must* have a remote server; `http://localhost:3000` doesn't mean much to your iOS device.
-3. After deploying, find the line in `AppDelegate.m` that says `NSURL *baseURL = nil;` to `NSURL *baseURL = [NSURL URLWithString:@"<your heroku server url>"]`;
-4. Follow step 3 from above
 
-
+Running Tests
+=============
 1. To run the specs (this app is well-tested), build the Specs target.
 
