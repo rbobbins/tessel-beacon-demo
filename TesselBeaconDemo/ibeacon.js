@@ -25,7 +25,7 @@ function createIBeaconAdvertisementPacket(major, minor, peripheral) {
     // Preamble
     var preamble = new Buffer([0x4c, 0x00, 0x02, 0x15]);
     // Apple AirLocate Service UUID
-    var airLocate = new Buffer([0xe2, 0xc5, 0x6d, 0xb5, 0xdf, 0xfb, 0x48, 0xd2, 0xb0, 0x60, 0xd0, 0xf5, 0xa7, 0x10, 0x96, 0xe0]);
+    var airLocate = new Buffer(PLACEHOLDER);
     
     var majorBuf = new Buffer(2);
     majorBuf.writeUInt16BE(major, 0);

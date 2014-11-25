@@ -74,10 +74,10 @@
         
         NSString *messageBody = [@"Attached is the iBeacon code snippet!\n\n" stringByAppendingString:[self iBeaconInstructions].string];
         [mailViewController setMessageBody:messageBody isHTML:NO];
-        
-        NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"ibeacon" withExtension:@"js"];
-        NSData *codeSnippetData = [NSData dataWithContentsOfURL:ibeaconCodeSnippetURL];
-        [mailViewController addAttachmentData:codeSnippetData mimeType:@"text/plain" fileName:@"ibeacon.js"];
+
+        [mailViewController addAttachmentData:[self beaconJavascriptAttachment]
+                                     mimeType:@"text/plain"
+                                     fileName:@"ibeacon.js"];
         
         [self presentViewController:mailViewController animated:NO completion:nil];
     } else {
@@ -118,6 +118,7 @@
 }
          
 #pragma mark - Private
+
 - (NSAttributedString *)iBeaconInstructions {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Find the line beginning with:\n"];
                                                    
@@ -128,9 +129,21 @@
     
     CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion] ;
     NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
-    NSAttributedString *newCodeSnippet = [[NSAttributedString alloc] initWithString:byteArrayString attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]}];
+    NSAttributedString *newCodeSnippet = [[NSAttributedString alloc] initWithString:byteArrayString
+                                                                         attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]}];
     [attributedString appendAttributedString:newCodeSnippet];
     return attributedString;
+}
+
+- (NSData *)beaconJavascriptAttachment {
+    
+    NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"ibeacon" withExtension:@"js"];
+    NSData *codeSnippetData = [NSData dataWithContentsOfURL:ibeaconCodeSnippetURL];
+    NSString *codeSnippet = [[NSString alloc] initWithData:codeSnippetData encoding:NSUTF8StringEncoding];
+    NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString]];
+    codeSnippet = [codeSnippet stringByReplacingOccurrencesOfString:@"PLACEHOLDER" withString:byteArrayString];
+
+    return [codeSnippet dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 
