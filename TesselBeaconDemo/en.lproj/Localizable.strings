@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  TesselBeaconDemo
+
+  Created by Rachel Bobbins on 11/24/14.
+  Copyright (c) 2014 Rachel Bobbins. All rights reserved.
+*/
+
+"TesselInformation.email.body" = "Attached is your Tessel Beacon code snippet!\n\nTo use:\n<ol><li>Clone <a href=\"https://github.com/tessel/ble-ble113a/\"> the BLE lib</a></li><li>Save the tesselBeacon.js attachment in the ble-ble113a/examples directory</li><li>In the command line: `tessel run tesselBeacon.js`</li></ol>";
+"TesselInformation.email.subject" = "Tessel iBeacon information";
+
+"Tessel.instructions.introduction" = "Your Tessel MUST run the code here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js\n\n";
+"Tessel.instructions.detailedInstructions - %@ (byteArrayString)" = "Find the line beginning with:\nvar airLocate = new Buffer([...]);\n\nReplace the byte array with your Tessel id, formatted as below: \n\n %@";
+
+"Error.emailNotConfigured.alertTitle" = "Uh-oh";
+"Error.emailNotConfigured.alertMessage" = "Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead";
+
+"Error.emailFailedToSend.alertTitle" = "Email Not Sent";
+"Error.emailFailedToSend.alertMessage" = "Due to either device error or user error, your email was not sent. If you're so inclined, try debugging it yourself! Otherwise, copy your device ID to the clipboard and email it directly to yourself";
+
+"OK" = "OK";

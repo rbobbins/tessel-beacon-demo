@@ -17,10 +17,13 @@
     [self getUUIDBytes:uuidBytes];
     
     NSMutableString *hexString  = [NSMutableString string];
-    for (int i = 0; i < 16; ++i)
+    for (int i = 0; i < 16; ++i) {
         [hexString appendString:[NSString stringWithFormat:@"0x%02lx, ", (unsigned long)uuidBytes[i]]];
+    }
     
-    return [hexString substringToIndex:(hexString.length - 2)];
+    //chop off the final ", "
+    hexString = [[hexString substringToIndex:(hexString.length - 2)] mutableCopy];
+    return [NSString stringWithFormat:@"[%@]", hexString];
 }
 
 @end

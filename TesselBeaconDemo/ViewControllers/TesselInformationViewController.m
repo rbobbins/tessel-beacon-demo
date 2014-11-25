@@ -46,7 +46,7 @@
     
     if (registeredRegion) {
         self.tesselIdLabel.text = registeredRegion.proximityUUID.UUIDString;
-        NSMutableAttributedString *stepByStepText = [[NSMutableAttributedString alloc] initWithString:@"Your Tessel MUST run the code here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js\n\n"];
+        NSMutableAttributedString *stepByStepText = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Tessel.instructions.introduction", nil)];
         
         [stepByStepText appendAttributedString:[self iBeaconInstructions]];
         self.explanatoryText.attributedText = stepByStepText;
@@ -62,7 +62,7 @@
 
 - (IBAction)didTapToCopyToClipboard:(id)sender {
     CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion];
-    NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
+    NSString *byteArrayString = [registeredRegion.proximityUUID byteArrayString];
     [[UIPasteboard generalPasteboard] setValue:byteArrayString forPasteboardType:(NSString *)kUTTypePlainText];
 }
 
@@ -70,21 +70,18 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
-        mailViewController.subject = @"Tessel iBeacon information";
-        
-        NSString *messageBody = [@"Attached is the iBeacon code snippet!\n\n" stringByAppendingString:[self iBeaconInstructions].string];
-        [mailViewController setMessageBody:messageBody isHTML:NO];
-
+        mailViewController.subject = NSLocalizedString(@"TesselInformation.email.subject", nil);
+        [mailViewController setMessageBody:NSLocalizedString(@"TesselInformation.email.body", nil) isHTML:YES];
         [mailViewController addAttachmentData:[self beaconJavascriptAttachment]
                                      mimeType:@"text/plain"
                                      fileName:@"ibeacon.js"];
         
         [self presentViewController:mailViewController animated:NO completion:nil];
     } else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Uh-oh"
-                                                                                 message:@"Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead"
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailNotConfigured.alertTitle", nil)
+                                                                                 message:NSLocalizedString(@"Error.emailNotConfigured.alertMessage", nil)
                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }]];
         [self presentViewController:alertController animated:NO completion:nil];
@@ -100,14 +97,16 @@
                         error:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:^{
         if (result != MFMailComposeResultSent) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email Not Sent"
-                                                                                     message:@"Due to either device error or user error, your email was not sent. If you're so inclined, try debugging it yourself! Otherwise, copy your device ID to the clipboard and email it directly to yourself"
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
+                                                                                     message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
             }]];
-            [self presentViewController:alertController animated:NO completion:nil];
             
+            [self presentViewController:alertController animated:NO completion:nil];
         }
         else {
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -120,27 +119,22 @@
 #pragma mark - Private
 
 - (NSAttributedString *)iBeaconInstructions {
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Find the line beginning with:\n"];
-                                                   
-    NSAttributedString *codeSnippet = [[NSAttributedString alloc] initWithString:@"var airLocate = new Buffer([...]);" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]}];
-    
-    [attributedString appendAttributedString:codeSnippet];
-    [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\nReplace the byte array with your Tessel id, formatted as below: \n\n"]];
-    
-    CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion] ;
-    NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [registeredRegion.proximityUUID byteArrayString]];
-    NSAttributedString *newCodeSnippet = [[NSAttributedString alloc] initWithString:byteArrayString
-                                                                         attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]}];
-    [attributedString appendAttributedString:newCodeSnippet];
+    NSString *byteArrayString = [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString];
+    NSString *plainTextInstructions = [NSString stringWithFormat:NSLocalizedString(@"Tessel.instructions.detailedInstructions - %@ (byteArrayString)", nil), byteArrayString];
+
+    NSDictionary *attributesForCodeSnippet = @{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]};
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:plainTextInstructions];
+    [attributedString addAttributes:attributesForCodeSnippet range:[plainTextInstructions rangeOfString:@"var airLocate = new Buffer([...]);"]];
+    [attributedString addAttributes:attributesForCodeSnippet range:[plainTextInstructions rangeOfString:byteArrayString]];
     return attributedString;
 }
 
 - (NSData *)beaconJavascriptAttachment {
     
-    NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"ibeacon" withExtension:@"js"];
+    NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"tesselBeacon" withExtension:@"js"];
     NSData *codeSnippetData = [NSData dataWithContentsOfURL:ibeaconCodeSnippetURL];
     NSString *codeSnippet = [[NSString alloc] initWithData:codeSnippetData encoding:NSUTF8StringEncoding];
-    NSString *byteArrayString = [NSString stringWithFormat:@"[%@]", [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString]];
+    NSString *byteArrayString = [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString];
     codeSnippet = [codeSnippet stringByReplacingOccurrencesOfString:@"PLACEHOLDER" withString:byteArrayString];
 
     return [codeSnippet dataUsingEncoding:NSUTF8StringEncoding];

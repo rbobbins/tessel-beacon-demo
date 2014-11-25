@@ -16,6 +16,8 @@
 		5A08DA531A0C86B20099991B /* TesselInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A08DA511A0C86B20099991B /* TesselInformationViewController.xib */; };
 		5A19E30E1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
 		5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */ = {isa = PBXBuildFile; fileRef = 5A19E30D1A1C679100AB4C26 /* ibeacon.js */; };
+		5A4804011A245B80004ED010 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A4804041A245B80004ED010 /* Localizable.strings */; };
+		5A4804021A245B80004ED010 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A4804041A245B80004ED010 /* Localizable.strings */; };
 		5A4C800D19F4D14D00E10062 /* RegistrationViewControllerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A4C800A19F4D14D00E10062 /* RegistrationViewControllerSpec.mm */; };
 		5A4C801919F4D16E00E10062 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */; };
 		5A4C801A19F4D16E00E10062 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C801019F4D16E00E10062 /* RegistrationViewController.xib */; };
@@ -78,6 +80,7 @@
 		5A77A4A619DE6BFC00187EE1 /* MainViewControllerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainViewControllerSpec.mm; sourceTree = "<group>"; };
 		5A77A4AB19DE723000187EE1 /* libPods-TesselBeaconDemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TesselBeaconDemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-TesselBeaconDemoTests-Cedar.a"; sourceTree = "<group>"; };
 		5A8144F719DD05AC006077B3 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		5A93AEF21A245C7A0015C6E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5A94792719FDAE29007F840E /* TesselCheckinRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesselCheckinRepository.h; sourceTree = "<group>"; };
 		5A94792819FDAE29007F840E /* TesselCheckinRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TesselCheckinRepository.m; sourceTree = "<group>"; };
 		5A96613919DFA9770039D844 /* AppDelegateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegateSpec.mm; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 		5AB8AB5A19DBC0880085B4BE /* TesselBeaconDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5A4804041A245B80004ED010 /* Localizable.strings */,
 				5AB3798919FA174C00775FEB /* Repositories */,
 				5A4C802619F4D19800E10062 /* UIKit/Foundation+Categories */,
 				5A96613119DF38CE0039D844 /* Services */,
@@ -415,6 +419,7 @@
 				5A08DA521A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
 				5A96613D19DFD0850039D844 /* LaunchScreen.xib in Resources */,
 				5AB8AB6D19DBC0880085B4BE /* Images.xcassets in Resources */,
+				5A4804011A245B80004ED010 /* Localizable.strings in Resources */,
 				5A8144F819DD05AC006077B3 /* MainViewController.xib in Resources */,
 				5AB8AB5F19DBC0880085B4BE /* InfoPlist.strings in Resources */,
 			);
@@ -427,6 +432,7 @@
 				5A08DA531A0C86B20099991B /* TesselInformationViewController.xib in Resources */,
 				5AC4B0DE19DE6A7A0078A65F /* InfoPlist.strings in Resources */,
 				5A4C801A19F4D16E00E10062 /* RegistrationViewController.xib in Resources */,
+				5A4804021A245B80004ED010 /* Localizable.strings in Resources */,
 				5A77A4AA19DE6ED400187EE1 /* MainViewController.xib in Resources */,
 				5AC4B0E619DE6A7B0078A65F /* Default-568h@2x.png in Resources */,
 				5A19E30F1A1C679100AB4C26 /* ibeacon.js in Resources */,
@@ -543,6 +549,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5A4804041A245B80004ED010 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A93AEF21A245C7A0015C6E4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		5AB8AB5D19DBC0880085B4BE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
