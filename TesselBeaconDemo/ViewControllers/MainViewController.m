@@ -64,8 +64,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
 #if TARGET_IPHONE_SIMULATOR
 #ifndef SPECS
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning"
-                                                                             message:@"You appear to be using a simulator, not a real device. Because the simulator does not have bluetooth, iBeacons will not work properly"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.userIsUsingSimulator.alertTitle", nil)
+                                                                             message:NSLocalizedString(@"Error.userIsUsingSimulator.alertMessage", nil)
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
                                                       style:UIAlertActionStyleCancel
@@ -113,8 +113,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
 #pragma mark <TesselBeaconDelegate>
 
 - (void)didEnterTesselRange {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Bonjour!"
-                                                                             message:@"You're near a Tessel"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertTitle", nil)
+                                                                             message:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertMessage", nil)
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
                                                       style:UIAlertActionStyleCancel

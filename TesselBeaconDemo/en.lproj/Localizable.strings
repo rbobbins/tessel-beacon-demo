@@ -44,3 +44,9 @@
 
 "Notification.enteredTesselRegion.alertTitle" = "Welcome to the Tessel region!";
 "Notification.enteredTesselRegion.buttonTitle" = "More Details";
+
+"Error.userIsUsingSimulator.alertTitle" = "Warning";
+"Error.userIsUsingSimulator.alertMessage" = "You appear to be using a simulator, not a real device. Because the simulator does not have bluetooth, iBeacons will not work properly";
+
+"TesselEvent.enteredTesselRegion.alertTitle" = "Bonjour!";
+"TesselEvent.enteredTesselRegion.alertMessage" = "You're near a Tessel";
