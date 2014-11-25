@@ -18,3 +18,22 @@
 "Error.emailFailedToSend.alertMessage" = "Due to either device error or user error, your email was not sent. If you're so inclined, try debugging it yourself! Otherwise, copy your device ID to the clipboard and email it directly to yourself";
 
 "OK" = "OK";
+
+"AppleError.kCLErrorLocationUnknown.description" = "The location manager was unable to obtain a location value right now.";
+"AppleError.kCLErrorDenied.description" = "Access to the location service was denied by the user.";
+"AppleError.kCLErrorNetwork.description" = "The network was unavailable or a network error occurred.";
+"AppleError.kCLErrorHeadingFailure.description" = "The heading could not be determined.";
+"AppleError.kCLErrorRegionMonitoringDenied.description" = "Access to the region monitoring service was denied by the user.";
+"AppleError.kCLErrorRegionMonitoringFailure.description" = "A registered region cannot be monitored. Monitoring can fail if the app has exceeded the maximum number of regions that it can monitor simultaneously. Monitoring can also fail if the region’s radius distance is too large.";
+"AppleError.kCLErrorRegionMonitoringSetupDelayed.description" = "Core Location could not initialize the region monitoring feature immediately.";
+"AppleError.kCLErrorRegionMonitoringResponseDelayed.description" = "Core Location will deliver events but they may be delayed. Possible keys in the user information dictionary are described in Error User Info Keys.";
+"AppleError.kCLErrorGeocodeFoundNoResult.description" = "The geocode request yielded no result.";
+"AppleError.kCLErrorGeocodeFoundPartialResult.description" = "The geocode request yielded a partial result.";
+"AppleError.kCLErrorGeocodeCanceled.description" = "The geocode request was canceled.";
+"AppleError.kCLErrorDeferredFailed.description" = "The location manager did not enter deferred mode for an unknown reason. This error can occur if GPS is unavailable, not active, or is temporarily interrupted. If you get this error on a device that has GPS hardware, the solution is to try again.";
+"AppleError.kCLErrorDeferredNotUpdatingLocation.description" = "The location manager did not enter deferred mode because location updates were already disabled or paused.";
+"AppleError.kCLErrorDeferredAccuracyTooLow.description" = "Deferred mode is not supported for the requested accuracy. The accuracy must be set to kCLLocationAccuracyBest or kCLLocationAccuracyBestForNavigation.";
+"AppleError.kCLErrorDeferredDistanceFiltered.description" = "Deferred mode does not support distance filters. Set the distance filter to kCLDistanceFilterNone.";
+"AppleError.kCLErrorDeferredCanceled.description" = "The request for deferred updates was canceled by your app or by the location manager. This error is returned if you call the disallowDeferredLocationUpdates method or schedule a new deferred update before the previous deferred update request is processed. The location manager may also report this error too. For example, if the app is in the foreground when a new location is determined, the location manager cancels deferred updates and delivers the location data to your app.";
+"AppleError.kCLErrorRangingUnavailable.description" = "Ranging is disabled. This might happen if the device is in Airplane mode or if Bluetooth or location services are disabled.";
+"AppleError.kCLErrorRangingFailure.description" = "A general ranging error occurred.";
