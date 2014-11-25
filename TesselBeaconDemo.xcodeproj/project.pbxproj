@@ -50,6 +50,8 @@
 		5AB8AB6519DBC0880085B4BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8AB6419DBC0880085B4BE /* AppDelegate.m */; };
 		5AB8AB6D19DBC0880085B4BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB8AB6C19DBC0880085B4BE /* Images.xcassets */; };
 		5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8AB9019DBC17C0085B4BE /* MainViewController.m */; };
+		5AC0A2D01A2543E300A0A3E2 /* UIAlertController+Predefined.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0A2CF1A2543E300A0A3E2 /* UIAlertController+Predefined.m */; };
+		5AC0A2D11A2543E300A0A3E2 /* UIAlertController+Predefined.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0A2CF1A2543E300A0A3E2 /* UIAlertController+Predefined.m */; };
 		5AC4B0D619DE6A7A0078A65F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB8AB5819DBC0880085B4BE /* UIKit.framework */; };
 		5AC4B0D719DE6A7A0078A65F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB8AB5419DBC0880085B4BE /* Foundation.framework */; };
 		5AC4B0D819DE6A7A0078A65F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB8AB5619DBC0880085B4BE /* CoreGraphics.framework */; };
@@ -107,6 +109,8 @@
 		5AB8AB8F19DBC17C0085B4BE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5AB8AB9019DBC17C0085B4BE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5AB8AB9419DBC3E60085B4BE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		5AC0A2CE1A2543E300A0A3E2 /* UIAlertController+Predefined.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Predefined.h"; sourceTree = "<group>"; };
+		5AC0A2CF1A2543E300A0A3E2 /* UIAlertController+Predefined.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Predefined.m"; sourceTree = "<group>"; };
 		5AC4B0D519DE6A7A0078A65F /* Specs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Specs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC4B0DB19DE6A7A0078A65F /* Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-Info.plist"; sourceTree = "<group>"; };
 		5AC4B0DD19DE6A7A0078A65F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				5A4C802819F4D19800E10062 /* NSUserDefaults+Keys.m */,
 				5AFC6BBC1A108E150025690A /* NSUUID+Formatting.h */,
 				5AFC6BBD1A108E150025690A /* NSUUID+Formatting.m */,
+				5AC0A2CE1A2543E300A0A3E2 /* UIAlertController+Predefined.h */,
+				5AC0A2CF1A2543E300A0A3E2 /* UIAlertController+Predefined.m */,
 			);
 			name = "UIKit/Foundation+Categories";
 			path = "UIKit+Categories";
@@ -515,6 +521,7 @@
 				5A4C802B19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
 				5AB8AB6119DBC0880085B4BE /* main.m in Sources */,
 				5AFC6BBE1A108E150025690A /* NSUUID+Formatting.m in Sources */,
+				5AC0A2D01A2543E300A0A3E2 /* UIAlertController+Predefined.m in Sources */,
 				5A08DA4D1A0C83830099991B /* TesselInformationViewController.m in Sources */,
 				5A96614019E066910039D844 /* TesselBeaconManager.m in Sources */,
 				5AB8AB9219DBC17C0085B4BE /* MainViewController.m in Sources */,
@@ -532,6 +539,7 @@
 				5A77A4A719DE6BFC00187EE1 /* MainViewControllerSpec.mm in Sources */,
 				5AB3798D19FA176100775FEB /* TesselRegistrationRepository.m in Sources */,
 				5A96613A19DFA9770039D844 /* AppDelegateSpec.mm in Sources */,
+				5AC0A2D11A2543E300A0A3E2 /* UIAlertController+Predefined.m in Sources */,
 				5A4C802C19F4D19800E10062 /* NSUserDefaults+Keys.m in Sources */,
 				5A4C801C19F4D16E00E10062 /* RegistrationViewController.m in Sources */,
 				5AB3798719FA163400775FEB /* TesselRegistrationRepositorySpec.mm in Sources */,

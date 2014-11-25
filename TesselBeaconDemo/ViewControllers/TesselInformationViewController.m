@@ -12,6 +12,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "NSUUID+Formatting.h"
 #import <MessageUI/MessageUI.h>
+#import "UIAlertController+Predefined.h"
 
 @interface TesselInformationViewController () <MFMailComposeViewControllerDelegate>
 
@@ -75,18 +76,10 @@
         
         [self presentViewController:mailViewController animated:NO completion:nil];
     } else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailNotConfigured.alertTitle", nil)
-                                                                                 message:NSLocalizedString(@"Error.emailNotConfigured.alertMessage", nil)
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }]];
+        UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:NSLocalizedString(@"Error.emailNotConfigured.alertTitle", nil)
+                                                                                            message:NSLocalizedString(@"Error.emailNotConfigured.alertMessage", nil)];
         [self presentViewController:alertController animated:NO completion:nil];
     }
-    
-    
 }
 
 #pragma mark - <MFMailComposeViewControllerDelegate>
@@ -100,15 +93,8 @@
     
     //Display an alert if it wasn't sent. Otherwise, pop back to the root of the nav stack
     if (result != MFMailComposeResultSent) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
-                                                                                 message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action) {
-                                                              [self dismissViewControllerAnimated:YES completion:nil];
-                                                          }]];
-        
+        UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
+                                                                                            message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)];
         [self presentViewController:alertController animated:NO completion:nil];
     }
     else {
