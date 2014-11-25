@@ -74,14 +74,16 @@
         [mailViewController setMessageBody:NSLocalizedString(@"TesselInformation.email.body", nil) isHTML:YES];
         [mailViewController addAttachmentData:[self beaconJavascriptAttachment]
                                      mimeType:@"text/plain"
-                                     fileName:@"ibeacon.js"];
+                                     fileName:@"tesselBeacon.js"];
         
         [self presentViewController:mailViewController animated:NO completion:nil];
     } else {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailNotConfigured.alertTitle", nil)
                                                                                  message:NSLocalizedString(@"Error.emailNotConfigured.alertMessage", nil)
                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }]];
         [self presentViewController:alertController animated:NO completion:nil];
@@ -96,6 +98,7 @@
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:^{
+        
         if (result != MFMailComposeResultSent) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
                                                                                      message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)
@@ -131,7 +134,7 @@
 
 - (NSData *)beaconJavascriptAttachment {
     
-    NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"tesselBeacon" withExtension:@"js"];
+    NSURL *ibeaconCodeSnippetURL = [[NSBundle mainBundle] URLForResource:@"tesselBeaconTemplate" withExtension:@"js"];
     NSData *codeSnippetData = [NSData dataWithContentsOfURL:ibeaconCodeSnippetURL];
     NSString *codeSnippet = [[NSString alloc] initWithData:codeSnippetData encoding:NSUTF8StringEncoding];
     NSString *byteArrayString = [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString];
