@@ -55,9 +55,8 @@ describe(@"TesselInformationViewController", ^{
             });
             
             it(@"should copy the UUID to the clipboard in a format that's easy to copy/paste", ^{
-                NSString *expectedPasteBuffer = [NSString stringWithFormat:@"[%@]", [uuid byteArrayString]];
                 fakePasteboard should have_received(@selector(setValue:forPasteboardType:))
-                    .with(expectedPasteBuffer, (NSString *)kUTTypePlainText);
+                    .with([uuid byteArrayString], (NSString *)kUTTypePlainText);
             });
         });
         
