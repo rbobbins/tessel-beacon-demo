@@ -147,8 +147,8 @@
     CLBeaconRegion *beaconRegion = (CLBeaconRegion *)region;
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertBody = @"Welcome to the Tessel region!";
-    notification.alertAction = @"More Details";
+    notification.alertBody = NSLocalizedString(@"Notification.enteredTesselRegion.alertTitle", nil);
+    notification.alertAction = NSLocalizedString(@"Notification.enteredTesselRegion.buttonTitle", nil);
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     
     [self.tesselCheckinRepository checkinAtTessel:beaconRegion.proximityUUID];

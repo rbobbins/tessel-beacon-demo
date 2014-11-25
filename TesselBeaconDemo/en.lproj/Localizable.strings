@@ -41,3 +41,6 @@
 
 "TesselError.TesselErrorInsufficientPermission.description" = "Either you've explicitly denied this application permission for location monitoring, or other settings (i.e. parental controls) prevent you from granting permission. Try going to your device's settings, and checking on the location permissions for this application";
 "TesselError.TesselWarningUndeterminedPermissionUserShouldTryAgain.description" = "This application didn't have location permission when you last tried to do ranging or monitoring. It immediately asked for location permission - if you granted permission, you should be able to try ranging or monitoring again, without any problems"
+
+"Notification.enteredTesselRegion.alertTitle" = "Welcome to the Tessel region!";
+"Notification.enteredTesselRegion.buttonTitle" = "More Details";
