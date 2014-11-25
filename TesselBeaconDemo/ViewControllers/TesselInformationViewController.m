@@ -46,10 +46,7 @@
     
     if (registeredRegion) {
         self.tesselIdLabel.text = registeredRegion.proximityUUID.UUIDString;
-        NSMutableAttributedString *stepByStepText = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Tessel.instructions.introduction", nil)];
-        
-        [stepByStepText appendAttributedString:[self iBeaconInstructions]];
-        self.explanatoryText.attributedText = stepByStepText;
+        self.explanatoryText.attributedText = [self formattedBeaconInstructions];
     }
     
 }
@@ -122,7 +119,7 @@
          
 #pragma mark - Private
 
-- (NSAttributedString *)iBeaconInstructions {
+- (NSAttributedString *)formattedBeaconInstructions {
     NSString *byteArrayString = [self.tesselRegistrationRepository.registeredTesselRegion.proximityUUID byteArrayString];
     NSString *plainTextInstructions = [NSString stringWithFormat:NSLocalizedString(@"Tessel.instructions.detailedInstructions - %@ (byteArrayString)", nil), byteArrayString];
 

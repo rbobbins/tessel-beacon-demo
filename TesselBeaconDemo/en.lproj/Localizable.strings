@@ -7,10 +7,9 @@
 */
 
 "TesselInformation.email.body" = "Attached is your Tessel Beacon code snippet!\n\nTo use:\n<ol><li>Clone <a href=\"https://github.com/tessel/ble-ble113a/\"> the BLE lib</a></li><li>Save the tesselBeacon.js attachment in the ble-ble113a/examples directory</li><li>The attached file expects that your BLE module is connected to Port A of the Tessel. Ensure that this is the case, or modify the sample that it looks to the correct port for the BLE module.<li>In the command line: `tessel run tesselBeacon.js`</li></ol>";
-"TesselInformation.email.subject" = "Tessel iBeacon information";
+"TesselInformation.email.subject" = "Tessel Beacon information";
 
-"Tessel.instructions.introduction" = "Your Tessel MUST run the code here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js\n\n";
-"Tessel.instructions.detailedInstructions - %@ (byteArrayString)" = "Find the line beginning with:\nvar airLocate = new Buffer([...]);\n\nReplace the byte array with your Tessel id, formatted as below: \n\n %@";
+"Tessel.instructions.detailedInstructions - %@ (byteArrayString)" = "Your Tessel MUST run the code here: https://github.com/tessel/ble-ble113a/blob/master/examples/ibeacon.js\n\nTap below to email a copy of this code snippet to yourself. It's already modified for your Tessel UUID.\n\nAlternately, you can copy the UUID to the clipboard and send it to yourself - if you do so, you'll need to modify the example code on Github. Find the line beginning with:\n\nvar airLocate = new Buffer([...]);\nReplace the byte array with your Tessel id, formatted as below:\n\n%@";
 
 "Error.emailNotConfigured.alertTitle" = "Uh-oh";
 "Error.emailNotConfigured.alertMessage" = "Unfortunately, your device is not properly configured for email. Try copying your device ID to the clipboard and emailing it to yourself instead";
