@@ -10,6 +10,7 @@
 #import "TesselBeaconManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "TesselInformationViewController.h"
+#import "UIAlertController+Predefined.h"
 
 static NSString *cellIdentifier = @"cellIdentifier";
 
@@ -64,13 +65,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
 #if TARGET_IPHONE_SIMULATOR
 #ifndef SPECS
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.userIsUsingSimulator.alertTitle", nil)
-                                                                             message:NSLocalizedString(@"Error.userIsUsingSimulator.alertMessage", nil)
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil];
-    [alertController addAction:dismiss];
+    UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:NSLocalizedString(@"Error.userIsUsingSimulator.alertTitle", nil)
+                                                                                        message:NSLocalizedString(@"Error.userIsUsingSimulator.alertMessage", nil)];
     [self presentViewController:alertController animated:NO completion:nil];
 #endif
 #endif
@@ -100,26 +96,15 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
-                                                                             message:[self completeMessageAtRow:indexPath.row]
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil];
-    [alertController addAction:dismiss];
+    UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:@"" message:[self completeMessageAtRow:indexPath.row]];
     [self presentViewController:alertController animated:NO completion:nil];
 }
 
 #pragma mark <TesselBeaconDelegate>
 
 - (void)didEnterTesselRange {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertTitle", nil)
-                                                                             message:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertMessage", nil)
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK"
-                                                      style:UIAlertActionStyleCancel
-                                                    handler:nil];
-    [alertController addAction:dismiss];
+    UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertTitle", nil)
+                                                                                        message:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertMessage", nil)];
     [self presentViewController:alertController animated:NO completion:nil];
     [self updateTableWithBriefMessage:@"entered range of tessel beacon" completeMessage:nil];
 }
