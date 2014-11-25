@@ -42,11 +42,7 @@
         [self.spinner stopAnimating];
         
         TesselInformationViewController *tesselInformationViewController = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:self.tesselRegistrationRepository];
-        [self presentViewController:tesselInformationViewController
-                           animated:YES
-                         completion:^{
-            [self.navigationController popToRootViewControllerAnimated:NO];
-        }];
+        [self.navigationController pushViewController:tesselInformationViewController animated:NO];
         return nil;
     } error:^id(NSError *error) {
         self.view.userInteractionEnabled = YES;

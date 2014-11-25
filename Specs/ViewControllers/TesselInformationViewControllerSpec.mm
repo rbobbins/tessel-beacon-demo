@@ -14,10 +14,16 @@ SPEC_BEGIN(TesselInformationViewControllerSpec)
 describe(@"TesselInformationViewController", ^{
     __block TesselInformationViewController *subject;
     __block TesselRegistrationRepository *tesselRegistrationRepository;
+    __block UINavigationController *navController;
+    __block UIViewController *rootViewController;
 
     beforeEach(^{
+        rootViewController = [[UIViewController alloc] init];
+        navController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+
         tesselRegistrationRepository = nice_fake_for([TesselRegistrationRepository class]);
         subject = [[TesselInformationViewController alloc] initWithTesselRegistrationRepository:tesselRegistrationRepository];
+        [navController pushViewController:subject animated:NO];
     });
     
     context(@"when the user has registered a Tessel", ^{
@@ -115,12 +121,12 @@ describe(@"TesselInformationViewController", ^{
             });
         });
         
-        describe(@"tapping the okay button", ^{
-            it(@"should dismiss itself", ^{
+        describe(@"tapping the dismiss button", ^{
+            it(@"should pop back to the root view", ^{
                 spy_on(subject);
                 [subject.dismissButton sendActionsForControlEvents:UIControlEventTouchUpInside];
                 
-                subject should have_received(@selector(dismissViewControllerAnimated:completion:)).with(YES, nil);
+                navController.topViewController should be_same_instance_as(rootViewController);
             });
         });
     });

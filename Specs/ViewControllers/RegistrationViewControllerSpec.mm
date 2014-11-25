@@ -77,13 +77,8 @@ describe(@"RegistrationViewController", ^{
                     [deferred resolveWithValue:tesselId];
                 });
                 
-                it(@"should present a TesselInformationViewController", ^{
-                    subject.presentedViewController should be_instance_of([TesselInformationViewController class]);
-                });
-                
-                it(@"should pop back to the root view of the nav controller ", ^{
-                    [subject dismissViewControllerAnimated:NO completion:nil];
-                    navController.topViewController should be_same_instance_as(rootViewController);
+                it(@"should push a TesselInformationViewController", ^{
+                    navController.topViewController should be_instance_of([TesselInformationViewController class]);
                 });
             });
             

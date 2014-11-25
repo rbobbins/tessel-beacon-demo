@@ -40,6 +40,7 @@
     
     self.navigationController.navigationBarHidden = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBarHidden = YES;
     
     CLBeaconRegion *registeredRegion = [self.tesselRegistrationRepository registeredTesselRegion] ;
     
@@ -56,7 +57,7 @@
 #pragma mark - Actions
 
 - (IBAction)didTapDismissButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (IBAction)didTapToCopyToClipboard:(id)sender {
@@ -97,7 +98,6 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error {
-    
     [self dismissViewControllerAnimated:YES completion:^{
         if (result != MFMailComposeResultSent) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email Not Sent"
@@ -107,9 +107,14 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
             }]];
             [self presentViewController:alertController animated:NO completion:nil];
-
+            
+        }
+        else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
+
+    
 }
          
 #pragma mark - Private
