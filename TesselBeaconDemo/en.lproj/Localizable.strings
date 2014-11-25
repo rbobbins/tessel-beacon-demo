@@ -37,3 +37,7 @@
 "AppleError.kCLErrorDeferredCanceled.description" = "The request for deferred updates was canceled by your app or by the location manager. This error is returned if you call the disallowDeferredLocationUpdates method or schedule a new deferred update before the previous deferred update request is processed. The location manager may also report this error too. For example, if the app is in the foreground when a new location is determined, the location manager cancels deferred updates and delivers the location data to your app.";
 "AppleError.kCLErrorRangingUnavailable.description" = "Ranging is disabled. This might happen if the device is in Airplane mode or if Bluetooth or location services are disabled.";
 "AppleError.kCLErrorRangingFailure.description" = "A general ranging error occurred.";
+
+
+"TesselError.TesselErrorInsufficientPermission.description" = "Either you've explicitly denied this application permission for location monitoring, or other settings (i.e. parental controls) prevent you from granting permission. Try going to your device's settings, and checking on the location permissions for this application";
+"TesselError.TesselWarningUndeterminedPermissionUserShouldTryAgain.description" = "This application didn't have location permission when you last tried to do ranging or monitoring. It immediately asked for location permission - if you granted permission, you should be able to try ranging or monitoring again, without any problems"
