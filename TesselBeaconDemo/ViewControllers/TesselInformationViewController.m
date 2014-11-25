@@ -97,25 +97,26 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error {
-    [self dismissViewControllerAnimated:YES completion:^{
+    
+    //Dismiss the email composer from the view hierarchy
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    //Display an alert if it wasn't sent. Otherwise, pop back to the root of the nav stack
+    if (result != MFMailComposeResultSent) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
+                                                                                 message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                          }]];
         
-        if (result != MFMailComposeResultSent) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error.emailFailedToSend.alertTitle" , nil)
-                                                                                     message:NSLocalizedString(@"Error.emailFailedToSend.alertMessage", nil)
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction *action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }]];
-            
-            [self presentViewController:alertController animated:NO completion:nil];
-        }
-        else {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-    }];
-
+        [self presentViewController:alertController animated:NO completion:nil];
+    }
+    else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
     
 }
          
@@ -127,8 +128,10 @@
 
     NSDictionary *attributesForCodeSnippet = @{NSFontAttributeName: [UIFont fontWithName:@"Menlo" size:12]};
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:plainTextInstructions];
-    [attributedString addAttributes:attributesForCodeSnippet range:[plainTextInstructions rangeOfString:@"var airLocate = new Buffer([...]);"]];
-    [attributedString addAttributes:attributesForCodeSnippet range:[plainTextInstructions rangeOfString:byteArrayString]];
+    [attributedString addAttributes:attributesForCodeSnippet
+                              range:[plainTextInstructions rangeOfString:@"var airLocate = new Buffer([...]);"]];
+    [attributedString addAttributes:attributesForCodeSnippet
+                              range:[plainTextInstructions rangeOfString:byteArrayString]];
     return attributedString;
 }
 
