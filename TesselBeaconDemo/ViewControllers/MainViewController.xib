@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="monitoringSwitch" destination="XI7-4k-JlC" id="5io-Va-6cl"/>
                 <outlet property="myTesselButton" destination="TtF-Kd-5FH" id="I2s-MP-JFW"/>
-                <outlet property="proximitySwitch" destination="zta-9e-386" id="mBs-95-C42"/>
+                <outlet property="rangingSwitch" destination="zta-9e-386" id="8pk-iW-iq1"/>
                 <outlet property="tableView" destination="h0u-Fu-5zT" id="Rw4-jT-RwQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UHi-Hc-hnF"/>
             </connections>
@@ -31,7 +31,7 @@
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zta-9e-386">
                             <rect key="frame" x="230" y="62" width="51" height="31"/>
                             <connections>
-                                <action selector="didToggleProximityMonitoring:" destination="-1" eventType="valueChanged" id="SnK-c7-EYm"/>
+                                <action selector="didToggleTesselRanging:" destination="-1" eventType="valueChanged" id="9JE-hn-5Vp"/>
                             </connections>
                         </switch>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Tessel Ranging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-cN-WPM">

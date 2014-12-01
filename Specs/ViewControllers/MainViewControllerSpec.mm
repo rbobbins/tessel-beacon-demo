@@ -21,14 +21,14 @@ describe(@"MainViewController", ^{
             beaconManager stub_method(@selector(isRangingTesselRegion)).and_return(YES);
             subject.view should_not be_nil;
             
-            subject.proximitySwitch.on should be_truthy;
+            subject.rangingSwitch.on should be_truthy;
         });
         
-        it(@"should toggle the proximity switch to OFF when no region is being ranged", ^{
+        it(@"should toggle the ranging switch to OFF when no region is being ranged", ^{
             beaconManager stub_method(@selector(isRangingTesselRegion)).and_return(NO);
             subject.view should_not be_nil;
             
-            subject.proximitySwitch.on should be_falsy;
+            subject.rangingSwitch.on should be_falsy;
         });
         
         it(@"should toggle the region monitoring switch to ON when a region is being monitored", ^{
@@ -48,9 +48,9 @@ describe(@"MainViewController", ^{
         beforeEach(^{
             subject.view should_not be_nil;
 
-            [subject.proximitySwitch setOn:YES];
+            [subject.rangingSwitch setOn:YES];
 
-            [subject.proximitySwitch sendActionsForControlEvents:UIControlEventValueChanged];
+            [subject.rangingSwitch sendActionsForControlEvents:UIControlEventValueChanged];
         });
         
         it(@"should tell the tesselManger to monitorProximityToBeacon", ^{
@@ -59,13 +59,13 @@ describe(@"MainViewController", ^{
         
         it(@"should log the event", ^{
             UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-            cell.textLabel.text should contain(@"Will attempt to monitor proximity");
+            cell.textLabel.text should contain(@"ranging ON. Will log proximity to tessel beaco");
         });
         
         describe(@"toggling it back off", ^{
             beforeEach(^{
-                [subject.proximitySwitch setOn:NO];
-                [subject.proximitySwitch sendActionsForControlEvents:UIControlEventValueChanged];
+                [subject.rangingSwitch setOn:NO];
+                [subject.rangingSwitch sendActionsForControlEvents:UIControlEventValueChanged];
             });
             
             it(@"should tell the tesselManager to stop monitoring the beacon's proximity", ^{
@@ -74,7 +74,7 @@ describe(@"MainViewController", ^{
             
             it(@"should log the event", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"Will stop monitoring and logging proximity");
+                cell.textLabel.text should contain(@"ranging OFF. Will stop logging proximity to tessel beacon");
             });
 
         });
@@ -127,7 +127,7 @@ describe(@"MainViewController", ^{
             UIAlertController *alertController = (id)subject.presentedViewController;
             alertController should be_instance_of([UIAlertController class]);
             alertController.title should equal(@"");
-            alertController.message should contain(@"exited range of tessel");
+            alertController.message should contain(@"Exited range of tessel");
         });
     });
     
@@ -169,7 +169,7 @@ describe(@"MainViewController", ^{
             
             it(@"should log that", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"entered range of tessel");
+                cell.textLabel.text should contain(@"Entered range of tessel");
             });
         });
         
@@ -180,7 +180,7 @@ describe(@"MainViewController", ^{
             
             it(@"should log that", ^{
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"exited range of tessel");
+                cell.textLabel.text should contain(@"Exited range of tessel");
             });
         });
         
@@ -188,19 +188,19 @@ describe(@"MainViewController", ^{
             it(@"should log when the Tessel is nearby", ^{
                 [subject rangingSucceededWithProximity:CLProximityNear];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"proximity to tessel: NEAR");
+                cell.textLabel.text should contain(@"Proximity to tessel: NEAR");
             });
 
             it(@"should log when the Tessel is immediate", ^{
                 [subject rangingSucceededWithProximity:CLProximityImmediate];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"proximity to tessel: IMMEDIATE");
+                cell.textLabel.text should contain(@"Proximity to tessel: IMMEDIATE");
             });
             
             it(@"should log when the Tessel is far", ^{
                 [subject rangingSucceededWithProximity:CLProximityFar];
                 UITableViewCell *cell = [subject.tableView.visibleCells firstObject];
-                cell.textLabel.text should contain(@"proximity to tessel: FAR");
+                cell.textLabel.text should contain(@"Proximity to tessel: FAR");
             });
         });
     
@@ -208,7 +208,7 @@ describe(@"MainViewController", ^{
             __block NSError *error;
             
             beforeEach(^{
-                subject.proximitySwitch.on = YES;
+                subject.rangingSwitch.on = YES;
                 error = [[NSError alloc] initWithDomain:kCLErrorDomain code:kCLErrorRangingUnavailable userInfo:nil];
                 [subject rangingFailedWithError:error];
             });
@@ -220,7 +220,7 @@ describe(@"MainViewController", ^{
             });
             
             it(@"should turn the ranging switch off", ^{
-                subject.proximitySwitch.on should be_falsy;
+                subject.rangingSwitch.on should be_falsy;
             });
         });
     

@@ -48,7 +48,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.briefMessages = [NSMutableArray array];
     self.completeMessages = [NSMutableArray array];
-    self.proximitySwitch.on = [self.beaconManager isRangingTesselRegion];
+    self.rangingSwitch.on = [self.beaconManager isRangingTesselRegion];
     self.monitoringSwitch.on = [self.beaconManager isMonitoringTesselRegion];
 
 }
@@ -106,11 +106,11 @@ static NSString *cellIdentifier = @"cellIdentifier";
     UIAlertController *alertController = [UIAlertController alertControllerWithOKButtonAndTitle:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertTitle", nil)
                                                                                         message:NSLocalizedString(@"TesselEvent.enteredTesselRegion.alertMessage", nil)];
     [self presentViewController:alertController animated:NO completion:nil];
-    [self updateTableWithBriefMessage:@"entered range of tessel beacon" completeMessage:nil];
+    [self updateTableWithBriefMessage:@"Entered range of tessel beacon" completeMessage:nil];
 }
 
 - (void)didExitTesselRange {
-    [self updateTableWithBriefMessage:@"exited range of tessel beacon" completeMessage:nil];
+    [self updateTableWithBriefMessage:@"Exited range of tessel beacon" completeMessage:nil];
 }
 
 - (void)rangingSucceededWithProximity:(CLProximity)proximity {
@@ -121,19 +121,19 @@ static NSString *cellIdentifier = @"cellIdentifier";
         case CLProximityImmediate:  distance = @"IMMEDIATE"; break;
         case CLProximityUnknown:    distance = @"unknown"; break;
     }
-    NSString *message = [NSString stringWithFormat:@"proximity to tessel: %@", distance];
+    NSString *message = [NSString stringWithFormat:@"Proximity to tessel: %@", distance];
     [self updateTableWithBriefMessage:message completeMessage:nil];
 }
 
 - (void)rangingFailedWithError:(NSError *)error {
-    self.proximitySwitch.on = NO;
-    [self updateTableWithBriefMessage:@"Automatically toggled ranging switch to off" completeMessage:nil];
+    self.rangingSwitch.on = NO;
+    [self updateTableWithBriefMessage:@"Automatically toggled ranging switch to OFF" completeMessage:nil];
     [self updateTableWithError:error];
 }
 
 - (void)monitoringFailedWithError:(NSError *)error {
     self.monitoringSwitch.on = NO;
-    [self updateTableWithBriefMessage:@"Automatically toggled monitoring switch to off" completeMessage:nil];
+    [self updateTableWithBriefMessage:@"Automatically toggled monitoring switch to OFF" completeMessage:nil];
     [self updateTableWithError:error];
 }
 
@@ -149,13 +149,13 @@ static NSString *cellIdentifier = @"cellIdentifier";
     }
 }
 
-- (IBAction)didToggleProximityMonitoring:(id)sender {
-    if (self.proximitySwitch.on) {
+- (IBAction)didToggleTesselRanging:(id)sender {
+    if (self.rangingSwitch.on) {
         [self.beaconManager startRangingTesselRegion];
-        [self updateTableWithBriefMessage:@"User toggled proximity monitoring. Will attempt to monitor proximity to tessel beacon" completeMessage:nil];
+        [self updateTableWithBriefMessage:@"User toggled ranging ON. Will log proximity to tessel beacon" completeMessage:nil];
     } else {
         [self.beaconManager stopRangingTesselRegion];
-        [self updateTableWithBriefMessage:@"User toggled proximity monitoring. Will stop monitoring and logging proximity to tessel beacon" completeMessage:nil];
+        [self updateTableWithBriefMessage:@"User toggled ranging OFF. Will stop logging proximity to tessel beacon" completeMessage:nil];
     }
 
 }
