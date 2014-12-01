@@ -15,7 +15,8 @@ Prerequisites
 ============
 
   - You must be registered as an Apple Developer. This is a requirement for running the app on a physical device. (You don't need to be an Apple developer to run the app in the simulator; however, bluetooth does not work in the simulator)
-  - You must have the Tessel BLE module. The application will guide you through setting it up correctly.
+  - You should have the Tessel BLE module. The application will guide you through setting it up correctly.
+  - You should have an iOS device with BLE capabilities. Any device listed here [http://en.wikipedia.org/wiki/List_of_iOS_devices#Features](http://en.wikipedia.org/wiki/List_of_iOS_devices#Features) as having "Bluetooth 4.0" will support BLE.
 
 
 Getting Started
