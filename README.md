@@ -6,9 +6,9 @@ This application demonstrates how to use a Tessel + BLE module as an iBeacon.
 Features
 ========
 
-  - **Tessel Beacon Monitoring** : User can decide whether or not monitor for boundary changes when entering/exiting the region of the Tessel. If the user decides to monitor for boundary changes, they'll get notified each time they *enter* the region of a Tessel. This happens regardless of whether the app is currently in the foreground. 
+  - **Tessel Beacon Monitoring** : User can decide whether or not monitor for boundary changes when entering/exiting the region of the Tessel. If the user decides to monitor for boundary changes, they'll get notified each time they *enter* the region of a Tessel, regardless of whether the app is currently running in the foreground. As of right now, notifications are on entry only - not on exiting a region.
 
-  Also, the app will ping [http://tessel-beacon-server.herokuapp.com](http://tessel-beacon-server.herokuapp.com) each time it enters the region of a Tessel. Currently, the app does not include notifications when exiting the region of a Tessel. 
+  Also, the app will ping [http://tessel-beacon-server.herokuapp.com](http://tessel-beacon-server.herokuapp.com) each time it enters the region of a Tessel. 
   - **Tessel Beacon Ranging** : When the app is in the foreground, user can range the Tessel Beacon. While ranging is enabled, the app will display the proximity to the Tessel Beacon in realtime. scans for Tessel beacon. 
   
 Prerequisites
