@@ -92,7 +92,7 @@ This application has lots of tests, and those tests outline the behavior of each
 ## App in Action
 ### Video demo
 
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](http://player.vimeo.com/video/113357904)
+[![ScreenShot](https://raw.githubusercontent.com/rbobbins/tessel-beacon-demo/master/screenshots/quicktime.png)](http://player.vimeo.com/video/113357904)
 
 ### Screenshots
 Here are some screenshots that highlight features of the demo app.
