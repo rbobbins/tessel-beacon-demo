@@ -89,7 +89,7 @@ This application has lots of tests, and those tests outline the behavior of each
 
 ### 3rd Party Dependencies
 - *Cedar*: Cedar as an iOS testing framework; at time of writing, this app has 76 tests.
-- *KSPromise*: KSPromise is a lightweight promise library for Objective-C. It's based on the JavaScript Promises spec *[what's this called?]*. It's not (yet) a popular pattern in iOS development, but I like to use it - it makes writing beahvioral tests much easier.
+- *KSPromise*: KSPromise is a lightweight promise library for Objective-C. It's based on the JavaScript Promises/A spec (http://wiki.commonjs.org/wiki/Promises/A). It's not (yet) a popular pattern in iOS development, but I like to use it - it makes writing beahvioral tests much easier.
 - *AFNetworking*: AFNetworking is a highly popular networking library for iOS. It's almost definitely overkill for this application - this app only makes 2 network requests. However, this application is open-source. If you decide to fork it and use it as a seed for your own application, you'll probably want to make more network requests. AFNetworking is great for that. 
 
 ## Backend
