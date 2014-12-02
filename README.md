@@ -16,9 +16,12 @@ Table of Contents
 		* Philosophies
 		* Important Objects
 		* 3rd Party Dependencies
+	* Backend
+* Debugging + Helpful Resources
 * App in Action
 	* Video
 	* Screenshots
+
 
 iBeacons: A Quick Overview
 ==========================
@@ -89,6 +92,14 @@ This application has lots of tests, and those tests outline the behavior of each
 - *KSPromise*: KSPromise is a lightweight promise library for Objective-C. It's based on the JavaScript Promises spec *[what's this called?]*. It's not (yet) a popular pattern in iOS development, but I like to use it - it makes writing beahvioral tests much easier.
 - *AFNetworking*: AFNetworking is a highly popular networking library for iOS. It's almost definitely overkill for this application - this app only makes 2 network requests. However, this application is open-source. If you decide to fork it and use it as a seed for your own application, you'll probably want to make more network requests. AFNetworking is great for that. 
 
+## Backend
+This application uses a Rails backend, [available on Github](https://github.com/rbobbins/tessel-rails-server). There's a public instance [on Heroku](http://tessel-beacon-server.herokuapp.com/) It has no security features, but is good enough for testing purposes. If you'd like to use it for anything beyond just building the app, I _highly, highly_ encourage you to boot up your own instance on Heroku. 
+
+## Debugging + Helpful Resources
+* If you want to confirm whether the iPhone has pinged the server, you can visit the [/api/checkins](http://tessel-beacon-server.herokuapp.com/api/checkins.json) endpoint. Is your Tessel ID there?
+* [Apple docs](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/RegionMonitoring/RegionMonitoring.html) about ranging and monitoring with iBeacons
+* [Blog post](http://thenewstack.io/building-an-ibeacon-app/) about some of the challenges in using iBeacons, including the permissions that are necessary
+
 ## App in Action
 ### Video demo
 
@@ -121,3 +132,4 @@ Here are some screenshots that highlight features of the demo app.
 <img src="https://raw.githubusercontent.com/rbobbins/tessel-beacon-demo/master/screenshots/ranging.png" style="width: 100%; height: 100%">
 <figcaption>Screenshot 5: While the app is in the foreground, you can monitor your proximity to the Tessel</figcaption>
 </figure>
+
